@@ -1,0 +1,69 @@
+{
+  "dataset_name": "Explainable Phishing Risk URL Corpus",
+  "curated_date": "2026-11-05",
+  "data_sources": {
+    "phishing": [
+      {
+        "name": "PhishTank",
+        "description": "Community-verified phishing repository feed (phishtank.org)",
+        "type": "verified_malicious"
+      },
+      {
+        "name": "OpenPhish",
+        "description": "Global targeted phishing threat intelligence feed (openphish.com)",
+        "type": "active_threat"
+      },
+      {
+        "name": "URLhaus",
+        "description": "Malicious URL feed tracking malware and credential harvesting (urlhaus.abuse.ch)",
+        "type": "abuse_database"
+      }
+    ],
+    "legitimate": [
+      {
+        "name": "Tranco Top 1M",
+        "description": "Research-oriented top website ranking list (tranco-list.eu)",
+        "type": "authoritative_ranking"
+      },
+      {
+        "name": "Cisco Umbrella Top 1M",
+        "description": "Most queried domains based on global Cisco DNS telemetry",
+        "type": "traffic_telemetry"
+      },
+      {
+        "name": "Curated Trusted Portals",
+        "description": "Official education (.edu), government (.gov), tech docs, and financial services",
+        "type": "authoritative_services"
+      }
+    ]
+  },
+  "total_balanced_samples": 1550,
+  "class_balance": {
+    "phishing_count": 775,
+    "legitimate_count": 775,
+    "phishing_ratio": 0.5,
+    "legitimate_ratio": 0.5
+  },
+  "splits": {
+    "train": {
+      "total": 1084,
+      "phishing": 542,
+      "legitimate": 542
+    },
+    "validation": {
+      "total": 232,
+      "phishing": 116,
+      "legitimate": 116
+    },
+    "test": {
+      "total": 234,
+      "phishing": 117,
+      "legitimate": 117
+    }
+  },
+  "random_seed": 42,
+  "provenance": {
+    "framework": "PhishGuard AI Dual-Engine Detection",
+    "architecture": "11 Heuristic Rules + 21-Feature Random Forest ML"
+  }
+}

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhishGuard | Explainable Phishing Risk Checker</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="container header-inner">
+      <div class="brand-wrapper">
+        <div class="brand-icon-box">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.12v4.7c0 4.67-3.13 9.04-7 10.18-3.87-1.14-7-5.51-7-10.18V6.3l7-3.12zm-1 5v6h2V8.18h-2zm0 8v2h2v-2h-2z"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="brand-title">PhishGuard AI</h1>
+          <p class="brand-subtitle">Explainable Phishing Risk Checker &bull; Dual Heuristic &amp; Machine Learning Engine</p>
+        </div>
+      </div>
+      <div>
+        <div class="system-status-pill">
+          <span class="live-indicator"></span>
+          <span>Dual Engine Active &bull; Random Forest &amp; Rules</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="container">
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button class="nav-tab-btn active" data-target="tab-checker">
+        <span>&#x1F50D;</span>
+        <span>URL Risk Analyzer</span>
+      </button>
+      <button class="nav-tab-btn" data-target="tab-eval">
+        <span>&#x1F4CA;</span>
+        <span>Model Benchmarks &amp; Metrics</span>
+      </button>
+      <button class="nav-tab-btn" data-target="tab-methodology">
+        <span>&#x2699;&#xFE0F;</span>
+        <span>Feature Intelligence &amp; Architecture</span>
+      </button>
+    </nav>
+
+    <!-- TAB 1: URL CHECKER -->
+    <section id="tab-checker" class="tab-content" style="display: block;">
+      
+      <!-- Input Card -->
+      <div class="card">
+        <div class="card-title">
+          <span>Inspect URL for Deceptive &amp; Phishing Signals</span>
+          <span style="font-size:0.82rem; font-weight:normal; color:var(--text-secondary);">Lexical, Structural &amp; Brand Analysis</span>
+        </div>
+
+        <form id="analyze-form">
+          <div class="input-group">
+            <input 
+              type="text" 
+              id="url-input" 
+              class="url-input-field" 
+              placeholder="Paste any link to analyze (e.g. http://paypal.com.verify-billing-center.xyz/index.html)"
+              required 
+              autocomplete="off"
+            />
+            <button type="submit" id="analyze-btn" class="btn-primary">
+              <span>Inspect URL</span>
+            </button>
+          </div>
+
+          <div class="options-row">
+            <label class="checkbox-label" title="Safe sandbox fetcher with strict 2.5s timeout, SSRF protection, and no JavaScript execution">
+              <input type="checkbox" id="page-analysis-checkbox">
+              <span>Enable Optional Isolated Live Page Analysis <em style="color:var(--text-muted);">(SSRF-safe sandbox, no script execution)</em></span>
+            </label>
+            <span style="color:var(--text-muted); font-size:0.75rem;">RFC 3986 Normalized</span>
+          </div>
+        </form>
+
+        <!-- Quick-Test Sample Pills -->
+        <div class="sample-chips-wrapper">
+          <div class="sample-chips-label">Quick Demo URLs (1-Click Analysis):</div>
+          <div class="sample-chips-grid">
+            {% for s in sample_urls %}
+            <button 
+              type="button" 
+              class="sample-chip {% if 'safe' in s.expected|lower %}safe{% elif 'high' in s.expected|lower %}danger{% else %}warn{% endif %}" 
+              data-url="{{ s.url }}"
+              title="{{ s.notes }} (Expected: {{ s.expected }})"
+            >
+              <strong>[{{ s.expected }}]</strong> {{ s.title }}
+            </button>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Analysis Results Area -->
+      <div id="results-area" class="results-container">
+        
+        <!-- Primary Verdict Banner -->
+        <div id="verdict-banner" class="verdict-banner">
+          
+          <div class="meter-wrapper">
+            <!-- Dynamic SVG Semi-Circular Gauge -->
+            <svg class="gauge-svg" viewBox="0 0 180 110">
+              <!-- Background Arc -->
+              <path d="M 20 90 A 70 70 0 0 1 160 90" fill="none" stroke="#1e293b" stroke-width="14" stroke-linecap="round" />
+              <!-- Safe Arc Section (Green) -->
+              <path d="M 20 90 A 70 70 0 0 1 65 35" fill="none" stroke="#10b981" stroke-width="14" opacity="0.85" />
+              <!-- Warning Arc Section (Amber) -->
+              <path d="M 65 35 A 70 70 0 0 1 115 35" fill="none" stroke="#f59e0b" stroke-width="14" opacity="0.85" />
+              <!-- Danger Arc Section (Red) -->
+              <path d="M 115 35 A 70 70 0 0 1 160 90" fill="none" stroke="#ef4444" stroke-width="14" opacity="0.85" />
+              <!-- Needle -->
+              <g id="gauge-needle" transform="rotate(-90 90 90)" style="transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);">
+                <line x1="90" y1="90" x2="90" y2="28" stroke="#38bdf8" stroke-width="3.5" stroke-linecap="round" />
+                <circle cx="90" cy="90" r="7" fill="#38bdf8" />
+                <circle cx="90" cy="90" r="3" fill="#080c14" />
+              </g>
+            </svg>
+            <div id="gauge-score" class="gauge-score-text">0</div>
+            <div class="gauge-score-label">Risk Index (0 - 100)</div>
+          </div>
+
+          <div class="verdict-info">
+            <span id="verdict-badge" class="verdict-badge">Likely safe</span>
+            <p id="summary-statement" class="summary-text">Analysis details will populate here.</p>
+            
+            <div class="metric-pills">
+              <span class="meta-pill">Confidence: <strong id="meta-confidence">90%</strong></span>
+              <span class="meta-pill">Uncertainty: <strong id="meta-uncertainty">10%</strong></span>
+              <span class="meta-pill">Model Consensus: <strong id="meta-agreement">High Agreement</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detector Comparison Cards -->
+        <div class="comparison-grid">
+          
+          <!-- Card 1: Rule-Based Baseline -->
+          <div class="detector-card rules-card">
+            <div class="detector-header">
+              <div class="detector-title">
+                <span>&#x2699;&#xFE0F;</span>
+                <span>Rule-Based Baseline</span>
+              </div>
+              <div id="rb-score" class="detector-score-badge">0 / 100</div>
+            </div>
+            <div class="detector-desc">Transparent heuristic engine auditing 11 deterministic security penalty rules.</div>
+            <div class="detector-stats">
+              <div>Verdict: <strong id="rb-verdict">Likely safe</strong></div>
+              <div>Triggered: <strong id="rb-rules-count">0 of 11 rules</strong></div>
+            </div>
+          </div>
+
+          <!-- Card 2: Random Forest ML Model -->
+          <div class="detector-card ml-card">
+            <div class="detector-header">
+              <div class="detector-title">
+                <span>&#x1F9E0;</span>
+                <span>Random Forest ML Model</span>
+              </div>
+              <div id="ml-score" class="detector-score-badge">0 / 100</div>
+            </div>
+            <div class="detector-desc">Trained on 21 engineered URL features with calibrated probabilities and feature attributions.</div>
+            <div class="detector-stats">
+              <div>Verdict: <strong id="ml-verdict">Likely safe</strong></div>
+              <div>P(Phishing): <strong id="ml-prob">0.0%</strong></div>
+              <div>Uncertainty: <strong id="ml-uncertainty">10%</strong></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Explainable Signals Breakdown -->
+        <div class="card">
+          <div class="card-title">
+            <span>&#x1F6E1;&#xFE0F; Explainable Risk &amp; Protective Signals</span>
+            <span style="font-size:0.8rem; color:var(--text-secondary);">Direct factors influencing verdict</span>
+          </div>
+          <div id="signals-list" class="signals-list">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <!-- URL Anatomy Card -->
+        <div class="card">
+          <div class="card-title">
+            <span>&#x1F52C; Structural URL Component Anatomy</span>
+            <span style="font-size:0.8rem; color:var(--text-secondary);">RFC 3986 Token Decomposition</span>
+          </div>
+          <div class="anatomy-grid">
+            <div class="anatomy-box">
+              <div class="anatomy-box-label">Scheme / Protocol</div>
+              <div id="anat-scheme" class="anatomy-box-val">https</div>
+            </div>
+            <div class="anatomy-box">
+              <div class="anatomy-box-label">Hostname / Host</div>
+              <div id="anat-host" class="anatomy-box-val">example.com</div>
+            </div>
+            <div class="anatomy-box">
+              <div class="anatomy-box-label">Subdomains</div>
+              <div id="anat-sub" class="anatomy-box-val">(none)</div>
+            </div>
+            <div class="anatomy-box">
+              <div class="anatomy-box-label">Registered Domain</div>
+              <div id="anat-reg" class="anatomy-box-val">example.com</div>
+            </div>
+            <div class="anatomy-box">
+              <div class="anatomy-box-label">Top-Level Domain (TLD)</div>
+              <div id="anat-tld" class="anatomy-box-val">com</div>
+            </div>
+            <div class="anatomy-box">
+              <div class="anatomy-box-label">Directory Path</div>
+              <div id="anat-path" class="anatomy-box-val">/</div>
+            </div>
+            <div class="anatomy-box">
+              <div class="anatomy-box-label">Query Parameters</div>
+              <div id="anat-query" class="anatomy-box-val">(none)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Optional Live Webpage Analysis Section -->
+        <div id="page-analysis-section" class="card" style="display: none;">
+          <div class="card-title">
+            <span>&#x1F310; Isolated Live Webpage Inspection Results</span>
+            <span class="meta-pill" style="color:var(--accent-cyan);">Restricted Sandbox</span>
+          </div>
+          <div class="anatomy-grid" style="margin-bottom:16px;">
+            <div class="anatomy-box">
+              <div class="anatomy-box-label">HTTP Response Status</div>
+              <div id="page-http-status" class="anatomy-box-val">200 OK</div>
+            </div>
+            <div class="anatomy-box">
+              <div class="anatomy-box-label">HTML Document Title</div>
+              <div id="page-title-val" class="anatomy-box-val">(none)</div>
+            </div>
+            <div class="anatomy-box">
+              <div class="anatomy-box-label">Redirect Hops</div>
+              <div id="page-redirects-val" class="anatomy-box-val">0</div>
+            </div>
+            <div class="anatomy-box">
+              <div class="anatomy-box-label">Password Input Fields</div>
+              <div id="page-pass-val" class="anatomy-box-val">No</div>
+            </div>
+          </div>
+          <div id="page-findings-list" class="signals-list">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <!-- Security Disclaimer -->
+        <div class="disclaimer-box">
+          <span style="font-size:1.4rem;">&#x26A0;&#xFE0F;</span>
+          <div>
+            <strong>Educational &amp; Threat Intelligence Notice:</strong>
+            <div id="disclaimer-text">
+              This system is an analytical decision aid. No automated detector can guarantee that an unflagged URL is completely safe. Always exercise caution and verify unexpected links through trusted secondary channels.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- TAB 2: DETECTOR COMPARISON & EVALUATION -->
+    <section id="tab-eval" class="tab-content" style="display: none;">
+      
+      <div class="card">
+        <div class="card-title">
+          <span>Comparative Model Evaluation on Held-Out Test Data</span>
+          <span class="meta-pill">Stratified 15% Test Set &bull; Balanced 50/50</span>
+        </div>
+        <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:16px;">
+          Both detectors are evaluated on the exact same held-out test partition (verified phishing URLs and verified legitimate URLs). Metrics are computed directly from test predictions without accuracy inflation.
+        </p>
+
+        <!-- Comparative Metrics Table -->
+        <table class="eval-table">
+          <thead>
+            <tr>
+              <th>Detector Architecture</th>
+              <th>Paradigm</th>
+              <th>F1 Score</th>
+              <th>Precision</th>
+              <th>Recall</th>
+              <th>Accuracy</th>
+              <th>False Pos Rate</th>
+            </tr>
+          </thead>
+          <tbody id="eval-table-body">
+            <!-- Populated via JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Visual Confusion Matrices -->
+      <div class="card">
+        <div class="card-title">
+          <span>Confusion Matrix Comparison</span>
+          <span style="font-size:0.8rem; color:var(--text-secondary);">True vs Predicted Class Distribution</span>
+        </div>
+        <div class="cm-container">
+          <div class="cm-box">
+            <div class="cm-title">&#x2699;&#xFE0F; Rule-Based Baseline</div>
+            <div id="rb-cm"></div>
+          </div>
+          <div class="cm-box">
+            <div class="cm-title">&#x1F9E0; Random Forest ML Classifier</div>
+            <div id="ml-cm"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- In-Depth Error Analysis -->
+      <div class="card">
+        <div class="card-title">
+          <span>In-Depth Error Analysis &amp; Failure Case Diagnostics</span>
+          <span style="font-size:0.8rem; color:var(--text-secondary);">Real test examples of false positives and missed phishing URLs</span>
+        </div>
+        <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:16px;">
+          Examining where models fail reveals critical insights into real-world threat evasion and heuristic limitations:
+        </p>
+
+        <h3 style="font-size:0.95rem; margin:16px 0 10px 0; color:var(--warn-text);">
+          &#x26A0;&#xFE0F; False Positives (Legitimate URLs Mistakenly Flagged as Phishing)
+        </h3>
+        <div id="ml-fps"></div>
+
+        <h3 style="font-size:0.95rem; margin:20px 0 10px 0; color:var(--danger-text);">
+          &#x1F6A8; False Negatives (Phishing URLs Missed by Detectors)
+        </h3>
+        <div id="ml-fns"></div>
+      </div>
+
+    </section>
+
+    <!-- TAB 3: FEATURE INTELLIGENCE & ARCHITECTURE -->
+    <section id="tab-methodology" class="tab-content" style="display: none;">
+      
+      <!-- Pipeline Architecture Card -->
+      <div class="card">
+        <div class="card-title">
+          <span>System Architecture &amp; Detection Pipeline</span>
+          <span class="meta-pill">End-to-End Workflow</span>
+        </div>
+        <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:16px;">
+          PhishGuard utilizes an end-to-end explainable security pipeline combining RFC 3986 normalization, multi-dimensional feature extraction, and dual-model consensus verification:
+        </p>
+
+        <div class="arch-flow-grid">
+          <div class="arch-step-card">
+            <div class="arch-step-num">Step 01</div>
+            <div class="arch-step-title">Ingest &amp; Normalize</div>
+            <div class="arch-step-desc">Strips whitespace, lowercases hostnames, validates schemes, and normalizes URL components to prevent trivial evasion.</div>
+          </div>
+          <div class="arch-step-card">
+            <div class="arch-step-num">Step 02</div>
+            <div class="arch-step-title">21 Feature Extraction</div>
+            <div class="arch-step-desc">Computes lexical, structural, statistical (Shannon entropy), and brand impersonation vectors from the parsed components.</div>
+          </div>
+          <div class="arch-step-card">
+            <div class="arch-step-num">Step 03</div>
+            <div class="arch-step-title">Dual-Engine Inference</div>
+            <div class="arch-step-desc">Runs both deterministic security heuristics (11 rules) and an ensemble Random Forest classifier on the exact same vector.</div>
+          </div>
+          <div class="arch-step-card">
+            <div class="arch-step-num">Step 04</div>
+            <div class="arch-step-title">Explainability Synthesis</div>
+            <div class="arch-step-desc">Blends scores into a unified risk index, evaluates detector consensus and decision uncertainty, and surfaces plain-English evidence.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Dictionary -->
+      <div class="card">
+        <div class="card-title">
+          <span>Extracted URL Feature Library (21 Engineered Features)</span>
+          <span style="font-size:0.8rem; color:var(--text-secondary);">Multi-dimensional signal breakdown</span>
+        </div>
+        <p style="font-size:0.88rem; color:var(--text-secondary);">
+          Every submitted URL is converted into an ordered 21-dimensional numeric feature vector capturing lexical, structural, statistical, and semantic threat indicators:
+        </p>
+
+        <div class="feature-dict-grid">
+          {% for f in features %}
+          <div class="feature-dict-item">
+            <div class="feature-dict-header">
+              <span class="feature-dict-name">{{ f.name }}</span>
+              <span class="feature-dict-cat">{{ f.category }}</span>
+            </div>
+            <div class="feature-dict-desc">{{ f.description }}</div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Threat Model & Limitations -->
+      <div class="card">
+        <div class="card-title">
+          <span>Threat Model &amp; System Limitations</span>
+          <span style="font-size:0.8rem; color:var(--text-secondary);">Defensive engineering boundary</span>
+        </div>
+        <div class="anatomy-grid" style="margin-bottom:16px;">
+          <div class="anatomy-box">
+            <div class="anatomy-box-label">Threat Feeds</div>
+            <div class="anatomy-box-val" style="color:var(--danger-text);">PhishTank, OpenPhish, URLhaus</div>
+          </div>
+          <div class="anatomy-box">
+            <div class="anatomy-box-label">Benign Telemetry</div>
+            <div class="anatomy-box-val" style="color:var(--safe-text);">Tranco 1M, Cisco Umbrella</div>
+          </div>
+          <div class="anatomy-box">
+            <div class="anatomy-box-label">Dataset Split</div>
+            <div class="anatomy-box-val" style="color:var(--accent-cyan);">70% Train, 15% Val, 15% Test</div>
+          </div>
+          <div class="anatomy-box">
+            <div class="anatomy-box-label">Reproducibility Seed</div>
+            <div class="anatomy-box-val" style="color:var(--warn-text);">Random State = 42</div>
+          </div>
+        </div>
+
+        <div style="font-size:0.88rem; color:var(--text-secondary); line-height:1.6;">
+          <h4 style="color:#fff; margin-bottom:8px;">Key System Limitations:</h4>
+          <ul style="padding-left:20px; display:flex; flex-direction:column; gap:8px;">
+            <li><strong>Compromised Legitimate Sites:</strong> When an attacker compromises an authorized, reputable domain (e.g. an unpatched WordPress site) and hosts a phishing path, domain-level lexical features will appear benign.</li>
+            <li><strong>Zero-Day Novel Obfuscation:</strong> Adversaries continually invent new character transformations and novel Top-Level Domains not seen in historical training data.</li>
+            <li><strong>Client-Side Scripting Scope:</strong> The optional live page inspector operates in a restricted sandbox with no JavaScript execution; dynamic single-page phishing apps requiring script rendering will not reveal form fields to static HTML inspection.</li>
+          </ul>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer container">
+    <p><strong>PhishGuard AI</strong> &bull; Explainable Phishing Risk Checker &bull; Dual Engine Architecture</p>
+    <p style="margin-top:6px; color:var(--text-muted);">Empowering users and analysts with transparent, interpretable URL threat intelligence.</p>
+  </footer>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
