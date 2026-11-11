@@ -1,222 +1,153 @@
 """
-Transparent Rule-Based Baseline Detector
-PhishGuard Auditable Security Heuristic Rule Engine.
+Transparent rule-based detector.
 
-Provides an auditable, deterministic security heuristic baseline with point-based risk scoring
-and comprehensive explainability rationale for each triggered rule.
+Every rule is deterministic and carries a plain-language explanation, so a reader can audit exactly
+why a URL scored the way it did. Points add up to a 0-100 risk score.
+
+Rules deliberately avoid penalising normal behaviour of legitimate sites, for example a sign-in
+page on a brand's own domain, a subdomain such as docs.example.com, or a brand name appearing as
+a repository owner in a GitHub path.
 """
 
-from typing import Dict, Any, List
+from typing import Any, Dict, List
+
+
+# Chosen on the validation split: flag a URL when at least one meaningful rule fires.
+RULE_FLAG_THRESHOLD = 15
+RULE_HIGH_THRESHOLD = 50
+
 
 class RuleBasedDetector:
-    """
-    Transparent heuristic baseline detector for phishing URL risk.
-    """
-
-    RULES = [
-        {
-            "id": "RULE_01_IP_HOST",
-            "name": "Direct IP Address Host",
-            "points": 35,
-            "severity": "CRITICAL",
-            "description": "The URL host is a raw IPv4/IPv6 address instead of a domain name.",
-            "rationale": "Legitimate enterprise services use registered domain names. Attackers use raw IPs to bypass DNS-based reputation scoring and domain take-downs."
-        },
-        {
-            "id": "RULE_02_BRAND_SPOOF",
-            "name": "Target Brand Impersonation",
-            "points": 40,
-            "severity": "CRITICAL",
-            "description": "A recognized high-value brand is present in the subdomain or path, but the registered domain is unaffiliated.",
-            "rationale": "Classic credential harvesting attack where attacker registers a misleading domain and puts the target brand name in the subdomain or path."
-        },
-        {
-            "id": "RULE_03_AT_SYMBOL",
-            "name": "Embedded '@' Obfuscation Character",
-            "points": 30,
-            "severity": "HIGH",
-            "description": "URL contains an '@' symbol in the authority or path segment.",
-            "rationale": "Under RFC 3986, characters preceding '@' are treated as user credentials and discarded by browsers, redirecting to the host that follows."
-        },
-        {
-            "id": "RULE_04_DOUBLE_SLASH",
-            "name": "Double Slash '//' Path Redirect",
-            "points": 25,
-            "severity": "HIGH",
-            "description": "URL contains '//' after the protocol scheme.",
-            "rationale": "Frequently weaponized in path-confusion and open-redirect vulnerabilities to deceive browser address parsing."
-        },
-        {
-            "id": "RULE_05_PUNYCODE",
-            "name": "Punycode / Homograph Domain",
-            "points": 25,
-            "severity": "HIGH",
-            "description": "Domain contains 'xn--' Punycode representation of Internationalized Domain Names (IDN).",
-            "rationale": "Attackers substitute visually identical Unicode glyphs (e.g., Cyrillic 'а' for Latin 'a') to forge deceptive counterfeit domains."
-        },
-        {
-            "id": "RULE_06_EXCESSIVE_SUBDOMAINS",
-            "name": "Excessive Subdomain Depth",
-            "points": 20,
-            "severity": "MEDIUM",
-            "description": "URL contains 3 or more nested subdomains.",
-            "rationale": "Deep subdomain hierarchies are commonly used to push the actual attacker-controlled domain out of view on mobile screens."
-        },
-        {
-            "id": "RULE_07_SUSPICIOUS_KEYWORD_DENSITY",
-            "name": "Credential Harvesting Keywords",
-            "points": 20,
-            "severity": "HIGH",
-            "description": "Multiple high-risk credential keywords (e.g. login, verify, account, banking) found in unverified domain paths.",
-            "rationale": "Phishing landing pages heavily concentrate deceptive action-inducing words to induce panic and urgency."
-        },
-        {
-            "id": "RULE_08_SUSPICIOUS_TLD",
-            "name": "High-Abuse Top Level Domain",
-            "points": 20,
-            "severity": "MEDIUM",
-            "description": "The URL uses a Top Level Domain associated with high abuse rates or disposable registrations.",
-            "rationale": "Certain budget or lax registrar TLDs (e.g. .xyz, .top, .buzz, .work) host disproportionate volumes of short-lived malicious infrastructure."
-        },
-        {
-            "id": "RULE_09_HIGH_ENTROPY_AND_LENGTH",
-            "name": "Anomalous Length & High Character Entropy",
-            "points": 15,
-            "severity": "MEDIUM",
-            "description": "URL length exceeds 80 characters with high Shannon entropy (> 4.2).",
-            "rationale": "Algorithmic obfuscation tokens, session injection parameters, or DGA patterns exhibit elevated Shannon randomness."
-        },
-        {
-            "id": "RULE_10_NON_STANDARD_PORT",
-            "name": "Non-Standard Web Port",
-            "points": 15,
-            "severity": "MEDIUM",
-            "description": "Host specifies a custom port number other than standard 80/443.",
-            "rationale": "Standard legitimate web applications operate on default ports 80/443; custom ports often indicate rogue tunnels or ad-hoc attack servers."
-        },
-        {
-            "id": "RULE_11_URL_SHORTENER",
-            "name": "URL Shortener Cloaking",
-            "points": 15,
-            "severity": "LOW",
-            "description": "URL uses a URL shortening redirection service.",
-            "rationale": "URL shorteners conceal the ultimate destination domain, preventing inspection of landing page reputation before click."
-        }
+    RULES: List[Dict[str, Any]] = [
+        {"id": "RULE_01_IP_HOST", "name": "Raw IP address instead of a domain", "points": 35, "severity": "CRITICAL",
+         "description": "The link points to a numeric IP address instead of a website name.",
+         "rationale": "Real services use registered domain names. Attackers use bare IPs to dodge domain take-downs and reputation checks."},
+        {"id": "RULE_02_BRAND_SPOOF", "name": "Imitates a well-known brand", "points": 40, "severity": "CRITICAL",
+         "description": "The domain name uses or imitates a well-known brand, but the site does not belong to that brand.",
+         "rationale": "The classic credential-theft trick: put the brand in the web address so the link looks official at a glance."},
+        {"id": "RULE_03_AT_SYMBOL", "name": "'@' sign hides the real destination", "points": 30, "severity": "HIGH",
+         "description": "The link contains an '@' sign before the real host name.",
+         "rationale": "Browsers ignore everything before '@' and go to what follows it, so attackers put a trusted name in front."},
+        {"id": "RULE_04_EMBEDDED_URL", "name": "Second address hidden inside the link", "points": 25, "severity": "HIGH",
+         "description": "The path or query contains another web address or a '//' redirect.",
+         "rationale": "Used to bounce victims through a trusted-looking address or to confuse people reading the link."},
+        {"id": "RULE_05_PUNYCODE", "name": "Look-alike characters in the domain", "points": 25, "severity": "HIGH",
+         "description": "The domain uses punycode (xn--), which can display foreign letters that look like English ones.",
+         "rationale": "Homograph attacks swap letters (for example Cyrillic 'a' for Latin 'a') to fake a brand."},
+        {"id": "RULE_06_EXCESSIVE_SUBDOMAINS", "name": "Unusually deep subdomains", "points": 15, "severity": "MEDIUM",
+         "description": "The domain has four or more subdomain levels.",
+         "rationale": "Long subdomain chains push the real domain out of view, for example login.secure.account.example.attacker.com."},
+        {"id": "RULE_07_CREDENTIAL_KEYWORDS", "name": "Sign-in or payment words on an unverified site", "points": 20, "severity": "HIGH",
+         "description": "Several words like login, verify, account or billing appear in the address of a site that is not an official brand domain.",
+         "rationale": "Phishing pages try to look like account-security pages. Official domains use these words too, so this only counts on unverified domains."},
+        {"id": "RULE_08_SUSPICIOUS_TLD", "name": "Domain ending often used for abuse", "points": 15, "severity": "MEDIUM",
+         "description": "The domain ends in an extension (such as .xyz, .top or .icu) that is cheap and heavily abused.",
+         "rationale": "Many abused extensions are nearly free to register, which makes them attractive for disposable phishing sites."},
+        {"id": "RULE_09_HIGH_ENTROPY_AND_LENGTH", "name": "Long, random-looking address", "points": 15, "severity": "MEDIUM",
+         "description": "The link is over 80 characters and its characters look machine-generated.",
+         "rationale": "Phishing kits often add random tokens and tracking IDs to each victim's link."},
+        {"id": "RULE_10_NON_STANDARD_PORT", "name": "Unusual network port", "points": 15, "severity": "MEDIUM",
+         "description": "The link names a port other than 80 or 443.",
+         "rationale": "Ordinary websites rarely need a custom port; temporary attack servers often do."},
+        {"id": "RULE_11_URL_SHORTENER", "name": "Link shortener hides the destination", "points": 15, "severity": "LOW",
+         "description": "The link goes through a URL-shortening service, so the real destination is not visible.",
+         "rationale": "Shorteners are legitimate, but they stop you from checking where a link leads before you click."},
+        {"id": "RULE_12_FREE_HOSTING", "name": "Built on a free website platform", "points": 15, "severity": "MEDIUM",
+         "description": "The site is hosted on a platform where anyone can publish a page for free.",
+         "rationale": "Phishing campaigns are frequently published on free platforms. Many legitimate projects are too, so this is a mild signal on its own."},
+        {"id": "RULE_13_HYPHEN_STUFFED_DOMAIN", "name": "Domain stuffed with hyphens", "points": 15, "severity": "MEDIUM",
+         "description": "The domain name contains three or more hyphens.",
+         "rationale": "Phishers glue brand and security words together, e.g. chase-online-banking-security-update."},
+        {"id": "RULE_14_MACHINE_GENERATED_DOMAIN", "name": "Domain looks machine-generated", "points": 15, "severity": "MEDIUM",
+         "description": "The domain name is mostly digits or an unpronounceable run of letters.",
+         "rationale": "Throwaway attack domains are often created in bulk by scripts."},
+        {"id": "RULE_15_BRAND_IN_PATH", "name": "Brand name appears in the page path", "points": 10, "severity": "LOW",
+         "description": "A well-known brand name appears in the path, on a domain that is not that brand's.",
+         "rationale": "Weak on its own (many legitimate sites mention brands), but meaningful when combined with other warnings."},
+        {"id": "RULE_16_SERVER_SCRIPT_LOGIN", "name": "Sign-in page served by a raw script file", "points": 10, "severity": "LOW",
+         "description": "The address ends in a script file such as .php or .asp and contains sign-in words.",
+         "rationale": "Stolen-credential pages are commonly simple scripts such as login.php."},
     ]
+
+    _BY_ID = {r["id"]: r for r in RULES}
+
+    @classmethod
+    def _rule(cls, rule_id: str, extra: str = "") -> Dict[str, Any]:
+        rule = dict(cls._BY_ID[rule_id])
+        if extra:
+            rule["description"] = f"{rule['description']} {extra}"
+        return rule
 
     @classmethod
     def evaluate(cls, features: Dict[str, float], breakdown: Dict[str, Any] = None) -> Dict[str, Any]:
-        """
-        Evaluates heuristic security rules against extracted URL features.
-        Returns risk score (0-100), triggered rules list, prediction, and verdict.
-        """
-        raw_score = 0
-        triggered_rules: List[Dict[str, Any]] = []
+        f = lambda k: features.get(k, 0)  # noqa: E731
+        breakdown = breakdown or {}
+        official = breakdown.get("official_brand")
+        evidence = breakdown.get("brand_evidence", {})
+        triggered: List[Dict[str, Any]] = []
 
-        # Rule 1: IP Host
-        if features.get("has_ip_address", 0) > 0:
-            rule = cls._get_rule("RULE_01_IP_HOST")
-            raw_score += rule["points"]
-            triggered_rules.append(rule)
+        if f("has_ip_address") > 0:
+            triggered.append(cls._rule("RULE_01_IP_HOST"))
 
-        # Rule 2: Brand Impersonation
-        if features.get("brand_impersonation_score", 0) > 0:
-            rule = cls._get_rule("RULE_02_BRAND_SPOOF").copy()
-            if breakdown and breakdown.get("impersonated_brands"):
-                brands_str = ", ".join(breakdown["impersonated_brands"]).title()
-                rule["description"] += f" Detected target brand(s): {brands_str}."
-            raw_score += rule["points"]
-            triggered_rules.append(rule)
+        host_brands = list(dict.fromkeys(evidence.get("host", []) + evidence.get("typosquat", [])))
+        if host_brands and not official:
+            triggered.append(cls._rule("RULE_02_BRAND_SPOOF", f"Brand(s) involved: {', '.join(b.title() for b in host_brands)}."))
 
-        # Rule 3: '@' symbol
-        if features.get("at_symbol_count", 0) > 0:
-            rule = cls._get_rule("RULE_03_AT_SYMBOL")
-            raw_score += rule["points"]
-            triggered_rules.append(rule)
+        if f("at_symbol_count") > 0:
+            triggered.append(cls._rule("RULE_03_AT_SYMBOL"))
+        if f("embedded_url") > 0 or f("double_slash_redirect") > 0:
+            triggered.append(cls._rule("RULE_04_EMBEDDED_URL"))
+        if f("has_punycode") > 0:
+            triggered.append(cls._rule("RULE_05_PUNYCODE"))
+        if f("subdomain_count") >= 4:
+            triggered.append(cls._rule("RULE_06_EXCESSIVE_SUBDOMAINS"))
 
-        # Rule 4: Double slash in path
-        if features.get("double_slash_redirect", 0) > 0:
-            rule = cls._get_rule("RULE_04_DOUBLE_SLASH")
-            raw_score += rule["points"]
-            triggered_rules.append(rule)
+        kw = f("suspicious_keyword_count")
+        if not official and (kw >= 2 or (kw >= 1 and f("has_https") == 0)):
+            words = breakdown.get("matched_keywords") or []
+            triggered.append(cls._rule("RULE_07_CREDENTIAL_KEYWORDS", f"Words found: {', '.join(words)}." if words else ""))
 
-        # Rule 5: Punycode
-        if features.get("has_punycode", 0) > 0:
-            rule = cls._get_rule("RULE_05_PUNYCODE")
-            raw_score += rule["points"]
-            triggered_rules.append(rule)
+        if f("suspicious_tld") > 0:
+            triggered.append(cls._rule("RULE_08_SUSPICIOUS_TLD"))
+        if f("url_length") > 80 and f("url_entropy") > 4.2:
+            triggered.append(cls._rule("RULE_09_HIGH_ENTROPY_AND_LENGTH"))
+        if f("has_port") > 0:
+            triggered.append(cls._rule("RULE_10_NON_STANDARD_PORT"))
+        if f("is_shortened") > 0:
+            triggered.append(cls._rule("RULE_11_URL_SHORTENER"))
+        if f("free_hosting") > 0 and not official:
+            triggered.append(cls._rule("RULE_12_FREE_HOSTING"))
+        if f("registered_hyphen_count") >= 3 and not f("has_ip_address"):
+            triggered.append(cls._rule("RULE_13_HYPHEN_STUFFED_DOMAIN"))
+        if not f("has_ip_address") and not official and f("registered_label_length") >= 8 and (
+                f("domain_digit_ratio") >= 0.35 or f("max_consonant_run") >= 7):
+            triggered.append(cls._rule("RULE_14_MACHINE_GENERATED_DOMAIN"))
+        if evidence.get("path") and not official and not host_brands and (
+                f("free_hosting") > 0 or f("suspicious_tld") > 0 or kw >= 1):
+            triggered.append(cls._rule("RULE_15_BRAND_IN_PATH", f"Brand(s): {', '.join(b.title() for b in evidence['path'])}."))
+        if f("risky_file_extension") > 0 and kw >= 1 and not official:
+            triggered.append(cls._rule("RULE_16_SERVER_SCRIPT_LOGIN"))
 
-        # Rule 6: Excessive subdomains
-        if features.get("subdomain_count", 0) >= 3:
-            rule = cls._get_rule("RULE_06_EXCESSIVE_SUBDOMAINS")
-            raw_score += rule["points"]
-            triggered_rules.append(rule)
-
-        # Rule 7: Suspicious keyword density
-        if features.get("suspicious_keyword_count", 0) >= 2 or (
-            features.get("suspicious_keyword_count", 0) >= 1 and features.get("has_https", 1) == 0
-        ):
-            rule = cls._get_rule("RULE_07_SUSPICIOUS_KEYWORD_DENSITY").copy()
-            if breakdown and breakdown.get("matched_keywords"):
-                rule["description"] += f" Matched keywords: {', '.join(breakdown['matched_keywords'])}."
-            raw_score += rule["points"]
-            triggered_rules.append(rule)
-
-        # Rule 8: Suspicious TLD
-        if features.get("suspicious_tld", 0) > 0:
-            rule = cls._get_rule("RULE_08_SUSPICIOUS_TLD")
-            raw_score += rule["points"]
-            triggered_rules.append(rule)
-
-        # Rule 9: High entropy and length
-        if features.get("url_length", 0) > 80 and features.get("url_entropy", 0) > 4.2:
-            rule = cls._get_rule("RULE_09_HIGH_ENTROPY_AND_LENGTH")
-            raw_score += rule["points"]
-            triggered_rules.append(rule)
-
-        # Rule 10: Non-standard port
-        if features.get("has_port", 0) > 0:
-            rule = cls._get_rule("RULE_10_NON_STANDARD_PORT")
-            raw_score += rule["points"]
-            triggered_rules.append(rule)
-
-        # Rule 11: Shortener
-        if features.get("is_shortened", 0) > 0:
-            rule = cls._get_rule("RULE_11_URL_SHORTENER")
-            raw_score += rule["points"]
-            triggered_rules.append(rule)
-
-        # Bound score between 0 and 100
-        risk_score = min(max(raw_score, 0), 100)
-
-        # Baseline decision threshold:
-        # Binary prediction for evaluation: >= 35 considered flagged (phishing/suspicious)
-        binary_prediction = 1 if risk_score >= 35 else 0
-
-        if risk_score >= 65:
-            verdict = "High risk"
-            confidence = min(0.65 + (risk_score / 250), 0.98)
-        elif risk_score >= 35:
-            verdict = "Suspicious"
-            confidence = 0.60 + (risk_score - 35) / 100
+        score = int(min(sum(r["points"] for r in triggered), 100))
+        if score >= RULE_HIGH_THRESHOLD:
+            verdict, confidence = "High risk", min(0.65 + score / 250, 0.98)
+        elif score >= RULE_FLAG_THRESHOLD:
+            verdict, confidence = "Suspicious", 0.55 + (score - RULE_FLAG_THRESHOLD) / 200
         else:
-            verdict = "Likely safe"
-            confidence = max(0.85 - (risk_score / 100), 0.55)
+            verdict, confidence = "Likely safe", max(0.85 - score / 100, 0.55)
 
         return {
             "model_name": "Transparent Rule-Based Baseline",
-            "risk_score": int(risk_score),
-            "prediction": int(binary_prediction),
+            "risk_score": score,
+            "prediction": int(score >= RULE_FLAG_THRESHOLD),
             "verdict": verdict,
             "confidence": round(float(confidence), 3),
-            "triggered_rules_count": len(triggered_rules),
-            "triggered_rules": triggered_rules,
-            "total_rules_evaluated": len(cls.RULES)
+            "triggered_rules_count": len(triggered),
+            "triggered_rules": triggered,
+            "total_rules_evaluated": len(cls.RULES),
         }
 
     @classmethod
     def _get_rule(cls, rule_id: str) -> Dict[str, Any]:
-        for r in cls.RULES:
-            if r["id"] == rule_id:
-                return r
-        return {"id": rule_id, "name": rule_id, "points": 10, "severity": "LOW", "description": "", "rationale": ""}
+        return cls._rule(rule_id) if rule_id in cls._BY_ID else {
+            "id": rule_id, "name": rule_id, "points": 10, "severity": "LOW", "description": "", "rationale": ""}

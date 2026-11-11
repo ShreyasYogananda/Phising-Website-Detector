@@ -1,422 +1,571 @@
 """
-Explainable Phishing Risk Checker - Dataset Builder & Preparation Pipeline
-Reference: "Phishing Detection System Through Hybrid Machine Learning Based on URL," IEEE Access, 2023.
+Dataset builder for PhishGuard.
 
-This module is responsible for:
-1. Collecting labeled phishing and legitimate URLs from documented sources.
-2. Validating, normalizing, and deduplicating entries.
-3. Auditing label quality and class balance.
-4. Performing a stratified train/validation/test split (70% / 15% / 15%).
-5. Saving raw and partitioned datasets with metadata.
+What changed compared with the first version
+--------------------------------------------
+The original corpus was generated from string templates but labelled as if it came
+from PhishTank / OpenPhish / Tranco. Because the templates were trivially separable the
+model scored a perfect 100% on its test set, which says nothing about real-world accuracy.
+
+This builder uses REAL phishing URLs and holds the model to an honest standard:
+
+  Phishing  : mitchellkrogza/Phishing.Database (a public aggregation of PhishTank, OpenPhish
+              and other community feeds). `phishing-links-ACTIVE.txt` feeds train/val/test,
+              `phishing-links-INACTIVE.txt` (older, different campaigns) feeds the OOD test.
+  Legitimate: (a) real long-tail benign URLs from the public ISCX-style corpus in
+                  faizann24/Using-machine-learning-to-detect-malicious-URLs (DMOZ-era, with real paths);
+              (b) well-known domains combined with realistic path templates that deliberately include
+                  words like login/account/verify (curated, SYNTHETIC - labelled as such);
+              (c) a hand-written hard-benign set used only for the OOD test.
+
+Bias controls
+-------------
+* per-hostname, per-registered-domain and per-hosting-platform caps, so one campaign or one
+  platform cannot dominate;
+* scheme (http/https) and "has a path" are decorrelated from the label by resampling, so the
+  model cannot cheat on collection artefacts;
+* train / validation / test are split BY REGISTERED DOMAIN (a site never appears in two splits);
+* the OOD test uses older campaigns and hand-written benign URLs the model never saw.
+
+Run:  python data/dataset_builder.py            (downloads feeds into data/cache/, ~75 MB)
 """
 
+import csv
+import hashlib
 import json
 import os
 import random
 import re
+import sys
+from collections import Counter, defaultdict
 from urllib.parse import urlparse
-import numpy as np
-
-# Set deterministic seed
-RANDOM_SEED = 42
-random.seed(RANDOM_SEED)
-np.random.seed(RANDOM_SEED)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_DIR = os.path.dirname(BASE_DIR)
+if PROJECT_DIR not in sys.path:
+    sys.path.insert(0, PROJECT_DIR)
 
-# Documented Data Sources
-DATA_SOURCES = {
-    "phishing": [
-        {"name": "PhishTank", "description": "Community-verified phishing repository feed (phishtank.org)", "type": "verified_malicious"},
-        {"name": "OpenPhish", "description": "Global targeted phishing threat intelligence feed (openphish.com)", "type": "active_threat"},
-        {"name": "URLhaus", "description": "Malicious URL feed tracking malware and credential harvesting (urlhaus.abuse.ch)", "type": "abuse_database"}
-    ],
-    "legitimate": [
-        {"name": "Tranco Top 1M", "description": "Research-oriented top website ranking list (tranco-list.eu)", "type": "authoritative_ranking"},
-        {"name": "Cisco Umbrella Top 1M", "description": "Most queried domains based on global Cisco DNS telemetry", "type": "traffic_telemetry"},
-        {"name": "Curated Trusted Portals", "description": "Official education (.edu), government (.gov), tech docs, and financial services", "type": "authoritative_services"}
-    ]
+from features.extractor import FREE_HOSTING_SUFFIXES, KNOWN_BRANDS, is_free_hosting, split_host  # noqa: E402
+
+SEED = 42
+CACHE_DIR = os.path.join(BASE_DIR, "cache")
+
+FEEDS = {
+    "phish_active": "https://raw.githubusercontent.com/mitchellkrogza/Phishing.Database/master/phishing-links-ACTIVE.txt",
+    "phish_inactive": "https://raw.githubusercontent.com/mitchellkrogza/Phishing.Database/master/phishing-links-INACTIVE.txt",
+    "benign_longtail": "https://raw.githubusercontent.com/faizann24/Using-machine-learning-to-detect-malicious-URLs/master/data/data.csv",
 }
 
-def generate_curated_raw_records():
-    """
-    Builds a robust, realistic, and representative pool of labeled URLs
-    incorporating verified patterns from documented threat and benign sources.
-    """
-    records = []
+N_PHISH_MAIN = 6000
+N_PHISH_OOD = 1200
+N_BENIGN_LONGTAIL = 3300
+MAX_PER_HOST = 2
+MAX_PER_REGISTERED = 8
+MAX_PLATFORM_SHARE = 0.035        # of the phishing sample, per hosting platform
 
-    # 1. Legitimate High-Reputation Domains and Diverse Benign URL Patterns
-    legit_domains = [
-        "google.com", "microsoft.com", "apple.com", "github.com", "amazon.com",
-        "wikipedia.org", "youtube.com", "linkedin.com", "reddit.com", "mozilla.org",
-        "stackoverflow.com", "cloudflare.com", "netflix.com", "spotify.com", "chase.com",
-        "bankofamerica.com", "wellsfargo.com", "paypal.com", "stripe.com", "dropbox.com",
-        "salesforce.com", "adobe.com", "zoom.us", "slack.com", "atlassian.com",
-        "nytimes.com", "bbc.com", "cnn.com", "theguardian.com", "reuters.com",
-        "harvard.edu", "mit.edu", "stanford.edu", "berkeley.edu", "ox.ac.uk",
-        "nih.gov", "nasa.gov", "cdc.gov", "irs.gov", "who.int",
-        "docker.com", "kubernetes.io", "python.org", "rust-lang.org", "golang.org",
-        "npmjs.com", "pypi.org", "apache.org", "medium.com", "quora.com",
-        "airbnb.com", "booking.com", "uber.com", "lyft.com", "etsy.com",
-        "ebay.com", "target.com", "walmart.com", "bestbuy.com", "homedepot.com",
-        "fidelity.com", "vanguard.com", "schwab.com", "capitalone.com", "citi.com",
-        "usps.com", "fedex.com", "ups.com", "dhl.com", "weather.com"
-    ]
+# --------------------------------------------------------------------------- #
+# Curated well-known domains (benign, synthetic paths)
+# --------------------------------------------------------------------------- #
+POPULAR_DOMAINS = """
+google.com microsoft.com apple.com github.com amazon.com wikipedia.org youtube.com linkedin.com reddit.com
+mozilla.org stackoverflow.com cloudflare.com netflix.com spotify.com chase.com bankofamerica.com wellsfargo.com
+paypal.com stripe.com dropbox.com salesforce.com adobe.com zoom.us slack.com atlassian.com nytimes.com bbc.com
+cnn.com theguardian.com reuters.com harvard.edu mit.edu stanford.edu berkeley.edu ox.ac.uk cam.ac.uk nih.gov
+nasa.gov cdc.gov irs.gov who.int docker.com kubernetes.io python.org rust-lang.org golang.org npmjs.com pypi.org
+apache.org medium.com quora.com airbnb.com booking.com uber.com lyft.com etsy.com ebay.com target.com walmart.com
+bestbuy.com homedepot.com fidelity.com vanguard.com schwab.com capitalone.com citi.com usps.com fedex.com ups.com
+dhl.com weather.com yahoo.com bing.com duckduckgo.com twitter.com facebook.com instagram.com whatsapp.com
+telegram.org tiktok.com pinterest.com twitch.tv discord.com steampowered.com roblox.com epicgames.com ea.com
+nintendo.com playstation.com xbox.com coinbase.com binance.com kraken.com blockchain.com metamask.io
+hdfcbank.com icicibank.com axisbank.com kotak.com onlinesbi.sbi sbi.co.in paytm.com phonepe.com flipkart.com
+irctc.co.in uidai.gov.in incometax.gov.in india.gov.in npci.org.in zomato.com swiggy.com myntra.com
+timesofindia.indiatimes.com thehindu.com ndtv.com hindustantimes.com iisc.ac.in iitb.ac.in iitd.ac.in bmsce.ac.in
+vtu.ac.in nptel.ac.in coursera.org edx.org udemy.com khanacademy.org kaggle.com huggingface.co arxiv.org
+openai.com anthropic.com tensorflow.org pytorch.org scikit-learn.org numpy.org pandas.pydata.org jupyter.org
+fastapi.tiangolo.com flask.palletsprojects.com djangoproject.com reactjs.org nodejs.org vuejs.org angular.io
+typescriptlang.org php.net ruby-lang.org kotlinlang.org developer.android.com developer.apple.com flutter.dev
+firebase.google.com cloud.google.com aws.amazon.com azure.microsoft.com digitalocean.com heroku.com vercel.com
+netlify.com gitlab.com bitbucket.org notion.so figma.com canva.com trello.com asana.com monday.com zendesk.com
+hubspot.com mailchimp.com shopify.com squarespace.com wix.com wordpress.org godaddy.com namecheap.com
+verizon.com att.com t-mobile.com comcast.com vodafone.com airtel.in jio.com bsnl.co.in
+hsbc.com santander.com barclays.co.uk lloydsbank.com natwest.com usbank.com pnc.com tdbank.com ally.com
+americanexpress.com discover.com visa.com mastercard.com westernunion.com wise.com revolut.com
+expedia.com tripadvisor.com kayak.com skyscanner.com makemytrip.com goibibo.com delta.com united.com
+imdb.com rottentomatoes.com goodreads.com last.fm soundcloud.com vimeo.com dailymotion.com
+espn.com nba.com fifa.com uefa.com icc-cricket.com cricbuzz.com espncricinfo.com
+cisco.com ibm.com oracle.com intel.com amd.com nvidia.com dell.com hp.com lenovo.com samsung.com sony.com
+bbc.co.uk gov.uk nhs.uk europa.eu un.org worldbank.org imf.org
+""".split()
 
-    legit_subdomains = ["www", "api", "docs", "developer", "blog", "support", "portal", "status", "cloud", "mail", "app", "dashboard", "connect", "secure", "m", "cdn"]
-    legit_paths = [
-        "", "index.html", "about", "contact-us", "privacy-policy", "terms-of-service",
-        "blog/post/how-modern-cloud-computing-works", "docs/v2/getting-started",
-        "api/v1/users/status", "products/hardware/accessories",
-        "search?q=machine+learning+cybersecurity+tutorial&hl=en",
-        "items/view?id=498192&category=electronics&page=2",
-        "article/2026/03/global-technology-trends",
-        "dashboard/overview?period=last_30_days&theme=dark",
-        "account/settings/profile", "checkout/cart/summary",
-        "projects/open-source/repository/releases/tag/v1.4.0",
-        "community/discussions/topic/78103?reply=true",
-        "resources/whitepapers/cloud-native-security-best-practices.pdf"
-    ]
+BENIGN_SUBDOMAINS = ["www", "www", "www", "docs", "support", "help", "blog", "developer", "api", "status", "m", "mail",
+                     "accounts", "login", "secure", "my", "portal", "app", "cloud", "learn", "news", "shop", "store"]
 
-    # Generate legitimate combinations
-    for dom in legit_domains:
-        # Base URLs
-        records.append({"url": f"https://{dom}/", "label": 0, "source": "Tranco Top 1M / Benign"})
-        records.append({"url": f"https://www.{dom}/", "label": 0, "source": "Tranco Top 1M / Benign"})
-        records.append({"url": f"https://{dom}/about", "label": 0, "source": "Curated Benign Portals"})
-        records.append({"url": f"https://{dom}/contact", "label": 0, "source": "Curated Benign Portals"})
-        records.append({"url": f"https://{dom}/privacy", "label": 0, "source": "Curated Benign Portals"})
-        
-        # Subdomains + paths
-        sub = random.choice(legit_subdomains)
-        p = random.choice(legit_paths)
-        records.append({"url": f"https://{sub}.{dom}/{p}", "label": 0, "source": "Cisco Umbrella / Benign"})
+# Paths used for the TRAIN/VAL/TEST benign pool. Many intentionally contain "risky" vocabulary so the
+# model learns that login/account/support on a real domain is normal.
+BENIGN_PATHS_MAIN = [
+    "", "/", "/about", "/contact", "/privacy", "/terms", "/careers", "/pricing", "/products", "/download",
+    "/login", "/signin", "/account", "/account/settings", "/account/security", "/my-account/orders",
+    "/support", "/support/contact-us", "/help/article/48392", "/help/faq", "/billing", "/billing/invoices",
+    "/security", "/security/overview", "/verify-email?token=9f8a7b6c", "/update-profile", "/password/reset",
+    "/blog/2025/09/how-we-built-our-search-infrastructure", "/blog/post/introducing-version-4",
+    "/docs/getting-started", "/docs/v2/api/reference#authentication", "/docs/en/latest/index.html",
+    "/search?q=best+laptops+2026&sort=relevance", "/products/category/electronics?page=3&sort=price",
+    "/news/world/2026/03/technology-trends-explained", "/article/12345678/market-update",
+    "/store/apps/details?id=com.example.app&hl=en_US", "/watch?v=dQw4w9WgXcQ", "/wiki/Computer_security",
+    "/en-us/products/software/overview", "/en/support/downloads/drivers", "/in/personal/banking/accounts",
+    "/personal/credit-cards/rewards", "/customer-service/track-order?orderId=114-5589231-2210617",
+    "/careers/jobs/software-engineer-bangalore", "/investor-relations/annual-report-2025.pdf",
+    "/events/webinar/register", "/community/discussions/topic/78103?reply=true", "/oauth2/authorize?client_id=abc123&response_type=code",
+    "/signin/v2/identifier?continue=https%3A%2F%2Fmail.google.com&service=mail",
+    "/dashboard/overview?period=last_30_days", "/settings/notifications", "/checkout/cart", "/orders/114-558",
+]
 
-        # Additional variation with query strings
-        records.append({"url": f"https://{dom}/search?q=article&ref=homepage", "label": 0, "source": "Tranco Top 1M / Benign"})
-        records.append({"url": f"https://{dom}/category/technology?page=1&sort=recent", "label": 0, "source": "Tranco Top 1M / Benign"})
-        records.append({"url": f"https://{dom}/support/faq/article-id-81239", "label": 0, "source": "Curated Benign Portals"})
-        records.append({"url": f"https://{sub}.{dom}/api/v2/healthcheck", "label": 0, "source": "Cisco Umbrella / Benign"})
+# Brand names appearing in benign paths (repo owners, wiki titles, subreddits, news). Without these the model
+# learns "brand in path" as a phishing proxy and flags e.g. github.com/paypal/paypal-sdk.
+BRAND_PATH_TEMPLATES = [
+    "/{b}/{b}-sdk", "/{B}", "/wiki/{B}", "/r/{b}", "/company/{b}", "/questions/tagged/{b}",
+    "/news/{b}-reports-quarterly-earnings", "/blog/{b}-announces-new-features", "/topics/{b}",
+    "/{b}/{b}-python/issues/1042", "/tag/{b}", "/pages/{B}/about",
+]
 
-    # Additional varied legitimate tech & educational URLs
-    benign_extras = [
-        "https://github.com/torvalds/linux/commits/master",
-        "https://github.com/psf/requests/issues/6000",
-        "https://docs.python.org/3/library/urllib.parse.html",
-        "https://scikit-learn.org/stable/modules/ensemble.html#forest",
-        "https://fastapi.tiangolo.com/tutorial/bigger-applications/",
-        "https://developer.mozilla.org/en-US/docs/Web/Security/Practical_implementation_guides/TLS_cheat_sheet",
-        "https://en.wikipedia.org/wiki/Phishing",
-        "https://en.wikipedia.org/wiki/Machine_learning",
-        "https://arxiv.org/abs/2301.00001",
-        "https://csrc.nist.gov/publications/detail/sp/800-63/3/final",
-        "https://www.rfc-editor.org/rfc/rfc3986",
-        "https://www.w3.org/Protocols/rfc2616/rfc2616.html",
-        "https://cloud.google.com/architecture/framework",
-        "https://aws.amazon.com/free/compute/",
-        "https://learn.microsoft.com/en-us/azure/security/",
-        "https://www.chase.com/personal/mortgage/rates",
-        "https://www.paypal.com/us/webapps/mpp/account-selection",
-        "https://www.apple.com/shop/buy-iphone/iphone-16",
-        "https://news.ycombinator.com/item?id=38472910",
-        "https://stackoverflow.com/questions/20180543/how-to-check-valid-url-address"
-    ]
-    for u in benign_extras:
-        records.append({"url": u, "label": 0, "source": "Curated Benign Portals"})
+FREE_HOST_PLATFORMS = ["github.io", "pages.dev", "netlify.app", "vercel.app", "web.app", "firebaseapp.com",
+                       "herokuapp.com", "onrender.com", "gitlab.io", "blogspot.com", "wordpress.com", "wixsite.com",
+                       "weebly.com", "glitch.me", "repl.co", "workers.dev"]
+FREE_HOST_OWNERS = ["alex", "priya", "rahul", "sam", "jordan", "maria", "chen", "kumar", "li", "omar", "nina", "ravi",
+                    "sara", "dev", "tech", "code", "data", "ml", "web", "art", "anita", "vikram", "meera", "arjun",
+                    "kavya", "rohit", "neha", "shreya", "karan", "isha", "tom", "emma", "luke", "zoe", "noah"]
+FREE_HOST_WORDS = ["portfolio", "blog", "notes", "docs", "resume", "cv", "project", "demo", "app", "website", "personal",
+                   "study", "lab", "course", "hackathon", "todo", "weather-app", "calculator", "landing", "gallery",
+                   "recipes", "travel", "photography", "college-project", "minor-project", "events", "club"]
+FREE_HOST_PATHS = ["", "/", "/about", "/projects", "/blog/first-post", "/docs/intro", "/contact", "/index.html",
+                   "/projects/weather-app/", "/resume.pdf", "/gallery?page=2"]
 
-    # 2. Phishing URL Patterns from Documented Threats (PhishTank, OpenPhish, URLhaus)
-    # Target brands frequently abused in phishing
-    abused_brands = ["paypal", "apple", "microsoft", "netflix", "amazon", "chase", "bankofamerica", "wellsfargo", "google", "facebook", "dhl", "coinbase", "binance", "metamask", "steam"]
-    suspicious_tlds = [".xyz", ".top", ".icu", ".buzz", ".club", ".tk", ".ml", ".ga", ".cf", ".gq", ".work", ".fit", ".sbs", ".online", ".site", ".ru", ".cc"]
-    phish_keywords = ["login", "signin", "verify", "verification", "secure", "account-update", "confirm-identity", "banking", "billing", "reactivation", "wallet-restore", "unlock-account", "webscr", "auth"]
-    
-    # Category A: Brand impersonation in subdomains / deceptive domains
-    for brand in abused_brands:
-        for tld in [".xyz", ".top", ".info", ".net", ".com", ".site", ".cc"]:
-            kw = random.choice(phish_keywords)
-            records.append({
-                "url": f"http://{brand}-{kw}-security-support{tld}/login.php?client_id=token9281",
-                "label": 1,
-                "source": "PhishTank Verified"
-            })
-            records.append({
-                "url": f"http://{kw}.{brand}.com.verify-billing-center{tld}/index.html",
-                "label": 1,
-                "source": "OpenPhish Threat Feed"
-            })
-            records.append({
-                "url": f"https://{brand}-account-security-alert-resolution{tld}/signin/auth",
-                "label": 1,
-                "source": "PhishTank Verified"
-            })
-            records.append({
-                "url": f"http://secure-update-{brand}-portal{tld}/customer/login/verify.html",
-                "label": 1,
-                "source": "URLhaus Abuse Database"
-            })
-            records.append({
-                "url": f"http://{brand}.com-support-ticket-resolution{tld}/auth/recover?sid=827394",
-                "label": 1,
-                "source": "OpenPhish Threat Feed"
-            })
+# Held out for the OOD test: unseen path shapes on unseen domains.
+BENIGN_PATHS_OOD = [
+    "/internal/tools/status", "/en-gb/legal/cookie-policy", "/services/online-banking/overview",
+    "/accounts/recover/options", "/secure/login?redirect=%2Fhome", "/support/tickets/open",
+    "/products/2026/new-arrivals?utm_source=newsletter&utm_medium=email&utm_campaign=spring",
+]
 
-    # Category B: IP-Address based phishing URLs
-    phish_ips = [
-        "185.220.101.5", "194.26.29.112", "45.142.214.23", "91.240.118.172",
-        "103.145.13.88", "198.51.100.44", "203.0.113.195", "185.196.8.99",
-        "178.62.204.14", "193.106.191.22", "195.123.245.8", "89.248.165.101"
-    ]
-    for ip in phish_ips:
-        records.append({"url": f"http://{ip}/login/webscr.php?cmd=_login_submit", "label": 1, "source": "PhishTank Verified"})
-        records.append({"url": f"http://{ip}/secure/paypal/account-update/", "label": 1, "source": "OpenPhish Threat Feed"})
-        records.append({"url": f"http://{ip}:8080/signin/microsoft/index.html", "label": 1, "source": "URLhaus Abuse Database"})
-        records.append({"url": f"http://{ip}/admin/banking/chase/auth.php", "label": 1, "source": "OpenPhish Threat Feed"})
-        records.append({"url": f"http://{ip}/apple-id/verification/personal_details.asp", "label": 1, "source": "PhishTank Verified"})
+# Hand-written hard-benign URLs for the OOD set. Real, well-known pages with phishing-like vocabulary.
+HARD_BENIGN = """
+https://accounts.google.com/signin/v2/identifier?service=mail
+https://myaccount.google.com/security
+https://login.microsoftonline.com/common/oauth2/v2.0/authorize
+https://login.live.com/login.srf
+https://appleid.apple.com/sign-in
+https://www.paypal.com/signin
+https://www.paypal.com/myaccount/summary
+https://www.amazon.com/gp/css/homepage.html
+https://www.amazon.in/ap/signin
+https://secure.chase.com/web/auth/dashboard
+https://www.bankofamerica.com/online-banking/sign-in/
+https://www.wellsfargo.com/help/security/
+https://www.hdfcbank.com/personal/pay/cards
+https://netbanking.hdfcbank.com/netbanking/
+https://www.icicibank.com/personal-banking/accounts
+https://onlinesbi.sbi/
+https://retail.onlinesbi.sbi/retail/login.htm
+https://www.irctc.co.in/nget/train-search
+https://www.incometax.gov.in/iec/foportal/
+https://uidai.gov.in/en/my-aadhaar
+https://www.npci.org.in/what-we-do/upi/product-overview
+https://paytm.com/recharge
+https://www.flipkart.com/account/login?ret=/
+https://github.com/login
+https://github.com/torvalds/linux/blob/master/README
+https://github.com/pallets/flask/issues/4821
+https://gitlab.com/users/sign_in
+https://stackoverflow.com/users/login?ssrc=head
+https://developer.mozilla.org/en-US/docs/Web/Security/Practical_implementation_guides/TLS
+https://en.wikipedia.org/wiki/Phishing
+https://en.wikipedia.org/wiki/PayPal
+https://en.wikipedia.org/wiki/Apple_Inc.
+https://www.bbc.co.uk/news/technology-68123456
+https://www.nytimes.com/2026/02/14/technology/ai-security.html
+https://pandas.pydata.org/docs/user_guide/index.html
+https://numpy.org/doc/stable/reference/generated/numpy.array.html
+https://scikit-learn.org/stable/modules/ensemble.html#forest
+https://fastapi.tiangolo.com/tutorial/bigger-applications/
+https://docs.python.org/3/library/urllib.parse.html
+https://kubernetes.io/docs/concepts/security/overview/
+https://www.cloudflare.com/learning/security/what-is-phishing/
+https://www.microsoft.com/en-us/security/business/security-101/what-is-phishing
+https://support.apple.com/en-us/HT204053
+https://support.google.com/accounts/answer/32040
+https://help.netflix.com/en/node/24926
+https://www.netflix.com/login
+https://www.spotify.com/us/account/overview/
+https://discord.com/login
+https://steamcommunity.com/login/home/
+https://www.coinbase.com/signin
+https://www.binance.com/en/my/security
+https://www.linkedin.com/login
+https://www.facebook.com/login/
+https://www.instagram.com/accounts/login/
+https://web.whatsapp.com/
+https://www.dropbox.com/login
+https://zoom.us/signin
+https://slack.com/signin
+https://www.docusign.com/products/electronic-signature
+https://www.fedex.com/en-us/tracking.html
+https://www.ups.com/track?loc=en_US
+https://www.usps.com/manage/welcome.htm
+https://www.dhl.com/in-en/home/tracking.html
+https://www.irs.gov/refunds
+https://www.irs.gov/payments
+https://www.usa.gov/
+https://www.nhs.uk/conditions/
+https://www.who.int/news-room/fact-sheets/detail/influenza
+https://nptel.ac.in/courses/106/105/106105152/
+https://bmsce.ac.in/home/Computer-Science-and-Engineering
+https://www.iisc.ac.in/admissions/
+https://vtu.ac.in/en/
+https://www.coursera.org/learn/machine-learning
+https://www.kaggle.com/datasets
+https://huggingface.co/models?pipeline_tag=text-classification
+https://arxiv.org/abs/1706.03762
+https://pypi.org/project/scikit-learn/
+https://www.npmjs.com/package/express
+https://hub.docker.com/_/python
+https://aws.amazon.com/security/
+https://console.aws.amazon.com/console/home
+https://portal.azure.com/
+https://cloud.google.com/security
+https://firebase.google.com/docs/auth
+https://vercel.com/login
+https://dashboard.stripe.com/login
+https://www.shopify.com/login
+https://wordpress.org/support/
+https://torvalds.github.io/
+https://pages.github.com/
+https://pytorch.org/tutorials/beginner/basics/intro.html
+https://tensorflow.org/tutorials/quickstart/beginner
+https://jupyter.org/install
+https://www.mozilla.org/en-US/firefox/new/
+https://www.apple.com/shop/buy-iphone/iphone-16
+https://www.samsung.com/in/smartphones/all-smartphones/
+https://www.airtel.in/recharge-online
+https://www.jio.com/selfcare/login/
+https://www.zomato.com/bangalore/restaurants
+https://www.swiggy.com/restaurants
+https://www.makemytrip.com/flights/
+https://www.timesofindia.indiatimes.com/india/
+https://www.thehindu.com/news/national/karnataka/
+https://www.ndtv.com/india-news
+https://www.cricbuzz.com/cricket-match/live-scores
+https://www.espncricinfo.com/live-cricket-score
+https://www.imdb.com/title/tt0111161/
+https://medium.com/@user/how-phishing-works-3a9f2c1b
+https://www.reddit.com/r/cybersecurity/comments/1abc23/phishing_report/
+https://www.quora.com/What-is-phishing
+https://www.youtube.com/watch?v=jNQXAC9IVRw
+https://docs.google.com/document/d/1AbCdEfGhIjKlMnOpQrStUvWxYz/edit
+https://drive.google.com/drive/my-drive
+https://outlook.office.com/mail/
+https://www.office.com/launch/word
+https://teams.microsoft.com/_#/conversations
+https://github.com/paypal/paypal-checkout-components
+https://github.com/stripe/stripe-python
+https://github.com/microsoft/vscode/issues/200123
+https://github.com/google/guava
+https://github.com/apple/swift
+https://github.com/facebook/react/pull/27012
+https://github.com/amzn/selfimproving-agents
+https://www.reddit.com/r/Netflix/
+https://www.reddit.com/r/paypal/comments/1abc/refund_question/
+https://stackoverflow.com/questions/tagged/paypal-sandbox
+https://en.wikipedia.org/wiki/Amazon_(company)
+https://en.wikipedia.org/wiki/Netflix
+https://www.linkedin.com/company/microsoft/
+https://medium.com/@spotify/how-we-built-wrapped
+https://pallets.github.io/flask/
+https://pytorch.github.io/
+https://microsoft.github.io/vscode-pull-request-github/
+https://google.github.io/styleguide/pyguide.html
+https://facebook.github.io/react-native/
+https://huggingface.github.io/
+https://jekyllrb.com/docs/
+https://octocat.github.io/
+https://developers.cloudflare.com/pages/
+https://vercel.com/docs
+https://docs.github.com/en/pages
+""".split()
 
-    # Category C: Obfuscated URLs, @ symbol tricks, and Punycode (IDN homograph)
-    tricky_phish = [
-        "http://google.com@phishing-target-account-recovery.xyz/login",
-        "http://paypal.com@verify-secure-customer-resolution.top/signin",
-        "http://apple.com@id-apple-support-validation-desk.biz/auth",
-        "http://chase.com@online-banking-identity-confirm.info/signon",
-        "http://wellsfargo.com@security-alert-online-resolve.work/auth",
-        "http://microsoft.com@login-live-office365-verify.cc/portal",
-        "http://netflix.com@billing-problem-reactivate-now.online/user",
-        "http://amazon.com@prime-order-dispute-resolution.site/confirm",
-        "http://xn--paypl-ora.com/webscr/login_submit.php",  # Punycode spoof of paypal
-        "http://xn--microsft-e1a.com/office365/auth/signin", # Punycode spoof of microsoft
-        "http://xn--gogle-qoa.com/accounts/ServiceLogin",     # Punycode spoof of google
-        "http://xn--aple-0qa.com/appleid/verify-account",     # Punycode spoof of apple
-        "http://login.secure.update.billing.account.paypal.com.customer-service.tk/portal",
-        "http://verify.appleid.apple.com.ssl.protection.alert.user-help.ml/login",
-        "http://banking.chase.com.security-notice-customer.ga/signon/index.php",
-        "http://accounts.google.com.security-alert-signin.gq/identifier",
-        "http://service-paypal-resolution-center.com//login//cmd//webscr.php",
-        "http://office365-login-microsoft.com//secure//verify//token=910283",
-        "https://bit.ly/3xPh1shT4nk",
-        "https://tinyurl.com/paypal-update-billing-urgent",
-        "https://is.gd/secure_banking_login_verify",
-        "https://t.co/account_suspension_appeal_now"
-    ]
-    for u in tricky_phish:
-        records.append({"url": u, "label": 1, "source": "PhishTank / OpenPhish Verified"})
 
-    # Category D: Keyword-stuffed deceptive URLs across suspicious TLDs
-    stuffed_stems = [
-        "secure-account-verification-service", "customer-identity-confirmation-desk",
-        "billing-update-required-action", "banking-portal-security-notice",
-        "urgent-account-suspension-appeal", "unusual-signin-activity-resolve",
-        "wallet-phrase-validation-node", "irs-tax-refund-claim-portal",
-        "dhl-parcel-delivery-fee-pending", "usps-package-address-verification",
-        "crypto-airdrop-claim-rewards", "meta-business-suite-copyright-appeal"
-    ]
-    for stem in stuffed_stems:
-        for tld in [".xyz", ".top", ".icu", ".buzz", ".work", ".fit", ".sbs"]:
-            records.append({
-                "url": f"http://{stem}{tld}/auth/login?session=token_901823&action=verify",
-                "label": 1,
-                "source": "OpenPhish Threat Feed"
-            })
-            records.append({
-                "url": f"https://www.{stem}{tld}/portal/index.html?ref=email_warning",
-                "label": 1,
-                "source": "PhishTank Verified"
-            })
+# --------------------------------------------------------------------------- #
+# IO helpers
+# --------------------------------------------------------------------------- #
+def download(name: str) -> str:
+    """Downloads a feed into data/cache/ (once) and returns the local path."""
+    import requests
 
-    # Expand benign instances to guarantee healthy dataset size (~2,400 to 2,800 URLs) and exact 50/50 balance
-    # Generate clean legitimate subdomains and paths for authoritative domains
-    expanded_benign_samples = []
-    base_services = [
-        ("github.com", ["explore", "trending", "topics", "collections", "pricing", "enterprise"]),
-        ("gitlab.com", ["explore/projects", "users/sign_in", "help/user/index", "pricing"]),
-        ("stackoverflow.com", ["questions/tagged/python", "tags", "users", "jobs/companies", "help"]),
-        ("developer.mozilla.org", ["en-US/docs/Web/JavaScript", "en-US/docs/Web/CSS", "en-US/docs/Web/HTML", "en-US/docs/Learn"]),
-        ("en.wikipedia.org", ["wiki/Computer_security", "wiki/Cryptographic_hash_function", "wiki/Uniform_Resource_Locator", "wiki/Domain_Name_System"]),
-        ("pypi.org", ["project/scikit-learn/", "project/fastapi/", "project/requests/", "project/beautifulsoup4/"]),
-        ("hub.docker.com", ["_/_python", "_/_ubuntu", "_/_nginx", "_/_postgres"]),
-        ("arxiv.org", ["archive/cs", "list/cs.CR/recent", "abs/2105.12345", "abs/2203.09876"]),
-        ("medium.com", ["tag/cybersecurity", "tag/machine-learning", "tag/data-science", "tag/python"]),
-        ("news.ycombinator.com", ["newest", "ask", "show", "jobs", "active"]),
-        ("nytimes.com", ["section/technology", "section/science", "section/world", "section/business"]),
-        ("bbc.com", ["news/technology", "news/science_and_environment", "news/business"]),
-        ("reuters.com", ["technology", "business", "markets", "sustainability"]),
-        ("mit.edu", ["education", "research", "admissions", "campus-life"]),
-        ("stanford.edu", ["academics", "admission", "research", "about"]),
-        ("berkeley.edu", ["academics", "research", "admissions", "news"]),
-        ("cam.ac.uk", ["research", "study-at-cambridge", "about-the-university"]),
-        ("who.int", ["health-topics", "emergencies", "data", "publications"]),
-        ("nasa.gov", ["missions", "news", "multimedia", "about"]),
-        ("nih.gov", ["health-information", "research-training", "grants-funding"])
-    ]
-    for dom, p_list in base_services:
-        for p in p_list:
-            expanded_benign_samples.append(f"https://{dom}/{p}")
-            expanded_benign_samples.append(f"https://{dom}/{p}?utm_source=feed&page=1")
-            expanded_benign_samples.append(f"https://{dom}/{p}/overview")
+    os.makedirs(CACHE_DIR, exist_ok=True)
+    path = os.path.join(CACHE_DIR, f"{name}.txt")
+    if os.path.exists(path) and os.path.getsize(path) > 0:
+        return path
+    print(f"[*] Downloading {name} ...", flush=True)
+    r = requests.get(FEEDS[name], timeout=300, stream=True)
+    r.raise_for_status()
+    with open(path, "wb") as f:
+        for chunk in r.iter_content(1 << 20):
+            f.write(chunk)
+    return path
 
-    for u in expanded_benign_samples:
-        records.append({"url": u, "label": 0, "source": "Curated Benign Portals"})
 
-    return records
+_URL_OK = re.compile(r"^https?://[^\s/?#]+", re.I)
 
-def normalize_url(url_str):
-    """
-    Validates and normalizes URL string according to standard RFC practices:
-    - Trims whitespace
-    - Defaults missing scheme to https://
-    - Lowercases scheme and netloc (domain)
-    - Validates presence of hostname
-    """
-    if not isinstance(url_str, str) or not url_str.strip():
+
+def clean_url(u: str):
+    u = (u or "").strip().strip('"').strip("'")
+    if not u or len(u) > 2000 or any(c.isspace() for c in u):
         return None
-    url = url_str.strip()
-    
-    # Add scheme if missing
-    if not re.match(r'^[a-zA-Z][a-zA-Z0-9+.-]*://', url):
-        url = "https://" + url
-
+    if not _URL_OK.match(u):
+        return None
     try:
-        parsed = urlparse(url)
-        if not parsed.netloc:
+        p = urlparse(u)
+        if not p.hostname or "." not in p.hostname:
             return None
-        # Normalize hostname to lowercase
-        norm_netloc = parsed.netloc.lower()
-        norm_scheme = parsed.scheme.lower()
-        
-        # Reconstruct normalized URL
-        norm_path = parsed.path if parsed.path else "/"
-        normalized = f"{norm_scheme}://{norm_netloc}{norm_path}"
-        if parsed.query:
-            normalized += f"?{parsed.query}"
-        if parsed.fragment:
-            normalized += f"#{parsed.fragment}"
-        return normalized
-    except Exception:
+    except ValueError:
         return None
+    return u
 
-def build_dataset():
-    """
-    Main pipeline function:
-    1. Generates candidate URLs
-    2. Normalizes, validates, and deduplicates
-    3. Balances class distribution
-    4. Stratifies into train (70%), val (15%), test (15%)
-    5. Writes CSV files and dataset metadata
-    """
-    print("[*] Starting dataset curation and preparation pipeline...")
-    raw_records = generate_curated_raw_records()
-    print(f"[*] Generated {len(raw_records)} raw records.")
 
-    valid_dict = {} # Deduplicate by normalized URL
-    for r in raw_records:
-        norm = normalize_url(r["url"])
-        if norm and norm not in valid_dict:
-            valid_dict[norm] = {
-                "url": norm,
-                "label": int(r["label"]),
-                "source": r["source"]
-            }
+def host_of(url: str) -> str:
+    return (urlparse(url).hostname or "").lower()
 
-    valid_records = list(valid_dict.values())
-    print(f"[*] Validated and deduplicated to {len(valid_records)} unique records.")
 
-    # Audit class balance
-    phishing_records = [r for r in valid_records if r["label"] == 1]
-    legit_records = [r for r in valid_records if r["label"] == 0]
-    print(f"[*] Class distribution before balance: Phishing={len(phishing_records)}, Legitimate={len(legit_records)}")
+def has_path(url: str) -> bool:
+    p = urlparse(url)
+    return bool(p.path.strip("/") or p.query)
 
-    # Balance to equal counts (50% / 50%)
-    min_count = min(len(phishing_records), len(legit_records))
-    random.shuffle(phishing_records)
-    random.shuffle(legit_records)
-    
-    balanced_records = phishing_records[:min_count] + legit_records[:min_count]
-    random.shuffle(balanced_records)
-    print(f"[*] Balanced dataset size: {len(balanced_records)} total (50% Phishing, 50% Legitimate)")
 
-    # Stratified Split: 70% Train, 15% Validation, 15% Test
-    n_total = len(balanced_records)
-    n_train = int(0.70 * n_total)
-    n_val = int(0.15 * n_total)
-    n_test = n_total - n_train - n_val
+def stable_bucket(key: str, buckets: int = 100) -> int:
+    return int(hashlib.md5(f"{SEED}:{key}".encode()).hexdigest(), 16) % buckets
 
-    # Group by label to guarantee exact stratify in each split
-    phish = [r for r in balanced_records if r["label"] == 1]
-    legit = [r for r in balanced_records if r["label"] == 0]
 
-    train_phish = phish[:len(phish)*70//100]
-    val_phish = phish[len(phish)*70//100 : len(phish)*85//100]
-    test_phish = phish[len(phish)*85//100 :]
+# --------------------------------------------------------------------------- #
+# Collectors
+# --------------------------------------------------------------------------- #
+def collect_phishing(path: str, n: int, rng: random.Random, exclude_regs=frozenset()):
+    """Reads a feed, applies caps, and returns a diversified random sample of n URLs."""
+    seen, per_host, per_reg = set(), Counter(), Counter()
+    kept = []
+    with open(path, encoding="utf-8", errors="replace") as f:
+        lines = [ln for ln in f]
+    rng.shuffle(lines)                                   # unbiased w.r.t. file order
+    platform_cap = max(5, int(n * MAX_PLATFORM_SHARE))
+    per_platform = Counter()
+    for ln in lines:
+        u = clean_url(ln)
+        if not u or u in seen:
+            continue
+        seen.add(u)
+        host = host_of(u)
+        _, reg, suffix = split_host(host)
+        if reg in exclude_regs:
+            continue
+        if per_host[host] >= MAX_PER_HOST or per_reg[reg] >= MAX_PER_REGISTERED:
+            continue
+        if is_free_hosting(host):
+            plat = next((s for s in FREE_HOSTING_SUFFIXES if host == s or host.endswith("." + s)), suffix)
+            if per_platform[plat] >= platform_cap:
+                continue
+            per_platform[plat] += 1
+        per_host[host] += 1
+        per_reg[reg] += 1
+        kept.append(u)
+        if len(kept) >= n:
+            break
+    return kept
 
-    train_legit = legit[:len(legit)*70//100]
-    val_legit = legit[len(legit)*70//100 : len(legit)*85//100]
-    test_legit = legit[len(legit)*85//100 :]
 
-    train_set = train_phish + train_legit
-    val_set = val_phish + val_legit
-    test_set = test_phish + test_legit
+def collect_benign_longtail(path: str, n: int, rng: random.Random):
+    csv.field_size_limit(10 ** 7)
+    out, per_reg = [], Counter()
+    rows = []
+    with open(path, encoding="utf-8", errors="replace") as f:
+        reader = csv.reader(f)
+        next(reader, None)
+        for row in reader:
+            if len(row) >= 2 and row[-1].strip().lower() == "good":
+                rows.append(row[0].strip())
+    rng.shuffle(rows)
+    for raw in rows:
+        u = clean_url("http://" + raw if not re.match(r"^[a-z]+://", raw, re.I) else raw)
+        if not u:
+            continue
+        reg = split_host(host_of(u))[1]
+        if per_reg[reg] >= 2:
+            continue
+        per_reg[reg] += 1
+        out.append(u)
+        if len(out) >= n:
+            break
+    return out
 
-    random.shuffle(train_set)
-    random.shuffle(val_set)
-    random.shuffle(test_set)
 
-    print(f"[*] Train set: {len(train_set)} records (Phishing={sum(r['label'] for r in train_set)}, Legitimate={len(train_set)-sum(r['label'] for r in train_set)})")
-    print(f"[*] Validation set: {len(val_set)} records (Phishing={sum(r['label'] for r in val_set)}, Legitimate={len(val_set)-sum(r['label'] for r in val_set)})")
-    print(f"[*] Test set: {len(test_set)} records (Phishing={sum(r['label'] for r in test_set)}, Legitimate={len(test_set)-sum(r['label'] for r in test_set)})")
+def collect_benign_freehost(rng: random.Random, n: int):
+    """Personal / student sites on free platforms (SYNTHETIC names). Teaches the model that a free host alone is normal."""
+    out = []
+    while len(out) < n:
+        plat = rng.choice(FREE_HOST_PLATFORMS)
+        owner, word = rng.choice(FREE_HOST_OWNERS), rng.choice(FREE_HOST_WORDS)
+        name = rng.choice([f"{owner}-{word}", f"{owner}{word}", f"{word}-{owner}", f"{owner}", f"{owner}-{rng.randint(1, 99)}-{word}"])
+        path = rng.choice(FREE_HOST_PATHS)
+        if plat in ("github.io", "gitlab.io") and rng.random() < 0.6:
+            url = f"https://{owner}.{plat}/{word}{path if path not in ('', '/') else '/'}"
+        else:
+            url = f"https://{name}.{plat}{path}"
+        out.append(url)
+    return list(dict.fromkeys(out))
 
-    # Save to data directory
-    def write_csv(filepath, records_list, split_name):
-        import csv
-        with open(filepath, mode="w", newline="", encoding="utf-8") as f:
-            writer = csv.writer(f)
-            writer.writerow(["url", "label", "source", "split"])
-            for r in records_list:
-                writer.writerow([r["url"], r["label"], r["source"], split_name])
 
-    raw_csv_path = os.path.join(BASE_DIR, "raw_urls.csv")
-    train_csv_path = os.path.join(BASE_DIR, "train.csv")
-    val_csv_path = os.path.join(BASE_DIR, "val.csv")
-    test_csv_path = os.path.join(BASE_DIR, "test.csv")
+def collect_benign_curated(rng: random.Random, domains, paths, per_domain):
+    out = []
+    brands = list(KNOWN_BRANDS)
+    for dom in domains:
+        for _ in range(per_domain):
+            sub = rng.choice(BENIGN_SUBDOMAINS)
+            host = dom if (sub == "www" and rng.random() < 0.4) else f"{sub}.{dom}"
+            if host.startswith("www.") and dom.startswith("www."):
+                host = dom
+            path = rng.choice(paths)
+            if rng.random() < 0.25:                       # brand mentioned in a harmless path
+                b = rng.choice(brands)
+                path = rng.choice(BRAND_PATH_TEMPLATES).format(b=b, B=b.title())
+            out.append(f"https://{host}{path}")
+    return list(dict.fromkeys(out))
 
-    write_csv(raw_csv_path, balanced_records, "all")
-    write_csv(train_csv_path, train_set, "train")
-    write_csv(val_csv_path, val_set, "val")
-    write_csv(test_csv_path, test_set, "test")
 
-    # Generate metadata file
-    metadata = {
-        "dataset_name": "Explainable Phishing Risk URL Corpus",
-        "reference_paper": {
-            "title": "Phishing Detection System Through Hybrid Machine Learning Based on URL",
-            "journal": "IEEE Access",
-            "year": 2023,
-            "doi": "10.1109/ACCESS.2023.3252366",
-            "url": "https://doi.org/10.1109/ACCESS.2023.3252366"
-        },
-        "curated_date": "2026-11-05",
-        "data_sources": DATA_SOURCES,
-        "total_balanced_samples": len(balanced_records),
-        "class_balance": {
-            "phishing_count": len(phishing_records[:min_count]),
-            "legitimate_count": len(legit_records[:min_count]),
-            "phishing_ratio": 0.50,
-            "legitimate_ratio": 0.50
-        },
-        "splits": {
-            "train": {"total": len(train_set), "phishing": sum(r["label"] for r in train_set), "legitimate": len(train_set) - sum(r["label"] for r in train_set)},
-            "validation": {"total": len(val_set), "phishing": sum(r["label"] for r in val_set), "legitimate": len(val_set) - sum(r["label"] for r in val_set)},
-            "test": {"total": len(test_set), "phishing": sum(r["label"] for r in test_set), "legitimate": len(test_set) - sum(r["label"] for r in test_set)}
-        },
-        "random_seed": RANDOM_SEED
+# --------------------------------------------------------------------------- #
+# Bias controls
+# --------------------------------------------------------------------------- #
+def set_scheme(url: str, https: bool) -> str:
+    return re.sub(r"^https?://", "https://" if https else "http://", url, count=1, flags=re.I)
+
+
+def decorrelate_scheme(benign, phish, rng):
+    """Re-assigns the benign scheme to match the phishing https rate so the scheme carries no label signal."""
+    p_https = sum(u.lower().startswith("https://") for u in phish) / max(len(phish), 1)
+    return [set_scheme(u, rng.random() < p_https) for u in benign]
+
+
+def match_path_presence(benign_rows, phish_rows, rng):
+    """Subsamples benign so P(has path/query | benign) matches phishing, then trims to equal size."""
+    pp = sum(has_path(r["url"]) for r in phish_rows) / max(len(phish_rows), 1)
+    with_p = [r for r in benign_rows if has_path(r["url"])]
+    without = [r for r in benign_rows if not has_path(r["url"])]
+    rng.shuffle(with_p)
+    rng.shuffle(without)
+    n_total = min(len(phish_rows), int(min(len(with_p) / pp if pp else 1e9, len(without) / (1 - pp) if pp < 1 else 1e9)))
+    n_with, n_without = int(n_total * pp), n_total - int(n_total * pp)
+    return with_p[:n_with] + without[:n_without]
+
+
+def split_by_domain(rows):
+    """70/15/15 split keyed by registered domain: a site never crosses splits."""
+    buckets = {"train": [], "val": [], "test": []}
+    for r in rows:
+        reg = split_by_domain.cache.setdefault(r["url"], split_host(host_of(r["url"]))[1])
+        b = stable_bucket(reg)
+        name = "train" if b < 70 else ("val" if b < 85 else "test")
+        buckets[name].append({**r, "split": name})
+    return buckets
+
+
+split_by_domain.cache = {}
+
+
+def write_csv(path, rows):
+    with open(path, "w", encoding="utf-8", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(["url", "label", "source", "split"])
+        for r in rows:
+            w.writerow([r["url"], r["label"], r["source"], r["split"]])
+
+
+# --------------------------------------------------------------------------- #
+# Main
+# --------------------------------------------------------------------------- #
+def build():
+    rng = random.Random(SEED)
+
+    phish_active = collect_phishing(download("phish_active"), N_PHISH_MAIN, rng)
+    main_regs = {split_host(host_of(u))[1] for u in phish_active}
+    phish_ood = collect_phishing(download("phish_inactive"), N_PHISH_OOD, rng, exclude_regs=main_regs)
+
+    # --- benign pools -------------------------------------------------------
+    longtail = collect_benign_longtail(download("benign_longtail"), N_BENIGN_LONGTAIL, rng)
+    domains = sorted(set(POPULAR_DOMAINS))
+    rng.shuffle(domains)
+    ood_domains = domains[: len(domains) // 6]                      # never used for training
+    main_domains = domains[len(domains) // 6:]
+    curated = collect_benign_curated(rng, main_domains, BENIGN_PATHS_MAIN, per_domain=14)
+    curated_ood = collect_benign_curated(rng, ood_domains, BENIGN_PATHS_OOD + BENIGN_PATHS_MAIN[:10], per_domain=6)
+
+    freehost = collect_benign_freehost(rng, 700)
+    longtail = decorrelate_scheme(longtail, phish_active, rng)
+    curated = decorrelate_scheme(curated, phish_active, rng)
+    freehost = decorrelate_scheme(freehost, phish_active, rng)
+
+    benign_rows = (
+        [{"url": u, "label": 0, "source": "Real long-tail benign (ISCX-style corpus)"} for u in longtail]
+        + [{"url": u, "label": 0, "source": "Curated popular domains (synthetic paths)"} for u in curated]
+        + [{"url": u, "label": 0, "source": "Personal sites on free platforms (synthetic names)"} for u in freehost]
+    )
+    phish_rows = [{"url": u, "label": 1, "source": "Phishing.Database ACTIVE (real)"} for u in phish_active]
+    benign_rows = match_path_presence(benign_rows, phish_rows, rng)
+
+    # Never let a domain appear in both classes (e.g. a benign sample from a domain also seen phishing)
+    phish_regs = {split_host(host_of(r["url"]))[1] for r in phish_rows}
+    benign_rows = [r for r in benign_rows if split_host(host_of(r["url"]))[1] not in phish_regs]
+    n = min(len(benign_rows), len(phish_rows))
+    rng.shuffle(benign_rows)
+    rng.shuffle(phish_rows)
+    benign_rows, phish_rows = benign_rows[:n], phish_rows[:n]
+
+    parts = split_by_domain(benign_rows + phish_rows)
+
+    # --- OOD test -----------------------------------------------------------
+    ood_rows = (
+        [{"url": u, "label": 1, "source": "Phishing.Database INACTIVE (real, older campaigns)", "split": "ood"} for u in phish_ood]
+        + [{"url": u, "label": 0, "source": "Hand-written hard benign", "split": "ood"} for u in HARD_BENIGN]
+        + [{"url": u, "label": 0, "source": "Curated unseen domains (synthetic paths)", "split": "ood"} for u in curated_ood[:300]]
+    )
+    rng.shuffle(ood_rows)
+
+    os.makedirs(BASE_DIR, exist_ok=True)
+    for name, rows in parts.items():
+        rng.shuffle(rows)
+        write_csv(os.path.join(BASE_DIR, f"{name}.csv"), rows)
+    write_csv(os.path.join(BASE_DIR, "ood_test.csv"), ood_rows)
+
+    def stats(rows):
+        c = Counter(r["label"] for r in rows)
+        return {"total": len(rows), "phishing": c[1], "legitimate": c[0]}
+
+    meta = {
+        "dataset_name": "PhishGuard URL corpus v2",
+        "seed": SEED,
+        "honesty_notes": [
+            "Phishing URLs are real, taken from the public Phishing.Database aggregation of community feeds.",
+            "Roughly half of the legitimate URLs are real long-tail URLs from an older public corpus; the rest are "
+            "well-known domains combined with synthetic-but-realistic paths. Treat metrics as an optimistic bound for "
+            "the benign side.",
+            "Scheme and 'has path' were decorrelated from the label; splits are grouped by registered domain.",
+            "The OOD test uses older phishing campaigns and hand-written benign URLs not used in training.",
+        ],
+        "sources": FEEDS,
+        "caps": {"per_host": MAX_PER_HOST, "per_registered_domain": MAX_PER_REGISTERED, "platform_share": MAX_PLATFORM_SHARE},
+        "splits": {k: stats(v) for k, v in parts.items()} | {"ood_test": stats(ood_rows)},
+        "source_breakdown": dict(Counter(r["source"] for rows in list(parts.values()) + [ood_rows] for r in rows)),
     }
+    with open(os.path.join(BASE_DIR, "dataset_metadata.json"), "w", encoding="utf-8") as f:
+        json.dump(meta, f, indent=2)
+    print(json.dumps(meta["splits"], indent=2))
+    return meta
 
-    meta_path = os.path.join(BASE_DIR, "dataset_metadata.json")
-    with open(meta_path, "w", encoding="utf-8") as f:
-        json.dump(metadata, f, indent=2)
-
-    print(f"[+] Dataset build complete. Files saved in {BASE_DIR}")
-    return metadata
 
 if __name__ == "__main__":
-    build_dataset()
+    build()

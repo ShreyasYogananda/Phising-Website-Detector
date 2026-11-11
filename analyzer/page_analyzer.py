@@ -13,10 +13,19 @@ Safety Protections:
 
 import ipaddress
 import re
-from typing import Dict, Any, List
-from urllib.parse import urlparse
+import socket
+import warnings
+from typing import Dict, Any, List, Optional
+from urllib.parse import urljoin, urlparse
 import requests
+import urllib3
 from bs4 import BeautifulSoup
+
+# Certificate checking is deliberately off (phishing sites often have bad certs and we only read HTML),
+# so silence the per-request warning.
+warnings.filterwarnings("ignore", category=urllib3.exceptions.InsecureRequestWarning)
+
+MAX_REDIRECTS = 3
 
 PRIVATE_NETWORKS = [
     ipaddress.ip_network("127.0.0.0/8"),
@@ -35,17 +44,79 @@ SAFE_HEADERS = {
     "Accept-Language": "en-US,en;q=0.5"
 }
 
+def _ip_is_blocked(ip: "ipaddress._BaseAddress") -> bool:
+    """True for anything that is not a normal public address (loopback, private, link-local, CGNAT,
+    multicast, unspecified, reserved, IPv4-mapped IPv6 of those, ...)."""
+    if isinstance(ip, ipaddress.IPv6Address) and ip.ipv4_mapped:
+        ip = ip.ipv4_mapped
+    if any(ip in net for net in PRIVATE_NETWORKS):
+        return True
+    return not ip.is_global
+
+
 def is_ssrf_risk(hostname: str) -> bool:
-    """Blocks requests to localhost, loopback, or internal intranet ranges."""
-    clean_host = hostname.split(":")[0].strip().lower()
-    if clean_host in ["localhost", "127.0.0.1", "::1", "metadata.google.internal"]:
+    """Blocks localhost names and IP literals that are not public addresses."""
+    clean_host = hostname.strip().strip("[]").lower().rstrip(".")
+    if clean_host.count(":") <= 1:          # plain host or host:port (an IPv6 literal has several colons)
+        clean_host = clean_host.split(":")[0]
+    if clean_host in ("localhost", "metadata.google.internal", "metadata") or clean_host.endswith((".localhost", ".internal", ".local")):
         return True
     try:
-        ip = ipaddress.ip_address(clean_host)
-        return any(ip in net for net in PRIVATE_NETWORKS)
+        return _ip_is_blocked(ipaddress.ip_address(clean_host))
     except ValueError:
-        # Host is a named domain, not a direct IP literal
-        return False
+        return False                         # a named domain: checked after DNS resolution
+
+
+def resolves_to_blocked_address(hostname: str) -> Optional[bool]:
+    """Resolves the name and reports whether ANY answer is a non-public address.
+    Returns None if the name cannot be resolved."""
+    try:
+        infos = socket.getaddrinfo(hostname, None, proto=socket.IPPROTO_TCP)
+    except (socket.gaierror, UnicodeError):
+        return None
+    for info in infos:
+        try:
+            if _ip_is_blocked(ipaddress.ip_address(info[4][0])):
+                return True
+        except ValueError:
+            return True
+    return False
+
+
+def _blocked_result(message: str) -> Dict[str, Any]:
+    return {"status": "blocked", "message": message, "findings": []}
+
+
+def _fetch_with_safe_redirects(url: str):
+    """GET with every hop validated (scheme, literal IP, DNS answers) before it is requested.
+    Returns (response, hops). Raises ValueError with a user-facing message when a hop is not allowed.
+
+    Residual risk: DNS can change between our lookup and the connection (rebinding). Run this service
+    without access to internal networks if that matters for your deployment."""
+    session = requests.Session()
+    session.trust_env = False                # ignore proxy env vars for the sandbox fetch
+    hops: List[str] = []
+    current = url
+    for _ in range(MAX_REDIRECTS + 1):
+        parsed = urlparse(current)
+        if parsed.scheme not in ("http", "https"):
+            raise ValueError("Only http and https addresses can be inspected.")
+        host = (parsed.hostname or "").lower()
+        if not host or is_ssrf_risk(host):
+            raise ValueError("Sandbox policy: requests to internal or loopback network targets are prohibited.")
+        blocked = resolves_to_blocked_address(host)
+        if blocked:
+            raise ValueError("Sandbox policy: that name resolves to an internal network address.")
+        response = session.get(current, headers=SAFE_HEADERS, timeout=2.5, allow_redirects=False,
+                               stream=True, verify=False)
+        if response.is_redirect and response.headers.get("Location"):
+            hops.append(current)
+            response.close()
+            current = urljoin(current, response.headers["Location"])
+            continue
+        return response, hops
+    raise ValueError("Too many redirects (more than %d)." % MAX_REDIRECTS)
+
 
 def inspect_live_page_isolated(url_str: str) -> Dict[str, Any]:
     """
@@ -66,45 +137,33 @@ def inspect_live_page_isolated(url_str: str) -> Dict[str, Any]:
             "findings": []
         }
 
-    # SSRF verification
     if is_ssrf_risk(hostname):
-        return {
-            "status": "blocked",
-            "message": "Sandbox Policy: Requests to internal/loopback network targets are strictly prohibited.",
-            "findings": []
-        }
+        return _blocked_result("Sandbox Policy: Requests to internal/loopback network targets are strictly prohibited.")
 
     findings: List[Dict[str, Any]] = []
 
     try:
-        session = requests.Session()
-        session.max_redirects = 3
-
-        # Stream request with 2.5 second timeout to avoid slowloris
-        response = session.get(
-            url,
-            headers=SAFE_HEADERS,
-            timeout=2.5,
-            allow_redirects=True,
-            stream=True,
-            verify=False # Allow inspecting self-signed phishing certs without breaking sandbox
-        )
+        try:
+            response, hops = _fetch_with_safe_redirects(url)
+        except ValueError as exc:
+            return _blocked_result(str(exc))
 
         # Read only up to 500 KB
         content_bytes = response.raw.read(500 * 1024, decode_content=True)
         html_text = content_bytes.decode("utf-8", errors="replace")
 
         final_url = response.url
+        response.close()
         final_parsed = urlparse(final_url)
         final_hostname = final_parsed.netloc.split(":")[0].lower()
 
         # Signal 1: Cross-domain redirect detection
-        if len(response.history) > 0:
+        if len(hops) > 0:
             if final_hostname != hostname:
                 findings.append({
                     "severity": "HIGH",
                     "title": "Cross-Domain Redirection Detected",
-                    "detail": f"Initial host '{hostname}' redirected through {len(response.history)} hops to '{final_hostname}'.",
+                    "detail": f"Initial host '{hostname}' redirected through {len(hops)} hops to '{final_hostname}'.",
                     "risk_delta": 25
                 })
             else:
@@ -179,7 +238,7 @@ def inspect_live_page_isolated(url_str: str) -> Dict[str, Any]:
             "http_status": response.status_code,
             "final_url": final_url,
             "page_title": page_title if page_title else "(none)",
-            "redirect_hops": len(response.history),
+            "redirect_hops": len(hops),
             "has_password_input": has_password,
             "findings": findings
         }

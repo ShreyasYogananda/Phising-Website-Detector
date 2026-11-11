@@ -1,235 +1,997 @@
 url,label,source,split
-http://amazon-unlock-account-security-support.com/login.php?client_id=token9281,1,PhishTank Verified,test
-https://fedex.com/support/faq/article-id-81239,0,Curated Benign Portals,test
-http://wallet-phrase-validation-node.work/auth/login?session=token_901823&action=verify,1,OpenPhish Threat Feed,test
-https://nasa.gov/search?q=article&ref=homepage,0,Tranco Top 1M / Benign,test
-https://gitlab.com/pricing,0,Curated Benign Portals,test
-https://ups.com/search?q=article&ref=homepage,0,Tranco Top 1M / Benign,test
-http://steam-login-security-support.top/login.php?client_id=token9281,1,PhishTank Verified,test
-http://bankofamerica.com-support-ticket-resolution.xyz/auth/recover?sid=827394,1,OpenPhish Threat Feed,test
-http://secure-update-binance-portal.cc/customer/login/verify.html,1,URLhaus Abuse Database,test
-https://arxiv.org/abs/2105.12345/overview,0,Curated Benign Portals,test
-https://mit.edu/education,0,Curated Benign Portals,test
-https://www.customer-identity-confirmation-desk.xyz/portal/index.html?ref=email_warning,1,PhishTank Verified,test
-https://dropbox.com/support/faq/article-id-81239,0,Curated Benign Portals,test
-https://amazon-account-security-alert-resolution.net/signin/auth,1,PhishTank Verified,test
-https://docker.com/privacy,0,Curated Benign Portals,test
-https://fidelity.com/,0,Tranco Top 1M / Benign,test
-https://steam-account-security-alert-resolution.top/signin/auth,1,PhishTank Verified,test
-https://m.target.com/api/v2/healthcheck,0,Cisco Umbrella / Benign,test
-https://weather.com/about,0,Curated Benign Portals,test
-http://crypto-airdrop-claim-rewards.buzz/auth/login?session=token_901823&action=verify,1,OpenPhish Threat Feed,test
-http://45.142.214.23:8080/signin/microsoft/index.html,1,URLhaus Abuse Database,test
-https://python.org/category/technology?page=1&sort=recent,0,Tranco Top 1M / Benign,test
-https://developer.fidelity.com/api/v2/healthcheck,0,Cisco Umbrella / Benign,test
-https://paypal.com/search?q=article&ref=homepage,0,Tranco Top 1M / Benign,test
-http://secure-update-binance-portal.xyz/customer/login/verify.html,1,URLhaus Abuse Database,test
-https://bankofamerica-account-security-alert-resolution.net/signin/auth,1,PhishTank Verified,test
-https://paypal-account-security-alert-resolution.cc/signin/auth,1,PhishTank Verified,test
-http://account-update.chase.com.verify-billing-center.site/index.html,1,OpenPhish Threat Feed,test
-https://www.urgent-account-suspension-appeal.xyz/portal/index.html?ref=email_warning,1,PhishTank Verified,test
-https://cloud.netflix.com/,0,Cisco Umbrella / Benign,test
-http://netflix-banking-security-support.xyz/login.php?client_id=token9281,1,PhishTank Verified,test
-https://lyft.com/privacy,0,Curated Benign Portals,test
-http://auth.netflix.com.verify-billing-center.site/index.html,1,OpenPhish Threat Feed,test
-https://target.com/category/technology?page=1&sort=recent,0,Tranco Top 1M / Benign,test
-https://www.unusual-signin-activity-resolve.fit/portal/index.html?ref=email_warning,1,PhishTank Verified,test
-https://www.reddit.com/,0,Tranco Top 1M / Benign,test
-http://auth.paypal.com.verify-billing-center.info/index.html,1,OpenPhish Threat Feed,test
-http://metamask-login-security-support.net/login.php?client_id=token9281,1,PhishTank Verified,test
-https://www.w3.org/Protocols/rfc2616/rfc2616.html,0,Curated Benign Portals,test
-https://stanford.edu/research/overview,0,Curated Benign Portals,test
-https://wellsfargo-account-security-alert-resolution.top/signin/auth,1,PhishTank Verified,test
-http://apple.com-support-ticket-resolution.cc/auth/recover?sid=827394,1,OpenPhish Threat Feed,test
-https://www.meta-business-suite-copyright-appeal.buzz/portal/index.html?ref=email_warning,1,PhishTank Verified,test
-https://apple.com/contact,0,Curated Benign Portals,test
-http://webscr.microsoft.com.verify-billing-center.top/index.html,1,OpenPhish Threat Feed,test
-https://news.ycombinator.com/show/overview,0,Curated Benign Portals,test
-https://api.irs.gov/docs/v2/getting-started,0,Cisco Umbrella / Benign,test
-http://microsoft-wallet-restore-security-support.cc/login.php?client_id=token9281,1,PhishTank Verified,test
-http://194.26.29.112/secure/paypal/account-update/,1,OpenPhish Threat Feed,test
-https://youtube.com/contact,0,Curated Benign Portals,test
-https://stackoverflow.com/tags?utm_source=feed&page=1,0,Curated Benign Portals,test
-http://secure-update-facebook-portal.cc/customer/login/verify.html,1,URLhaus Abuse Database,test
-https://status.ox.ac.uk/api/v2/healthcheck,0,Cisco Umbrella / Benign,test
-http://verification.coinbase.com.verify-billing-center.cc/index.html,1,OpenPhish Threat Feed,test
-http://confirm-identity.binance.com.verify-billing-center.cc/index.html,1,OpenPhish Threat Feed,test
-http://steam-unlock-account-security-support.net/login.php?client_id=token9281,1,PhishTank Verified,test
-https://www.customer-identity-confirmation-desk.icu/portal/index.html?ref=email_warning,1,PhishTank Verified,test
-http://secure-update-coinbase-portal.site/customer/login/verify.html,1,URLhaus Abuse Database,test
-http://secure-update-metamask-portal.xyz/customer/login/verify.html,1,URLhaus Abuse Database,test
-https://slack.com/support/faq/article-id-81239,0,Curated Benign Portals,test
-http://secure-update-bankofamerica-portal.info/customer/login/verify.html,1,URLhaus Abuse Database,test
-https://zoom.us/,0,Tranco Top 1M / Benign,test
-https://coinbase-account-security-alert-resolution.xyz/signin/auth,1,PhishTank Verified,test
-http://185.220.101.5/secure/paypal/account-update/,1,OpenPhish Threat Feed,test
-http://verification.google.com.verify-billing-center.com/index.html,1,OpenPhish Threat Feed,test
-https://apple-account-security-alert-resolution.com/signin/auth,1,PhishTank Verified,test
-http://secure-update-steam-portal.info/customer/login/verify.html,1,URLhaus Abuse Database,test
-http://secure-account-verification-service.fit/auth/login?session=token_901823&action=verify,1,OpenPhish Threat Feed,test
-http://secure-update-paypal-portal.xyz/customer/login/verify.html,1,URLhaus Abuse Database,test
-http://google.com-support-ticket-resolution.net/auth/recover?sid=827394,1,OpenPhish Threat Feed,test
-http://198.51.100.44/apple-id/verification/personal_details.asp,1,PhishTank Verified,test
-https://microsoft-account-security-alert-resolution.com/signin/auth,1,PhishTank Verified,test
-http://urgent-account-suspension-appeal.work/auth/login?session=token_901823&action=verify,1,OpenPhish Threat Feed,test
-https://usps.com/support/faq/article-id-81239,0,Curated Benign Portals,test
-http://chase.com-support-ticket-resolution.site/auth/recover?sid=827394,1,OpenPhish Threat Feed,test
-https://portal.mozilla.org/api/v2/healthcheck,0,Cisco Umbrella / Benign,test
-https://youtube.com/privacy,0,Curated Benign Portals,test
-https://lyft.com/search?q=article&ref=homepage,0,Tranco Top 1M / Benign,test
-https://status.apple.com/privacy-policy,0,Cisco Umbrella / Benign,test
-https://www.amazon.com/,0,Tranco Top 1M / Benign,test
-https://www.etsy.com/,0,Tranco Top 1M / Benign,test
-https://berkeley.edu/support/faq/article-id-81239,0,Curated Benign Portals,test
-https://netflix-account-security-alert-resolution.cc/signin/auth,1,PhishTank Verified,test
-https://hub.docker.com/_/_nginx,0,Curated Benign Portals,test
-http://amazon-verification-security-support.cc/login.php?client_id=token9281,1,PhishTank Verified,test
-https://www.bestbuy.com/,0,Tranco Top 1M / Benign,test
-https://paypal.com/contact,0,Curated Benign Portals,test
-https://www.dhl.com/api/v2/healthcheck,0,Cisco Umbrella / Benign,test
-http://login.wellsfargo.com.verify-billing-center.cc/index.html,1,OpenPhish Threat Feed,test
-https://developer.mozilla.org/en-US/docs/Web/HTML/overview,0,Curated Benign Portals,test
-https://dhl-account-security-alert-resolution.cc/signin/auth,1,PhishTank Verified,test
-https://wellsfargo.com/,0,Tranco Top 1M / Benign,test
-https://nytimes.com/category/technology?page=1&sort=recent,0,Tranco Top 1M / Benign,test
-https://google-account-security-alert-resolution.com/signin/auth,1,PhishTank Verified,test
-https://cnn.com/category/technology?page=1&sort=recent,0,Tranco Top 1M / Benign,test
-https://ups.com/category/technology?page=1&sort=recent,0,Tranco Top 1M / Benign,test
-https://www.youtube.com/about,0,Cisco Umbrella / Benign,test
-http://verification.dhl.com.verify-billing-center.top/index.html,1,OpenPhish Threat Feed,test
-http://secure.paypal.com.verify-billing-center.com/index.html,1,OpenPhish Threat Feed,test
-https://binance-account-security-alert-resolution.top/signin/auth,1,PhishTank Verified,test
-https://golang.org/,0,Tranco Top 1M / Benign,test
-http://verify.appleid.apple.com.ssl.protection.alert.user-help.ml/login,1,PhishTank / OpenPhish Verified,test
-https://www.meta-business-suite-copyright-appeal.xyz/portal/index.html?ref=email_warning,1,PhishTank Verified,test
-http://secure-update-chase-portal.cc/customer/login/verify.html,1,URLhaus Abuse Database,test
-https://docs.zoom.us/community/discussions/topic/78103?reply=true,0,Cisco Umbrella / Benign,test
-http://203.0.113.195/admin/banking/chase/auth.php,1,OpenPhish Threat Feed,test
-https://metamask-account-security-alert-resolution.site/signin/auth,1,PhishTank Verified,test
-https://fastapi.tiangolo.com/tutorial/bigger-applications/,0,Curated Benign Portals,test
-https://dhl.com/category/technology?page=1&sort=recent,0,Tranco Top 1M / Benign,test
-http://facebook-secure-security-support.site/login.php?client_id=token9281,1,PhishTank Verified,test
-https://pypi.org/project/beautifulsoup4/?utm_source=feed&page=1,0,Curated Benign Portals,test
-https://booking.com/category/technology?page=1&sort=recent,0,Tranco Top 1M / Benign,test
-https://who.int/publications/overview,0,Curated Benign Portals,test
-https://www.cdc.gov/,0,Tranco Top 1M / Benign,test
-https://ups.com/about,0,Curated Benign Portals,test
-https://www.microsoft.com/,0,Tranco Top 1M / Benign,test
-https://lyft.com/about,0,Curated Benign Portals,test
-http://binance-account-update-security-support.com/login.php?client_id=token9281,1,PhishTank Verified,test
-http://amazon.com-support-ticket-resolution.net/auth/recover?sid=827394,1,OpenPhish Threat Feed,test
-https://github.com/trending,0,Curated Benign Portals,test
-https://bankofamerica-account-security-alert-resolution.cc/signin/auth,1,PhishTank Verified,test
-https://cdn.weather.com/api/v2/healthcheck,0,Cisco Umbrella / Benign,test
-http://91.240.118.172:8080/signin/microsoft/index.html,1,URLhaus Abuse Database,test
-https://google-account-security-alert-resolution.cc/signin/auth,1,PhishTank Verified,test
-http://google.com@phishing-target-account-recovery.xyz/login,1,PhishTank / OpenPhish Verified,test
-https://vanguard.com/,0,Tranco Top 1M / Benign,test
-https://www.irs-tax-refund-claim-portal.xyz/portal/index.html?ref=email_warning,1,PhishTank Verified,test
-http://signin.google.com.verify-billing-center.xyz/index.html,1,OpenPhish Threat Feed,test
-http://webscr.microsoft.com.verify-billing-center.net/index.html,1,OpenPhish Threat Feed,test
-https://netflix.com/support/faq/article-id-81239,0,Curated Benign Portals,test
-http://verification.bankofamerica.com.verify-billing-center.com/index.html,1,OpenPhish Threat Feed,test
-http://chase.com@online-banking-identity-confirm.info/signon,1,PhishTank / OpenPhish Verified,test
-http://paypal-secure-security-support.com/login.php?client_id=token9281,1,PhishTank Verified,test
-https://stanford.edu/academics,0,Curated Benign Portals,test
-https://walmart.com/,0,Tranco Top 1M / Benign,test
-https://api.salesforce.com/account/settings/profile,0,Cisco Umbrella / Benign,test
-http://account-update.paypal.com.verify-billing-center.top/index.html,1,OpenPhish Threat Feed,test
-https://nasa.gov/privacy,0,Curated Benign Portals,test
-https://salesforce.com/contact,0,Curated Benign Portals,test
-https://en.wikipedia.org/wiki/Computer_security/overview,0,Curated Benign Portals,test
-https://gitlab.com/help/user/index?utm_source=feed&page=1,0,Curated Benign Portals,test
-http://metamask-unlock-account-security-support.info/login.php?client_id=token9281,1,PhishTank Verified,test
-http://usps-package-address-verification.xyz/auth/login?session=token_901823&action=verify,1,OpenPhish Threat Feed,test
-https://stanford.edu/category/technology?page=1&sort=recent,0,Tranco Top 1M / Benign,test
-http://wellsfargo.com@security-alert-online-resolve.work/auth,1,PhishTank / OpenPhish Verified,test
-https://www.unusual-signin-activity-resolve.xyz/portal/index.html?ref=email_warning,1,PhishTank Verified,test
-https://hub.docker.com/_/_nginx/overview,0,Curated Benign Portals,test
-https://status.pypi.org/api/v2/healthcheck,0,Cisco Umbrella / Benign,test
-http://91.240.118.172/admin/banking/chase/auth.php,1,OpenPhish Threat Feed,test
-https://mit.edu/campus-life/overview,0,Curated Benign Portals,test
-http://secure-update-facebook-portal.net/customer/login/verify.html,1,URLhaus Abuse Database,test
-https://adobe.com/about,0,Curated Benign Portals,test
-https://www.customer-identity-confirmation-desk.buzz/portal/index.html?ref=email_warning,1,PhishTank Verified,test
-https://github.com/support/faq/article-id-81239,0,Curated Benign Portals,test
-https://nih.gov/privacy,0,Curated Benign Portals,test
-https://stackoverflow.com/tags,0,Curated Benign Portals,test
-http://usps-package-address-verification.sbs/auth/login?session=token_901823&action=verify,1,OpenPhish Threat Feed,test
-https://stackoverflow.com/jobs/companies/overview,0,Curated Benign Portals,test
-http://secure-update-google-portal.com/customer/login/verify.html,1,URLhaus Abuse Database,test
-http://verify.microsoft.com.verify-billing-center.com/index.html,1,OpenPhish Threat Feed,test
-https://coinbase-account-security-alert-resolution.info/signin/auth,1,PhishTank Verified,test
-https://ox.ac.uk/about,0,Curated Benign Portals,test
-http://secure-account-verification-service.sbs/auth/login?session=token_901823&action=verify,1,OpenPhish Threat Feed,test
-http://binance.com-support-ticket-resolution.com/auth/recover?sid=827394,1,OpenPhish Threat Feed,test
-https://etsy.com/support/faq/article-id-81239,0,Curated Benign Portals,test
-http://185.196.8.99/apple-id/verification/personal_details.asp,1,PhishTank Verified,test
-https://github.com/enterprise/overview,0,Curated Benign Portals,test
-https://nih.gov/research-training/overview,0,Curated Benign Portals,test
-http://metamask.com-support-ticket-resolution.info/auth/recover?sid=827394,1,OpenPhish Threat Feed,test
-http://paypal-webscr-security-support.net/login.php?client_id=token9281,1,PhishTank Verified,test
-http://91.240.118.172/login/webscr.php?cmd=_login_submit,1,PhishTank Verified,test
-http://banking-portal-security-notice.fit/auth/login?session=token_901823&action=verify,1,OpenPhish Threat Feed,test
-https://github.com/topics?utm_source=feed&page=1,0,Curated Benign Portals,test
-http://auth.apple.com.verify-billing-center.cc/index.html,1,OpenPhish Threat Feed,test
-https://docs.kubernetes.io/blog/post/how-modern-cloud-computing-works,0,Cisco Umbrella / Benign,test
-https://theguardian.com/privacy,0,Curated Benign Portals,test
-https://gitlab.com/help/user/index/overview,0,Curated Benign Portals,test
-http://irs-tax-refund-claim-portal.fit/auth/login?session=token_901823&action=verify,1,OpenPhish Threat Feed,test
-https://linkedin.com/about,0,Curated Benign Portals,test
-http://secure-update-steam-portal.xyz/customer/login/verify.html,1,URLhaus Abuse Database,test
-https://en.wikipedia.org/wiki/Cryptographic_hash_function,0,Curated Benign Portals,test
-http://185.196.8.99/login/webscr.php?cmd=_login_submit,1,PhishTank Verified,test
-https://news.ycombinator.com/newest?utm_source=feed&page=1,0,Curated Benign Portals,test
-http://billing-update-required-action.sbs/auth/login?session=token_901823&action=verify,1,OpenPhish Threat Feed,test
-https://medium.com/tag/python/overview,0,Curated Benign Portals,test
-https://ups.com/contact,0,Curated Benign Portals,test
-https://nih.gov/search?q=article&ref=homepage,0,Tranco Top 1M / Benign,test
-https://blog.lyft.com/terms-of-service,0,Cisco Umbrella / Benign,test
-https://www.dhl-parcel-delivery-fee-pending.fit/portal/index.html?ref=email_warning,1,PhishTank Verified,test
-http://binance-signin-security-support.xyz/login.php?client_id=token9281,1,PhishTank Verified,test
-https://developer.usps.com/products/hardware/accessories,0,Cisco Umbrella / Benign,test
-https://m.reuters.com/items/view?id=498192&category=electronics&page=2,0,Cisco Umbrella / Benign,test
-https://arxiv.org/abs/2301.00001,0,Curated Benign Portals,test
-https://secure.etsy.com/about,0,Cisco Umbrella / Benign,test
-http://secure-update-google-portal.xyz/customer/login/verify.html,1,URLhaus Abuse Database,test
-https://github.com/psf/requests/issues/6000,0,Curated Benign Portals,test
-https://medium.com/search?q=article&ref=homepage,0,Tranco Top 1M / Benign,test
-http://secure-update-microsoft-portal.net/customer/login/verify.html,1,URLhaus Abuse Database,test
-https://app.wellsfargo.com/contact-us,0,Cisco Umbrella / Benign,test
-https://developer.adobe.com/api/v2/healthcheck,0,Cisco Umbrella / Benign,test
-https://arxiv.org/abs/2105.12345,0,Curated Benign Portals,test
-https://github.com/topics/overview,0,Curated Benign Portals,test
-http://secure-update-facebook-portal.site/customer/login/verify.html,1,URLhaus Abuse Database,test
-http://facebook-signin-security-support.info/login.php?client_id=token9281,1,PhishTank Verified,test
-http://reactivation.apple.com.verify-billing-center.top/index.html,1,OpenPhish Threat Feed,test
-http://google-signin-security-support.xyz/login.php?client_id=token9281,1,PhishTank Verified,test
-http://secure-update-coinbase-portal.cc/customer/login/verify.html,1,URLhaus Abuse Database,test
-https://chase.com/contact,0,Curated Benign Portals,test
-http://verification.wellsfargo.com.verify-billing-center.site/index.html,1,OpenPhish Threat Feed,test
-https://github.com/pricing,0,Curated Benign Portals,test
-http://dhl-parcel-delivery-fee-pending.icu/auth/login?session=token_901823&action=verify,1,OpenPhish Threat Feed,test
-https://schwab.com/search?q=article&ref=homepage,0,Tranco Top 1M / Benign,test
-https://ebay.com/category/technology?page=1&sort=recent,0,Tranco Top 1M / Benign,test
-https://npmjs.com/contact,0,Curated Benign Portals,test
-https://microsoft.com/support/faq/article-id-81239,0,Curated Benign Portals,test
-http://coinbase.com-support-ticket-resolution.net/auth/recover?sid=827394,1,OpenPhish Threat Feed,test
-https://www.harvard.edu/,0,Tranco Top 1M / Benign,test
-https://www.secure-account-verification-service.icu/portal/index.html?ref=email_warning,1,PhishTank Verified,test
-http://verification.paypal.com.verify-billing-center.site/index.html,1,OpenPhish Threat Feed,test
-https://google-account-security-alert-resolution.info/signin/auth,1,PhishTank Verified,test
-https://connect.ebay.com/api/v2/healthcheck,0,Cisco Umbrella / Benign,test
-http://secure-update-facebook-portal.top/customer/login/verify.html,1,URLhaus Abuse Database,test
-https://bestbuy.com/privacy,0,Curated Benign Portals,test
-https://homedepot.com/about,0,Curated Benign Portals,test
-http://secure-update-coinbase-portal.xyz/customer/login/verify.html,1,URLhaus Abuse Database,test
-https://berkeley.edu/privacy,0,Curated Benign Portals,test
-https://etsy.com/category/technology?page=1&sort=recent,0,Tranco Top 1M / Benign,test
-https://dropbox.com/privacy,0,Curated Benign Portals,test
-https://www.dhl-parcel-delivery-fee-pending.xyz/portal/index.html?ref=email_warning,1,PhishTank Verified,test
-http://178.62.204.14:8080/signin/microsoft/index.html,1,URLhaus Abuse Database,test
-http://irs-tax-refund-claim-portal.buzz/auth/login?session=token_901823&action=verify,1,OpenPhish Threat Feed,test
-http://auth.steam.com.verify-billing-center.cc/index.html,1,OpenPhish Threat Feed,test
-https://nytimes.com/section/technology?utm_source=feed&page=1,0,Curated Benign Portals,test
-https://stanford.edu/academics?utm_source=feed&page=1,0,Curated Benign Portals,test
+https://roblox.com.nf/users/4414041397/profile,1,Phishing.Database ACTIVE (real),test
+https://qaz.pr-formwork.co.za,1,Phishing.Database ACTIVE (real),test
+https://mapquest.com/maps?address=6767+Chemin+de+la+C%C3%B4te-Des-Neiges&city=Montr%C3%A9al&state=QC&zipcode=H3S&country=CA,0,Real long-tail benign (ISCX-style corpus),test
+https://esp-ace-ni-05-b91eb7.ingress-florina.ewp.live/org/customer_center/customer-IDPP00C279/login.php,1,Phishing.Database ACTIVE (real),test
+https://recipes-ravi.vercel.app/contact,0,Personal sites on free platforms (synthetic names),test
+https://paradisecelebrities.blogspot.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://www.revolut.com/security,0,Curated popular domains (synthetic paths),test
+https://vqfsb.blogspot.li,1,Phishing.Database ACTIVE (real),test
+https://iportalbarclayshelp.com,1,Phishing.Database ACTIVE (real),test
+https://dannyshay.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://readingterminalmarket.org/events/tours/,0,Real long-tail benign (ISCX-style corpus),test
+https://developer.gitlab.com/privacy,0,Curated popular domains (synthetic paths),test
+https://reuters.com/finance/stocks/companyOfficers?symbol=PJCa.TO,0,Real long-tail benign (ISCX-style corpus),test
+https://m.revolut.com/orders/114-558,0,Curated popular domains (synthetic paths),test
+https://my.nodejs.org/careers/jobs/software-engineer-bangalore,0,Curated popular domains (synthetic paths),test
+http://dangersofdabbing.info/at_secure,1,Phishing.Database ACTIVE (real),test
+https://ww-bgwu.webflow.io,1,Phishing.Database ACTIVE (real),test
+https://tnhcf.blogspot.is,1,Phishing.Database ACTIVE (real),test
+http://cloud.oracle.com/support/contact-us,0,Curated popular domains (synthetic paths),test
+https://canclinicalaboratodental.laboratordental.repl.co/validar-datos.html,1,Phishing.Database ACTIVE (real),test
+https://login.soundcloud.com/r/dropbox,0,Curated popular domains (synthetic paths),test
+https://seagramsescapes.com/,0,Real long-tail benign (ISCX-style corpus),test
+http://kmbc.com/news/25440883/detail.html,0,Real long-tail benign (ISCX-style corpus),test
+http://we-tran.s3.eu-de.cloud-object-storage.appdomain.cloud/app.html,1,Phishing.Database ACTIVE (real),test
+http://help.fedex.com/,0,Curated popular domains (synthetic paths),test
+http://cv-shreya.workers.dev/gallery?page=2,0,Personal sites on free platforms (synthetic names),test
+https://revendeurs.ogivart.us/rms/57415821762206239,1,Phishing.Database ACTIVE (real),test
+https://autonortecorrientes.com.ar/usera/c-agricole/5956f37107ce500/region.php?particulier=,1,Phishing.Database ACTIVE (real),test
+https://dweb.link/ipfs/qmctjhpa2naxen9mwfsfuzwgdmfp4mgdlfwmtsfk7rpnre,1,Phishing.Database ACTIVE (real),test
+http://login.anthropic.com/Adobe,0,Curated popular domains (synthetic paths),test
+https://worker-weathered-bird-7ff7.piperfetto11.workers.dev,1,Phishing.Database ACTIVE (real),test
+https://cloud.telegram.org/investor-relations/annual-report-2025.pdf,0,Curated popular domains (synthetic paths),test
+https://upholldelogiiin.godaddysites.com,1,Phishing.Database ACTIVE (real),test
+https://sovereignchristbiblefellowship.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://help.ally.com/pricing,0,Curated popular domains (synthetic paths),test
+https://juniusbucket78.s3.eu-de.cloud-object-storage.appdomain.cloud/benevolently/login.html?vpbpd=JHuu127kXEchzmIoeoC&sfls=lT5DOUk27JYIhYCe8mLq8aPB5oOL6L&hwpml=UUs7ooQrMOZpLxvjNo&craexenawz=wEPXD246rBzel6GHH4IFXqvPOeal&xwvebnch=ZQuBahdISXJ9GZm7aVY3N&cfyskqxvi=Dfbr8vflnAiZ5D37ruT&uanavmn=NJvWZBrVit66jN4cAZhGh&atjtpdhwc=rrIbbWysxUF22NzRrBI&dvz=4cCCsAnfZSVzUpjE,1,Phishing.Database ACTIVE (real),test
+https://meine.137-184-38-131.meine.dkb.de.plesk.page/main/login/04d3f88,1,Phishing.Database ACTIVE (real),test
+http://genufly.com/wp-content/-/ee/bnp-robot-new,1,Phishing.Database ACTIVE (real),test
+http://morehousecincydaytonalumni.org/view/6,1,Phishing.Database ACTIVE (real),test
+http://bryanschwabtem.com/john%20lawson/mazon,1,Phishing.Database ACTIVE (real),test
+http://www.mmsk-airdrop.com,1,Phishing.Database ACTIVE (real),test
+https://iterationglobweb245.ga/jhfrwusf-rwisufe-092qisdr-qiudrew-sdoaisd-ewiase-0rq-ewgtyvbt8704/c0deer0mn0d88df0000ff0f0dfmnd0mn00er0807,1,Phishing.Database ACTIVE (real),test
+http://mail.abgtujjhhggjkjhfgh2.tk/ddme/dhl%20auto/dhl.php,1,Phishing.Database ACTIVE (real),test
+https://wesleyvaclav.blogspot.com/2011/03/drakes-football-players-start-spring.html,0,Real long-tail benign (ISCX-style corpus),test
+https://95877fdce53278834.temporary.link/dfghdffghtyrt4581/2020/11/6f94b1492d18b12,1,Phishing.Database ACTIVE (real),test
+https://status.tiktok.com/topics/npci,0,Curated popular domains (synthetic paths),test
+http://todo-art.wixsite.com,0,Personal sites on free platforms (synthetic names),test
+https://wdqhw.blogspot.sn,1,Phishing.Database ACTIVE (real),test
+https://secure.wix.com/docs/getting-started,0,Curated popular domains (synthetic paths),test
+https://envirotechdelhi.co.in/restart/wait/login,1,Phishing.Database ACTIVE (real),test
+http://internetyellowpages.buzz/chase/chase/chase/verif.php,1,Phishing.Database ACTIVE (real),test
+https://learn.revolut.com/oauth2/authorize?client_id=abc123&response_type=code,0,Curated popular domains (synthetic paths),test
+https://crownmedicalcenter.org/,0,Real long-tail benign (ISCX-style corpus),test
+https://login.msoline.com,1,Phishing.Database ACTIVE (real),test
+http://lescegeps.com/realisations/auteur-e-s/hubert_de_ravinel,0,Real long-tail benign (ISCX-style corpus),test
+https://embassyhotelguntur.com/.PACK/Confirm/dhl/info.php,1,Phishing.Database ACTIVE (real),test
+https://legal.computer4u.in.th/,0,Real long-tail benign (ISCX-style corpus),test
+https://goodmanspeakersbureau.com/biographies/sheahan_peter.htm,0,Real long-tail benign (ISCX-style corpus),test
+https://yellowpages.com/charlotte-nc/edward-jones-financial-advisor-jim-hale,0,Real long-tail benign (ISCX-style corpus),test
+https://info-trackingcss.cc/UKep5KcOm,1,Phishing.Database ACTIVE (real),test
+https://lehmancatholic.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://www.dell.com/wiki/Icicibank,0,Curated popular domains (synthetic paths),test
+https://e-transport-cfscoliss-fr.prohoster.biz/ASxZED4aze5X4hJ45HYJ0R454ef4zf54EFZ780XA0E7gZ/BIbAZTGkMv4297,1,Phishing.Database ACTIVE (real),test
+https://lbc-marcket.leboncoinfr.emcov0.n0c.world,1,Phishing.Database ACTIVE (real),test
+http://rule-267679871.5themoments.com/nextvrf.html?location=1bb6af7bc769640009888c9a0f4861de,1,Phishing.Database ACTIVE (real),test
+https://holyh.wordpress.com/,0,Real long-tail benign (ISCX-style corpus),test
+http://blog.ally.com/news/world/2026/03/technology-trends-explained,0,Curated popular domains (synthetic paths),test
+http://swordsf.mimomoments.com/oa2m7gb,1,Phishing.Database ACTIVE (real),test
+https://watchrepairsusa.com/lacoste/watch-repair,0,Real long-tail benign (ISCX-style corpus),test
+http://thebluemacawsf.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://mexicoarts.com/,0,Real long-tail benign (ISCX-style corpus),test
+http://shop.tripadvisor.com/Yahoo,0,Curated popular domains (synthetic paths),test
+http://cloud.trello.com/,0,Curated popular domains (synthetic paths),test
+https://www.rakutan-co-jp.mbzrtnm.cn/plogin.php,1,Phishing.Database ACTIVE (real),test
+http://walmart.com/signin,0,Curated popular domains (synthetic paths),test
+https://news.pinterest.com/r/walmart,0,Curated popular domains (synthetic paths),test
+https://my-netflix.myddns.me/m7265536h18536248w31774321894e9490080265/login.php,1,Phishing.Database ACTIVE (real),test
+https://sso----ndaax--cdn---auths.webflow.io,1,Phishing.Database ACTIVE (real),test
+https://enc.tfode.com/WBNS-TV,0,Real long-tail benign (ISCX-style corpus),test
+https://stwdruytjz.duckdns.org,1,Phishing.Database ACTIVE (real),test
+https://riverdaleutah.com/,0,Real long-tail benign (ISCX-style corpus),test
+http://verivikasi-pemblokiran-fb09.ga/login.php,1,Phishing.Database ACTIVE (real),test
+https://conceptsinwoodwork.com/pp/ppp/ceaviqrnqtopljkkisuwv/cm95qgvibmxhdy5jby5pba==,1,Phishing.Database ACTIVE (real),test
+https://maxi304asa.000webhostapp.com,1,Phishing.Database ACTIVE (real),test
+https://usp.usspgy.top/pg?do=index,1,Phishing.Database ACTIVE (real),test
+https://m.bsnl.co.in/news/spotify-reports-quarterly-earnings,0,Curated popular domains (synthetic paths),test
+https://meta-must-proceed-38a29.firebaseapp.com,1,Phishing.Database ACTIVE (real),test
+http://rehabbrokers.com/new/auth/epbppt/ynvja0byzxnlcnzllxbldhjvlmnvbq==,1,Phishing.Database ACTIVE (real),test
+https://app.dell.com/instagram/instagram-sdk,0,Curated popular domains (synthetic paths),test
+http://executiveairlines.com.au/,0,Real long-tail benign (ISCX-style corpus),test
+https://zoe-recipes.blogspot.com/,0,Personal sites on free platforms (synthetic names),test
+https://phillyrecord.com/?p=809,0,Real long-tail benign (ISCX-style corpus),test
+https://www.itsawomans.world/cdata/index1.php,1,Phishing.Database ACTIVE (real),test
+https://forestofirmino.com.br.oliveiramidias.com/s/novascot/8b787,1,Phishing.Database ACTIVE (real),test
+https://developer.tripadvisor.com/pricing,0,Curated popular domains (synthetic paths),test
+http://developer.soundcloud.com/questions/tagged/hsbc,0,Curated popular domains (synthetic paths),test
+https://jordandemo.vercel.app/resume.pdf,0,Personal sites on free platforms (synthetic names),test
+https://johnsonlaura.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://dooocss-5d06.uerupmmllyd.workers.dev,1,Phishing.Database ACTIVE (real),test
+https://emerson.edu/academics/departments/writing-literature-publishing/faculty?facultyID=2513&filter=F,0,Real long-tail benign (ISCX-style corpus),test
+https://reuters.com/finance/stocks/companyOfficers?symbol=DST.N,0,Real long-tail benign (ISCX-style corpus),test
+https://gijoesradioelectronics.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://www.skylaservicedapartments.com/blog/wp-content/plugins/ca/ca/909eb2e870a1a5f/rgn.php?particulier=,1,Phishing.Database ACTIVE (real),test
+https://alex.pages.dev/resume.pdf,0,Personal sites on free platforms (synthetic names),test
+https://yahoo-107900.weeblysite.com,1,Phishing.Database ACTIVE (real),test
+https://store.reactjs.org/article/12345678/market-update,0,Curated popular domains (synthetic paths),test
+https://namxingrid.com/aa8f2d863,1,Phishing.Database ACTIVE (real),test
+https://portal.pinterest.com/customer-service/track-order?orderId=114-5589231-2210617,0,Curated popular domains (synthetic paths),test
+https://outlook.office365.us.mcas-gov.us/mail/sentitems/id/aaqkage3odyynme0ltdizwutndrhny04mme5ltbiy2eynmqwy2nkngaqakhulvm0%e2%80%a6,1,Phishing.Database ACTIVE (real),test
+https://pantyfix.com/new/auth/ruaz0e/am9obkbnaxvsawfub2nvlmnvbq==,1,Phishing.Database ACTIVE (real),test
+http://expertdigitalmarketers.com/yahoo/logologologin.html,1,Phishing.Database ACTIVE (real),test
+https://codecodemy.com,1,Phishing.Database ACTIVE (real),test
+https://ives5966.s3.eu-de.cloud-object-storage.appdomain.cloud/condisciple/login.html?bepqf=tizkm8se4dnwn7yqqvscemcqut&farkouew=hilryzu1wuhsbjl&dcvpkz=7lrdmcy3o83hq2vgz&wsfoys=ubsspfhcxdvuvsx4&xrbrvzm=lgefffiqghtznrrm&wbnccbzlso=biwzepn2pfpjv7wlknyjqcjk4q8&vzoj=4toz7lttmresniqwnioasy&nvz=2df3lsjtbbblkvecwduituq5nd,1,Phishing.Database ACTIVE (real),test
+https://letrs.indiana.edu/cgi/t/text/text-idx?c=wright2;cc=wright2;view=text;rgn=main;idno=Wright2-1720v2%3C,0,Real long-tail benign (ISCX-style corpus),test
+http://oaklandgasprices.com/San_Leandro/index.aspx,0,Real long-tail benign (ISCX-style corpus),test
+https://first-classlimo.com/,0,Real long-tail benign (ISCX-style corpus),test
+http://nbcuniversalstore.com/friday-night-lights-original-soundtrack-cd-volume-2/detail.php?p=260778,0,Real long-tail benign (ISCX-style corpus),test
+https://imagizer.imageshack.com/img924/4010/tlknp3.jpg,1,Phishing.Database ACTIVE (real),test
+https://ig9b55yg9chezv7o.ocalam.com:8443/impact?impact=3.*@b.c,1,Phishing.Database ACTIVE (real),test
+http://news.dell.com/account,0,Curated popular domains (synthetic paths),test
+https://state.ie/33097-album-reviews/laura-marling-a-creature-i-dont-know,0,Real long-tail benign (ISCX-style corpus),test
+http://rohitgallery.herokuapp.com/,0,Personal sites on free platforms (synthetic names),test
+https://saltlake.sportsvite.com/sports/Dodgeball,0,Real long-tail benign (ISCX-style corpus),test
+http://nysun.com/related_results.php?term=Philip+Guston,0,Real long-tail benign (ISCX-style corpus),test
+https://yrbrands.com.au/,0,Real long-tail benign (ISCX-style corpus),test
+http://dyn-139-59-64-81-7254-4dee2f.klafive.com/banks/cibc/detail.htm,1,Phishing.Database ACTIVE (real),test
+https://chocpsf.com/choc-commerce-tower-psf-cardiology-office,0,Real long-tail benign (ISCX-style corpus),test
+https://slashfilm.com/focus-features-buys-wes-andersons-moonrise-kingdom/,0,Real long-tail benign (ISCX-style corpus),test
+https://usccbpublishing.org/,0,Real long-tail benign (ISCX-style corpus),test
+https://gbwhatsapppro-in.com/ob-whatsapp,1,Phishing.Database ACTIVE (real),test
+https://farwesthistory.com/fwmtl.htm,0,Real long-tail benign (ISCX-style corpus),test
+https://buckeye-expressupdatte.weebly.com,1,Phishing.Database ACTIVE (real),test
+https://news.nhs.uk/,0,Curated popular domains (synthetic paths),test
+https://payzug.com/hkadbndahyadbnadhyidajh317qsabnmzx87923/hsfdssd/quad,1,Phishing.Database ACTIVE (real),test
+https://docs.united.com/about,0,Curated popular domains (synthetic paths),test
+https://dislack.com/f/60b0fe1fb2a7d45d7d4535a2,1,Phishing.Database ACTIVE (real),test
+https://app.anthropic.com,0,Curated popular domains (synthetic paths),test
+https://kc-medical.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://youthful-cartwright.172-245-8-50.plesk.page/p/ef7ec,1,Phishing.Database ACTIVE (real),test
+https://gosteelgo.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://trezor-suiterhard.webflow.io,1,Phishing.Database ACTIVE (real),test
+https://viraall-indoxc2.duckdns.org/login.php,1,Phishing.Database ACTIVE (real),test
+https://ejuneviveastonish.com/1761eb0251f1eabb000/35_790917_2781006/2345_2132804_0tvnk0t_37/748055472_185-194-93-13$,1,Phishing.Database ACTIVE (real),test
+https://hellonorman.com/,0,Real long-tail benign (ISCX-style corpus),test
+http://w260669.ferozo.com,1,Phishing.Database ACTIVE (real),test
+https://cloud.walmart.com/docs/v2/api/reference#authentication,0,Curated popular domains (synthetic paths),test
+http://artproject.weebly.com,0,Personal sites on free platforms (synthetic names),test
+https://rakkuteet.rausyk.shop,1,Phishing.Database ACTIVE (real),test
+https://videohdgg6868.blogspot.com,1,Phishing.Database ACTIVE (real),test
+https://xmarks.com/site/www.cintara.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://usgolfteacherscup.com/wp-admin/ionx/v1/index.html,1,Phishing.Database ACTIVE (real),test
+http://www.153m.xyz,1,Phishing.Database ACTIVE (real),test
+https://mofo.com/stuart-plunkett/,0,Real long-tail benign (ISCX-style corpus),test
+https://mediabase.com/mmrweb/7/stationplaylistrequest.asp?c_let=KEZR-FM,0,Real long-tail benign (ISCX-style corpus),test
+http://scandalous-pitch-monday.glitch.me/NAAFFCCUU.HTML?entity=4892463,1,Phishing.Database ACTIVE (real),test
+https://informed.deliverytgh.top/l,1,Phishing.Database ACTIVE (real),test
+https://yamboro.com/add/bibaztgkmv4654,1,Phishing.Database ACTIVE (real),test
+https://secure.mozilla.org/billing,0,Curated popular domains (synthetic paths),test
+https://facebook-clone-ashy-phi.vercel.app,1,Phishing.Database ACTIVE (real),test
+https://photography-zoe.repl.co/about,0,Personal sites on free platforms (synthetic names),test
+https://oracle.com/security/overview,0,Curated popular domains (synthetic paths),test
+https://portal.nodejs.org/customer-service/track-order?orderId=114-5589231-2210617,0,Curated popular domains (synthetic paths),test
+https://li-college-project.web.app/projects/weather-app/,0,Personal sites on free platforms (synthetic names),test
+https://mail.nytimes.com/Flipkart,0,Curated popular domains (synthetic paths),test
+http://portal.united.com/in/personal/banking/accounts,0,Curated popular domains (synthetic paths),test
+https://tiktok.com/settings/notifications,0,Curated popular domains (synthetic paths),test
+http://karan-38-cv.web.app/blog/first-post,0,Personal sites on free platforms (synthetic names),test
+http://help.anthropic.com,0,Curated popular domains (synthetic paths),test
+https://mijn-abn-bankzaken.17651-1816.s2.webspace.re/index.php/false/pytn.,1,Phishing.Database ACTIVE (real),test
+https://jazzismylife.wordpress.com/2010/07/17/jon-faddis-teranga-2006/,0,Real long-tail benign (ISCX-style corpus),test
+https://stourbridgedanceacademy.co.uk/wp-content/plugins/rshmicro365/officeonline/cgi-bin1,1,Phishing.Database ACTIVE (real),test
+http://promo.heroelectric.in/wp-includes/family/newcodinglinkedin,1,Phishing.Database ACTIVE (real),test
+http://support.imf.org/community/discussions/topic/78103?reply=true,0,Curated popular domains (synthetic paths),test
+https://oauthbuk4046.s3.ca-tor.cloud-object-storage.appdomain.cloud/bacchanalize/login.html?usvc=7rdcti9qvvkzje8sw3l&fefzbxv=sbqnmvldwgmkf3nyhxg&pnacpzqbb=ydt2rfeshf4ytawbtt&inwohkafxp=i2odr482owblv7rvf&xmfxovb=epocnotdips7q8c&eiijv=q6pmsvsjlw2jrvhcpkwq5bay&ibvue=fdj9j3skhzwzrayem&mnucnvoad=ygwjkqxwixux69fum7a4cuyglqkuqm,1,Phishing.Database ACTIVE (real),test
+http://9kn0-ehwl0a-gsc2.sonusoodwaterproofing.com/9kn0-ehwl0a-gsc2.ahr0chm6ly9zz3axlmrpz2l0ywxvy2vhbnnwywnlcy5jb20vc3dlcmvydhl1aw9wcg9pdxl0l3lla2fsdwjla2vszwjllmh0bww/zw09wvdkewiztnpiv0z1uudsbfpysm1hv1zzwkm1amiyma,1,Phishing.Database ACTIVE (real),test
+http://van-der-molen.eu/absa/lodkxngm=,1,Phishing.Database ACTIVE (real),test
+https://m.revolut.com/settings/notifications,0,Curated popular domains (synthetic paths),test
+https://sunrisepress.net/9ef33a/en/season.php?country.x=3a905558d52f85248702fed1d2e0be2d3a905558d52f85248702fed1d2e0be2d,1,Phishing.Database ACTIVE (real),test
+http://politicalgraveyard.com/bio/atlee-atwell.html,0,Real long-tail benign (ISCX-style corpus),test
+https://nowrunning.com/event/bollywood/sarah-jane-at-vishal-shekhar-album-launch/44552/gallery.htm,0,Real long-tail benign (ISCX-style corpus),test
+https://login.reuters.com/docs/en/latest/index.html,0,Curated popular domains (synthetic paths),test
+https://canpages.ca/page/BC/burnaby/cmc-industrial-electronics-ltd/2183714.html,0,Real long-tail benign (ISCX-style corpus),test
+http://tripadvisor.com/Hotel_Review-g155032-d185746-Reviews-Marriott_Chateau_Champlain-Montreal_Quebec.html,0,Real long-tail benign (ISCX-style corpus),test
+https://trendtradingfx.com/ant/logon.php,1,Phishing.Database ACTIVE (real),test
+https://sykesobx.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://votre-fixe-orange51.yolasite.com,1,Phishing.Database ACTIVE (real),test
+"https://autodiscover.bristoldojogym.com/wp-content/content/4bd32cd67a7ef8f1727f14c6f4cea9f6?user=&_verify?service=mail&data:text/html;charset=utf-8;base64,pgh0bww+dqo8c3r5bgu+igjvzhkgeybtyxjnaw46ida7ig92zxjmbg93oiboawrkzw47ih0gpc9zdhlszt4nciagpglmcmft",1,Phishing.Database ACTIVE (real),test
+https://22.armerdesign.co.uk/wp-content/v0omnbed870wz0,1,Phishing.Database ACTIVE (real),test
+https://steam-discord-nitro.ru,1,Phishing.Database ACTIVE (real),test
+https://synthesizer.webteractive.co/wp-content/fox-c/js/swift/f1839bcf4490c8d13bb7,1,Phishing.Database ACTIVE (real),test
+https://my.mailchimp.com/help/faq,0,Curated popular domains (synthetic paths),test
+https://usps.bttkymarnh.top,1,Phishing.Database ACTIVE (real),test
+https://shop.ally.com/article/12345678/market-update,0,Curated popular domains (synthetic paths),test
+https://meetherhighness.com/outlook,1,Phishing.Database ACTIVE (real),test
+https://help-violation-page-80273.start.page,1,Phishing.Database ACTIVE (real),test
+https://pubgmspingodzila.mrslove.com,1,Phishing.Database ACTIVE (real),test
+https://danhoard.mlblogs.com/2011/05/19/lars-anderson-and-the-baseball-gods/,0,Real long-tail benign (ISCX-style corpus),test
+https://orange00000.yolasite.com,1,Phishing.Database ACTIVE (real),test
+https://www.srinversiones.com.ar/ch/html/login.html,1,Phishing.Database ACTIVE (real),test
+https://fantagalla.altervista.org/home/extra_calcio/giovani_fenomeni/giovani_fenomeni.php,0,Real long-tail benign (ISCX-style corpus),test
+https://help.soundcloud.com,0,Curated popular domains (synthetic paths),test
+http://free-pay404.duckdns.org/7ba1661241b9d9950ba7bf03a52febbc/credit%20card.php?cmd=_account-details&session=5d6742f1da42587fe78c24561d543d35&dispatch=aa96e150cbf0bfd36599de2c04b7fb934dc431cc,1,Phishing.Database ACTIVE (real),test
+https://greencelebrity.net/2011/04/13/james-durbin-teaching-heavy-metal-concert-101-on-american-idol-2011/,0,Real long-tail benign (ISCX-style corpus),test
+https://stevealfordinn.com/rates-features.html,0,Real long-tail benign (ISCX-style corpus),test
+https://docs.walmart.com/company/walmart,0,Curated popular domains (synthetic paths),test
+https://icelebz.com/Ra-list.html,0,Real long-tail benign (ISCX-style corpus),test
+https://jordan-27-weather-app.weebly.com/about,0,Personal sites on free platforms (synthetic names),test
+https://turk-fesedfx.vip,1,Phishing.Database ACTIVE (real),test
+https://mbendi.com/orgs/cnw2.htm,0,Real long-tail benign (ISCX-style corpus),test
+http://www.betbooaffiliate.com/tmp,1,Phishing.Database ACTIVE (real),test
+http://steamnconmuity.com/proflies/76561197960279907,1,Phishing.Database ACTIVE (real),test
+https://api.bsnl.co.in/blog/wellsfargo-announces-new-features,0,Curated popular domains (synthetic paths),test
+http://calculator-art.firebaseapp.com/index.html,0,Personal sites on free platforms (synthetic names),test
+https://vikram-study.web.app/blog/first-post,0,Personal sites on free platforms (synthetic names),test
+https://steamproxy1.com,1,Phishing.Database ACTIVE (real),test
+https://junior-premier.co.uk/,0,Real long-tail benign (ISCX-style corpus),test
+http://support.reuters.com/customer-service/track-order?orderId=114-5589231-2210617,0,Curated popular domains (synthetic paths),test
+https://www.erp.jffalcom.com.br/dhl/dhl/dhl/dhl/08563cb11348d99d8d407476685cd210,1,Phishing.Database ACTIVE (real),test
+https://transparency-fb-noreply-f8ecc.web.app,1,Phishing.Database ACTIVE (real),test
+https://abcdef.infura-ipfs.io/ipfs/qmrlpjoei3bvadbzpuemudenduhn6l6ujrokjakackv2u8,1,Phishing.Database ACTIVE (real),test
+http://interac.ca.nusragenonline.com/sh/n3k9s/royalbank/details.php,1,Phishing.Database ACTIVE (real),test
+https://whatsii.cc,1,Phishing.Database ACTIVE (real),test
+https://hemmingshousepictures.com/site/?tag=kevin-oleary,0,Real long-tail benign (ISCX-style corpus),test
+https://ganitri.id/cgi/asdf/YnNocnVtQHNlcnZpY2Vsb2dpYy5jb20=,1,Phishing.Database ACTIVE (real),test
+https://cleaning-spot.pl/wp-content/themes/online/login.php?TWERF8h0jSXyeeiIaB9emC16baFMQYtE3Mp5Yaq4SjBi1O2Tm1A98IshZm3vW5ypJRK3J9IEViyWZEGWevViulQx7LlXlWZ8SuLHJnX2b29ZIiAA3iQkjyMQgihw1NkUnbV9ZGBg0HHIr5VgHZQjpWfQjgTeKNXL1Bh0VnutlEtn98A1eCsvEzIy4JSZutj1xBSfTr1X,1,Phishing.Database ACTIVE (real),test
+http://arjunproject.netlify.app/projects,0,Personal sites on free platforms (synthetic names),test
+https://anand-india.blogspot.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://news.dell.com/wiki/Computer_security,0,Curated popular domains (synthetic paths),test
+https://meta024.cn/pc/?ier_select&openid.assoc_hapecs.open,1,Phishing.Database ACTIVE (real),test
+https://shop.revolut.com/personal/credit-cards/rewards,0,Curated popular domains (synthetic paths),test
+https://smalldog.biz/.well-known/dh/dhl/dhl,1,Phishing.Database ACTIVE (real),test
+http://www.gynaikologos-petropoulos.gr/amxr/amexnew/card.php,1,Phishing.Database ACTIVE (real),test
+https://loloaaperfumes.com/wp-admin/includes/direct/WellsFargo/wells/wells.htm,1,Phishing.Database ACTIVE (real),test
+https://gometgboers.com/mazon/ef782,1,Phishing.Database ACTIVE (real),test
+https://help.fedex.com/tag/twitter,0,Curated popular domains (synthetic paths),test
+http://vkp21-xxipz.duckdns.org,1,Phishing.Database ACTIVE (real),test
+https://www.whatsappgroup.freefireevent5.gq/index.php,1,Phishing.Database ACTIVE (real),test
+https://shop.wix.com/products,0,Curated popular domains (synthetic paths),test
+http://shop.tripadvisor.com,0,Curated popular domains (synthetic paths),test
+https://rleachart.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://blackarrowcz.com/dn/iuuso/nrd/60e453a,1,Phishing.Database ACTIVE (real),test
+http://ezdrivema.com-ioiaktp.top/i,1,Phishing.Database ACTIVE (real),test
+http://vervel-zen19313.myddns.me/postbe.html,1,Phishing.Database ACTIVE (real),test
+https://presslex.com/web/presslex.nsf/NewSupplier?OpenForm,0,Real long-tail benign (ISCX-style corpus),test
+https://omar.web.app/resume.pdf,0,Personal sites on free platforms (synthetic names),test
+https://starplanet.com.my/plugins/october/?i=i&0=king.kong@gmail.com,1,Phishing.Database ACTIVE (real),test
+https://m.facebook.com-marketplacelisting.ksmname982.com/profile.html?countuser=184bacaa3902f2cae53ae0d136ef6782,1,Phishing.Database ACTIVE (real),test
+https://a34005f3-c4f1-4e0b-8921-779dc3d70a41.zee0ooghah.chat/?ppid=ppx000608,1,Phishing.Database ACTIVE (real),test
+https://maria-25-weather-app.workers.dev/projects,0,Personal sites on free platforms (synthetic names),test
+https://api.reuters.com/security/overview,0,Curated popular domains (synthetic paths),test
+https://discord.954326053.workers.dev,1,Phishing.Database ACTIVE (real),test
+http://kittyspryde.com/?p=31335,0,Real long-tail benign (ISCX-style corpus),test
+https://chicago.everyblock.com/locations/zipcodes/,0,Real long-tail benign (ISCX-style corpus),test
+http://espncricinfo.com,0,Curated popular domains (synthetic paths),test
+https://shrekdonkeycostume.org/,0,Real long-tail benign (ISCX-style corpus),test
+http://tsb.co.uk-manageaccount.com,1,Phishing.Database ACTIVE (real),test
+https://artartworks.com/exhibitions/paul-emile-borduas-at-musee-d%E2%80%99art-contemporain-de-montreal-3736/,0,Real long-tail benign (ISCX-style corpus),test
+http://developer.imf.org/help/faq,0,Curated popular domains (synthetic paths),test
+https://www.update-tourney.dsmtp.com,1,Phishing.Database ACTIVE (real),test
+https://influencerxsafeguardtracker.vercel.app/decision&copyright,1,Phishing.Database ACTIVE (real),test
+https://formular-spk.net/vorgang,1,Phishing.Database ACTIVE (real),test
+https://rgngf.blogspot.sn,1,Phishing.Database ACTIVE (real),test
+https://fijicable.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://identifier-vous.godaddysites.com,1,Phishing.Database ACTIVE (real),test
+https://portal.espncricinfo.com/help/faq,0,Curated popular domains (synthetic paths),test
+https://latviancrate.com/ap/PaymentApproved/index.php,1,Phishing.Database ACTIVE (real),test
+https://bbc.co.uk/films/2001/10/29/strictly_sinatra_2001_review.shtml,0,Real long-tail benign (ISCX-style corpus),test
+https://status.espn.com/Att,0,Curated popular domains (synthetic paths),test
+http://kidseyeserie.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://www.deljenjeflajera.com/images/logo/alibaba.com/ali/login.php,1,Phishing.Database ACTIVE (real),test
+https://band247.com.au/,0,Real long-tail benign (ISCX-style corpus),test
+https://directiva-lng.com,1,Phishing.Database ACTIVE (real),test
+https://lightbox.time.com/2011/11/23/david-douglas-duncan-a-life-magazine-war-photographer-looks-back/,0,Real long-tail benign (ISCX-style corpus),test
+http://masswalker.com/assets/js/libs/d2017hl/d2017hl,1,Phishing.Database ACTIVE (real),test
+https://tomtravel.herokuapp.com/,0,Personal sites on free platforms (synthetic names),test
+https://mitrasinergisukses.com/to/affiliates@isango.com,1,Phishing.Database ACTIVE (real),test
+https://extrextanet-hotel7436.eu/sign-in,1,Phishing.Database ACTIVE (real),test
+http://torrentdeluxe.com/torrents/80147-beneath-the-massacre-maree-noire-2010.html,0,Real long-tail benign (ISCX-style corpus),test
+https://web8024.web07.bero-webspace.de,1,Phishing.Database ACTIVE (real),test
+http://yamirakiunaiberasta.co.vu/help_login.html,1,Phishing.Database ACTIVE (real),test
+http://music.msn.com/music/artist-biography/the-peechees/,0,Real long-tail benign (ISCX-style corpus),test
+https://vtsosnvmebdc3v3zvgwqszuzphp.web.app/cgi-bin.appie-update-information,1,Phishing.Database ACTIVE (real),test
+http://69.167.170.135/finance/antibot.php,1,Phishing.Database ACTIVE (real),test
+http://niagamall.com/wordpress/login.bankofamerica/signinscreen.go.html,1,Phishing.Database ACTIVE (real),test
+https://supp0rt.co.za/?r=090661e4-d8e6-4ccf-9017-47b3cfc5a998&rg=eu,1,Phishing.Database ACTIVE (real),test
+https://www.acte.in/wp-content/uploads/telnet/bij,1,Phishing.Database ACTIVE (real),test
+https://securityaccount5378.duckdns.org/confirm.html,1,Phishing.Database ACTIVE (real),test
+http://www.logssecure.xyz/secureaccess/home/zi4yzi=,1,Phishing.Database ACTIVE (real),test
+https://verify311b.xcvghdyjuw.workers.dev,1,Phishing.Database ACTIVE (real),test
+https://e-document-message.weebly.com,1,Phishing.Database ACTIVE (real),test
+https://txor4wnbjkgnmgpaf9a2vjz.lspower.xyz/usps/verification.html,1,Phishing.Database ACTIVE (real),test
+https://reoginsonle.ml/card.php,1,Phishing.Database ACTIVE (real),test
+https://li.gitlab.io/course/,0,Personal sites on free platforms (synthetic names),test
+https://learn.united.com/topics/amazon,0,Curated popular domains (synthetic paths),test
+https://verifybusinessaccount4852.duckdns.org/confirm2.html,1,Phishing.Database ACTIVE (real),test
+https://m.reactjs.org/telegram/telegram-python/issues/1042,0,Curated popular domains (synthetic paths),test
+https://liquida.com/sylvia-earle/,0,Real long-tail benign (ISCX-style corpus),test
+https://democraticpartyusa.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://web8660.web07.bero-webspace.de,1,Phishing.Database ACTIVE (real),test
+https://instagram-com-p.proxy.webtoppings.bar/com/instagram/st/m20yhqa1rp7oqmuemijj8frsva/accounts/login/?surfly_tab_prefix=_surfly_tab0?next=/_llya___,1,Phishing.Database ACTIVE (real),test
+https://reconnec-tree-fb13.aybnmmtiluah.workers.dev/cc7bb178-6432-4028-97b4-a6059ad1f2ea,1,Phishing.Database ACTIVE (real),test
+https://smbc.carrd-co.com/mem/index,1,Phishing.Database ACTIVE (real),test
+https://yelp.com/biz/windmill-farms-produce-san-ramon,0,Real long-tail benign (ISCX-style corpus),test
+https://erratic-mellow-comte.glitch.me/public/nfcu703553.HTML,1,Phishing.Database ACTIVE (real),test
+https://cloud-rise-66b4.jeilkaicunrd.workers.dev/0c0adff3-72e8-4459-a8e9-2f2ebcb41448,1,Phishing.Database ACTIVE (real),test
+http://link-daget.dnaizz.biz.id/kaget=xqfgtbfu&2yb=qpxmzw,1,Phishing.Database ACTIVE (real),test
+https://biblioteca.universia.net/html_bura/ficha/params/title/breaking-duality/id/32015514.html,0,Real long-tail benign (ISCX-style corpus),test
+https://www.konten0serversonline.com/app?584795493098/ivSwJOyBiurJbaecE4yTb8nuKgRaminY/7621uTWBdRSxn690FfWA4EjgHcXl8Jj3FtJEE6bReDGovsI,1,Phishing.Database ACTIVE (real),test
+https://dtmhq.blogspot.sn,1,Phishing.Database ACTIVE (real),test
+https://metamask.at/flask,1,Phishing.Database ACTIVE (real),test
+https://mondadesigns.com/nav/navyfederal.orgnfoaa_authlogin.jsp,1,Phishing.Database ACTIVE (real),test
+https://light-handed-animal.000webhostapp.com/2/suntrustonlinebanking/confirm/your/onlinebanking/info/6r2gfb6sfh6b14s6w546bh54ldkfjk/1/1.html?%3c?php_echo_$negara_$z_$anon_$x_$isma_$z_$nama_negara;_?%3e=,1,Phishing.Database ACTIVE (real),test
+https://thevenusgirls.com/galleries/movies/faceridingindex.htm,0,Real long-tail benign (ISCX-style corpus),test
+http://www.creativeburg.com/huntington,1,Phishing.Database ACTIVE (real),test
+https://news.soundcloud.com/billing/invoices,0,Curated popular domains (synthetic paths),test
+http://accounts.trello.com/terms,0,Curated popular domains (synthetic paths),test
+http://akl.org/,0,Real long-tail benign (ISCX-style corpus),test
+http://www.ekl-net.com-asoceesneaas.bzjlsm.top/jp.php,1,Phishing.Database ACTIVE (real),test
+https://ratevin.com/story.php?title=keyshia-cole-baby-keyshia-cole-pregnant-with-her-second-baby-keyshia-cole-pregnant-pictures,0,Real long-tail benign (ISCX-style corpus),test
+https://tv-flip.com/fringe,0,Real long-tail benign (ISCX-style corpus),test
+https://wuhckn.n0c.world/t02fba-pay,1,Phishing.Database ACTIVE (real),test
+https://ovycloqhbh.duckdns.org,1,Phishing.Database ACTIVE (real),test
+https://www.reward-ml72.duckdns.org,1,Phishing.Database ACTIVE (real),test
+https://sam-blog.herokuapp.com/blog/first-post,0,Personal sites on free platforms (synthetic names),test
+https://code-39-lab.wixsite.com/about,0,Personal sites on free platforms (synthetic names),test
+https://usps.com-parcelweuth.vip/i,1,Phishing.Database ACTIVE (real),test
+http://acronymattic.com/AFCU.html,0,Real long-tail benign (ISCX-style corpus),test
+https://portal.bbc.co.uk/checkout/cart,0,Curated popular domains (synthetic paths),test
+https://tulpehockenroots.org/meyer/p00000bm.htm,0,Real long-tail benign (ISCX-style corpus),test
+https://rbc-mainline.web.app/mim/u633469p7n17a9zb3f27542127305h8l8304bp43uq118y331n.html,1,Phishing.Database ACTIVE (real),test
+http://luchberryice.gq/c2/ourtime,1,Phishing.Database ACTIVE (real),test
+https://urxecjf.com,1,Phishing.Database ACTIVE (real),test
+https://mail.nba.com/settings/notifications,0,Curated popular domains (synthetic paths),test
+https://shop.oracle.com/signin,0,Curated popular domains (synthetic paths),test
+https://securitypage.securitycenterbusinessbuide.com/business,1,Phishing.Database ACTIVE (real),test
+http://news.mozilla.org/events/webinar/register,0,Curated popular domains (synthetic paths),test
+https://www.nhs.uk/pages/Phonepe/about,0,Curated popular domains (synthetic paths),test
+http://store.nytimes.com/wiki/Wellsfargo,0,Curated popular domains (synthetic paths),test
+https://reactjs.org/Hdfcbank,0,Curated popular domains (synthetic paths),test
+https://gemma-lacharite.builderallwppro.com/ch/ruckerstattung/ru00fcckerstattung/inter/login.php,1,Phishing.Database ACTIVE (real),test
+http://usps.serveftp.com/7fd5f94e98105fcb2b8e57a0b0cf7af8/caard.php?token=72cfbe1f5a19233b6060f749786ff68c0d64f255eef5190cc16ed3f32892bfd7ae60b8329e7db45217f3fe38bd789fcf57326b313b010c6de3c0724d8633a057,1,Phishing.Database ACTIVE (real),test
+https://rixibenhodlogex.gitbook.io/account,1,Phishing.Database ACTIVE (real),test
+https://coronacigar.com/new-handmade-cigars-brands-sizes/2.html,0,Real long-tail benign (ISCX-style corpus),test
+https://dicklowryphotography.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://bitmicro.com/stp/m/navyfederal.org/loksv.php?park=2021554,1,Phishing.Database ACTIVE (real),test
+https://rapidoyseguroo.securiti.repl.co/obp-webapp/angular/login/index,1,Phishing.Database ACTIVE (real),test
+https://www.officested.com/apc/63ce7d59-2f3e-42cd-a8cc-be764cff5eb6/fbba99c2-8912-467c-90d2-30925b4b3d6e/fa17e31e-f52b-4a5d-b0b9-f6dd0391efe4/login?id=autdk2vgumdut05vy2jkvuzwv0fdzmllzeh2nzj1rtmyem9xmjflwkdyvmpndnbsmdfkmmnvrkzod2n4vtnrtnlvufgvdti1q3dwujfldli4emzjrc9fedltnflwy1qzawzhz1zcm1uwb2dor0pzwfzrclj3mxpmbfnhb0qrt0fyvfjkexvsvknintl6bgdvylnlemtwdjbtl0fpn2llc0hhb3psz0o5bkp4zzg3rli3te0zl0hurvhurwl3tjcrunbmdxvsqlfwnwd5q0tnym9ky3zfwte1zjjcs01buejpt00ybvdwnhc2nnjnu3rkd3naenj1sc83y3duy2txenl2rffmmuznm3dgvhdbaxdvd1dpwtnzmw9hnvnwn3r2q0dxqkxjk0k5ddzldjm3dzlareyxemhnzm9oetdowvzju2lysuu0rgrobm9xtlhubw5wl2v5k0fxmhpramxrrurzzwtumnjnmjdtmgvya2dealvpzmxfytgxzxh2axqz,1,Phishing.Database ACTIVE (real),test
+http://shop.nodejs.org/questions/tagged/amazon,0,Curated popular domains (synthetic paths),test
+http://alex-85-notes.wordpress.com/,0,Personal sites on free platforms (synthetic names),test
+https://xtremeairbrush.com,1,Phishing.Database ACTIVE (real),test
+http://securityxz.co.vu/zapoz.html,1,Phishing.Database ACTIVE (real),test
+https://reviews-us-process.github.io/review/help.html,1,Phishing.Database ACTIVE (real),test
+https://travlamp.com/_html/odrivex/index.php,1,Phishing.Database ACTIVE (real),test
+https://videoprivatevip.mt-me.com,1,Phishing.Database ACTIVE (real),test
+https://rockridgeoptometry.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://expresseuropatransport.com/new/auth/sf_rand_string_lowercase6/y2jvdwryzwf1qhdyawdodgnvbnn0cnvjdglvbi5jb20=,1,Phishing.Database ACTIVE (real),test
+http://m.anthropic.com/personal/credit-cards/rewards,0,Curated popular domains (synthetic paths),test
+http://cox.com-6159368de39251d7a-login.id-107sbtd9cbhsbtd5d80a13c0db1f546757jnq9j575467577295583.kylelierman.com/iloystgnjfrgthteawvo/indexx.php,1,Phishing.Database ACTIVE (real),test
+http://ilikethislife.com/winner/e0vt5/ywh1ymjhcmraewjwcmvwlm9yzw==,1,Phishing.Database ACTIVE (real),test
+https://russellhornsby.com/news/news_4.htm,0,Real long-tail benign (ISCX-style corpus),test
+http://t-spot.biz/alaskausa/login.php?signinpage&update=/&cookiecheck=yes&destination=nba/signin&accountopening/iecheck/yes&destinpage&update,1,Phishing.Database ACTIVE (real),test
+http://sitcomsonline.com/boards/archive/index.php/t-130885.html,0,Real long-tail benign (ISCX-style corpus),test
+https://www.whatsapp-nonot2021.duckdns.org,1,Phishing.Database ACTIVE (real),test
+https://jackwwtp.com/llit/asf/zgvhbkbhy2n1lmnvlnvr,1,Phishing.Database ACTIVE (real),test
+https://frogblogger.com/watch-stoke-city-vs-liverpool-live-10-09-2011/,0,Real long-tail benign (ISCX-style corpus),test
+https://heritagespecialtyfoods.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://developer.nodejs.org/help/article/48392,0,Curated popular domains (synthetic paths),test
+https://www3.authe.workers.dev/assets/scripts/login,1,Phishing.Database ACTIVE (real),test
+http://learn.nytimes.com/customer-service/track-order?orderId=114-5589231-2210617,0,Curated popular domains (synthetic paths),test
+https://georgemuller.blogspot.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://accounts.anthropic.com/account/security,0,Curated popular domains (synthetic paths),test
+https://admissions.bradley.edu/ssl/estimator/,0,Real long-tail benign (ISCX-style corpus),test
+http://kaiying-tey.github.io/netflix-landing-page,1,Phishing.Database ACTIVE (real),test
+http://pegasusnews.com/news/2009/feb/27/dallas-restaurateurs-kent-and-tracy-rathbun-host-a/,0,Real long-tail benign (ISCX-style corpus),test
+https://erp.jffalcom.com.br/DHL/dhl/dhl/dhl/5be7d231b48dc5c542fcbeada98596b4,1,Phishing.Database ACTIVE (real),test
+http://secure.nytimes.com/r/tiktok,0,Curated popular domains (synthetic paths),test
+https://imezgodbe.si/blockchian/2fa.php,1,Phishing.Database ACTIVE (real),test
+https://m.whatsapp.com/community/discussions/topic/78103?reply=true,0,Curated popular domains (synthetic paths),test
+https://restriction-appeal.biz.id,1,Phishing.Database ACTIVE (real),test
+https://knoxville.org/,0,Real long-tail benign (ISCX-style corpus),test
+http://store.reuters.com/help/faq,0,Curated popular domains (synthetic paths),test
+https://ericksonbucket56.s3.eu-de.cloud-object-storage.appdomain.cloud/crocodiloid/index.html,1,Phishing.Database ACTIVE (real),test
+https://ndea5olsxq82njm.dautzeuz.com,1,Phishing.Database ACTIVE (real),test
+http://neha-75-club.vercel.app/gallery?page=2,0,Personal sites on free platforms (synthetic names),test
+https://developer.fedex.com,0,Curated popular domains (synthetic paths),test
+http://karan.web.app/,0,Personal sites on free platforms (synthetic names),test
+http://pr0viderbillref.com/directing/www.cibc.mobi/ebm-mobile-anp/accountconfirm.php,1,Phishing.Database ACTIVE (real),test
+"https://bristoldojogym.com/wp-content/content/a8ff88520dfeb80f4f550a721569a787/?user=&_verify?service=mail&data:text/html;charset=utf-8;base64,pgh0bww+dqo8c3r5bgu+igjvzhkgeybtyxjnaw46ida7ig92zxjmbg93oiboawrkzw47ih0gpc9zdhlszt4nciagpglmcmft",1,Phishing.Database ACTIVE (real),test
+https://halifax.hotelscheap.org/,0,Real long-tail benign (ISCX-style corpus),test
+https://www.nytimes.com/billing,0,Curated popular domains (synthetic paths),test
+http://art.repl.co/gallery?page=2,0,Personal sites on free platforms (synthetic names),test
+https://onlneaidtiadmrkezigeri.com.tr,1,Phishing.Database ACTIVE (real),test
+https://digiguide.tv/celebrity/Aimee+Castle/9973/,0,Real long-tail benign (ISCX-style corpus),test
+https://swampbuckcamo.com/wp-content/themes/swampbuck_theme/wp-includes/sdds/webmail-portal-rd337,1,Phishing.Database ACTIVE (real),test
+https://status.oracle.com,0,Curated popular domains (synthetic paths),test
+https://rc3vees.whatsmapp.download/down/xopvdcg,1,Phishing.Database ACTIVE (real),test
+https://portal.bsnl.co.in/news/world/2026/03/technology-trends-explained,0,Curated popular domains (synthetic paths),test
+https://doc-dfc.blogspot.com/?m=1,1,Phishing.Database ACTIVE (real),test
+https://sasktelser.weebly.com,1,Phishing.Database ACTIVE (real),test
+http://stripedashboard-update.com/strp/verify.php,1,Phishing.Database ACTIVE (real),test
+https://rsfree-download.com/games/console-games/116421-singularity-ps3-eur.html,0,Real long-tail benign (ISCX-style corpus),test
+https://news.anthropic.com/wiki/Steam,0,Curated popular domains (synthetic paths),test
+http://post.i4-clamant.xyz/receive/order/y4luvb1hm,1,Phishing.Database ACTIVE (real),test
+https://podnapisi.net/en/idi-i-smotri-1985-subtitles-p1057292,0,Real long-tail benign (ISCX-style corpus),test
+http://linkstothepast.com/milwaukee/036.php,0,Real long-tail benign (ISCX-style corpus),test
+https://kenlogiusw.gitbook.io,1,Phishing.Database ACTIVE (real),test
+https://case-id-1000228246431.counselschambers.co.uk,1,Phishing.Database ACTIVE (real),test
+http://sprintcenter.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://huffingtonpost.com/selby-drummond/post_1349_b_789579.html,0,Real long-tail benign (ISCX-style corpus),test
+https://colemantruth-1317634057.cos.ap-seoul.myqcloud.com/colemantruth.html,1,Phishing.Database ACTIVE (real),test
+https://support1711222.co.vu,1,Phishing.Database ACTIVE (real),test
+https://shreya-project.web.app/,0,Personal sites on free platforms (synthetic names),test
+https://philippe.ac/,0,Real long-tail benign (ISCX-style corpus),test
+https://support.revolut.com/oauth2/authorize?client_id=abc123&response_type=code,0,Curated popular domains (synthetic paths),test
+http://timeline.fbcom-bnxl5e5h.kets.sd/connect.html?timelimit=cd25ab7e8ec6130b933874aa49dba493,1,Phishing.Database ACTIVE (real),test
+http://www.jobs-italianos.com,1,Phishing.Database ACTIVE (real),test
+https://tobias-fernandes.github.io/Instagram-page,1,Phishing.Database ACTIVE (real),test
+http://milmujeres.org/Staff.html,0,Real long-tail benign (ISCX-style corpus),test
+http://web8913.web07.bero-webspace.de/negd/0f67c455027e5b15e82c7ba394d9fe6a/login,1,Phishing.Database ACTIVE (real),test
+https://login.pinterest.com/security/overview,0,Curated popular domains (synthetic paths),test
+http://bach-cantatas.com/Bio/Simoneau-Leopold.htm,0,Real long-tail benign (ISCX-style corpus),test
+https://rootsandrhythm.com/roots/BARGAINS/bargains__cd_blues2.htm,0,Real long-tail benign (ISCX-style corpus),test
+http://conoceitaupuntos.com/appad5c89b/?verify=cnqhs5lscnqh-4vq2-cnqh4vq24vq2-z1mw4vq2&sessionuser=rvc8ibjc2mm3hbltme5ja2tq0r&userlogin=45c48cce2e2d7fbdea1afc51c7c6ad26&querystring=,1,Phishing.Database ACTIVE (real),test
+https://r0bglzptuixp.lspower.xyz/usps/verification.html,1,Phishing.Database ACTIVE (real),test
+http://teenswishes.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://blog.bsnl.co.in/products,0,Curated popular domains (synthetic paths),test
+https://my.mailchimp.com/search?q=best+laptops+2026&sort=relevance,0,Curated popular domains (synthetic paths),test
+https://metamscklogn.webflow.io,1,Phishing.Database ACTIVE (real),test
+https://support.walmart.com/personal/credit-cards/rewards,0,Curated popular domains (synthetic paths),test
+http://app.telegram.org/blog/discord-announces-new-features,0,Curated popular domains (synthetic paths),test
+https://lyndsyfonseca.info/lyndsy-fonseca-pictures/,0,Real long-tail benign (ISCX-style corpus),test
+https://radiant-pegasus-ec0145.netlify.app,1,Phishing.Database ACTIVE (real),test
+https://montrealnightout.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://pub-29623a6a586441c4b3aa7d34de6e101e.r2.dev/instant.html,1,Phishing.Database ACTIVE (real),test
+https://learn.united.com/events/webinar/register,0,Curated popular domains (synthetic paths),test
+https://jaojungzh.com/tw-cn/step1.php,1,Phishing.Database ACTIVE (real),test
+https://streancommunuty.ru/tradeoffer/7804594745338,1,Phishing.Database ACTIVE (real),test
+https://jaat.futminna.edu.ng/cache/com_templates/templates/shaper_educon/huntington/3nwu5zmm=,1,Phishing.Database ACTIVE (real),test
+https://prokerala.com/travel/airports/japan/ishigaki-airport.html,0,Real long-tail benign (ISCX-style corpus),test
+http://storageapi.fleek.co/e0826010-c112-448c-a720-ce55b80d57df-bucket/index.html,1,Phishing.Database ACTIVE (real),test
+https://cbssports.com/nhl/players/playerpage/1639476/yann-sauve,0,Real long-tail benign (ISCX-style corpus),test
+https://chasecreditunion-usa.wordanddatafile.com/640110bdadf99c80fe6c1743b5203c9e,1,Phishing.Database ACTIVE (real),test
+http://brandfuelquantumfusion.vercel.app/gyq$g=jswgdfhjsy=lbdftsm_ln@v,1,Phishing.Database ACTIVE (real),test
+https://dreamsdirectaccess.com/exports/account_upgrade/chaseonline/chaseindex22.html,1,Phishing.Database ACTIVE (real),test
+https://vercxysoaup.com,1,Phishing.Database ACTIVE (real),test
+http://mobilefb-86519669.performers.lu/nextvrf.html,1,Phishing.Database ACTIVE (real),test
+https://originmirrors.com/eastt,1,Phishing.Database ACTIVE (real),test
+http://sso-ndaxx--cdn-auth.webflow.io,1,Phishing.Database ACTIVE (real),test
+https://mail.united.com/en-us/products/software/overview,0,Curated popular domains (synthetic paths),test
+https://joingrup.freefire-gratisitem2021.gq,1,Phishing.Database ACTIVE (real),test
+https://secure.tripadvisor.com/products/category/electronics?page=3&sort=price,0,Curated popular domains (synthetic paths),test
+https://iftn.com/,0,Real long-tail benign (ISCX-style corpus),test
+http://support.pancakeswapunblock.com,1,Phishing.Database ACTIVE (real),test
+https://moficast.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://tranquillo.com.br/stan_b/otp_checkpoint_process_confirmation.php,1,Phishing.Database ACTIVE (real),test
+https://lavacalola01.000webhostapp.com,1,Phishing.Database ACTIVE (real),test
+https://gearsofwar3betakeygenerator.blogspot.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://card444.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://sweet-frog-0434.on.fleek.co/?email=justingoller@new-line.com,1,Phishing.Database ACTIVE (real),test
+https://singleserveespresso.com/archives/2006/11/review_green_blacks_organic_es.php,0,Real long-tail benign (ISCX-style corpus),test
+http://t-spot.biz/alaskausa/security.php?cmd=login_submit&id=&session=,1,Phishing.Database ACTIVE (real),test
+https://yourownprivateeye.com/ADELINE+OLDAKOWSKI,0,Real long-tail benign (ISCX-style corpus),test
+https://egyscvip.xxuz.com,1,Phishing.Database ACTIVE (real),test
+https://fattoneguitars.wordpress.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://omar.gitlab.io/portfolio/,0,Personal sites on free platforms (synthetic names),test
+https://vjcrxqnbktwzp.xin,1,Phishing.Database ACTIVE (real),test
+https://dolmneydhfjdf.weebly.com,1,Phishing.Database ACTIVE (real),test
+https://cr.mufg.jp.fdsoai1.tokyo/pc/MUFG_pcselectcard.html,1,Phishing.Database ACTIVE (real),test
+https://farvejfaru.github.io/ott_frontend,1,Phishing.Database ACTIVE (real),test
+https://priya.glitch.me/gallery?page=2,0,Personal sites on free platforms (synthetic names),test
+http://soonersports.com/sports/m-footbl/okla-m-footbl-body.html,0,Real long-tail benign (ISCX-style corpus),test
+http://zoe.github.io/resume/gallery?page=2,0,Personal sites on free platforms (synthetic names),test
+https://x8830.infura-ipfs.io/ipfs/qmqsc7gtqzjf8yame3ggsbkdhfmzdt2rt3upcsbluo2cd7,1,Phishing.Database ACTIVE (real),test
+http://portalppc.com.br/img/we/wetransfer,1,Phishing.Database ACTIVE (real),test
+https://current.com/shows/countdown/videos/keiths-special-comment-oakland-mayor-jean-quan-must-repent-or-resign,0,Real long-tail benign (ISCX-style corpus),test
+https://cv-maria.glitch.me/about,0,Personal sites on free platforms (synthetic names),test
+https://joshuaadamsband.com/,0,Real long-tail benign (ISCX-style corpus),test
+http://validatebridge.herokuapp.com,1,Phishing.Database ACTIVE (real),test
+https://trueknowledge.com/q/activists_born_in_1945,0,Real long-tail benign (ISCX-style corpus),test
+https://store.gitlab.com/dropbox/dropbox-python/issues/1042,0,Curated popular domains (synthetic paths),test
+http://montrealcam.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://tcfyyfff.000webhostapp.com/login.html,1,Phishing.Database ACTIVE (real),test
+https://www.paulistaquimica.com.br/OfficeAuth/Office.com,1,Phishing.Database ACTIVE (real),test
+https://mtb-ank.firebaseapp.com,1,Phishing.Database ACTIVE (real),test
+http://stimulus-2021.info/dvuma4b,1,Phishing.Database ACTIVE (real),test
+https://myabc5.com/Global/story.asp?S=14884158,0,Real long-tail benign (ISCX-style corpus),test
+https://soccer24-7.com/forum/showthread.php?p=3979552,0,Real long-tail benign (ISCX-style corpus),test
+https://web3-connect.pages.dev,1,Phishing.Database ACTIVE (real),test
+https://ingramsonline.com/March_2007/Industry%20Outlook/1.html,0,Real long-tail benign (ISCX-style corpus),test
+https://storm-feline-soprano.glitch.me/reviews.html,1,Phishing.Database ACTIVE (real),test
+https://api.bsnl.co.in/Usps,0,Curated popular domains (synthetic paths),test
+https://livingnspace.com,1,Phishing.Database ACTIVE (real),test
+https://c72u.xyz,1,Phishing.Database ACTIVE (real),test
+https://huis-wow.web.app,1,Phishing.Database ACTIVE (real),test
+https://helpandsave.org/wp-admin/login/boa/otp.html,1,Phishing.Database ACTIVE (real),test
+https://shop.oracle.com/account,0,Curated popular domains (synthetic paths),test
+https://cloud.wix.com/account/settings,0,Curated popular domains (synthetic paths),test
+https://mhsnse.top,1,Phishing.Database ACTIVE (real),test
+https://store.telegram.org/billing/invoices,0,Curated popular domains (synthetic paths),test
+http://steadyhost.live/%20new%20/amazknc/mazon/9a5f4,1,Phishing.Database ACTIVE (real),test
+http://code-gallery.gitlab.io/contact,0,Personal sites on free platforms (synthetic names),test
+https://tunein.com/radio/KCBS-All-News-740-AM--1069-FM-s67148/,0,Real long-tail benign (ISCX-style corpus),test
+http://mail.ab7553b08e5300472.temporary.link/fer5g1fq5d4dg4sdf45s75h7g7/dzh5dqg0sf25cwsdeck/cl-es/bobmsx02x1,1,Phishing.Database ACTIVE (real),test
+https://demo2.connectedvet.co.uk/wp-admin/mm/mkbssl/86b48b560a92d18429bcfca2c70ee733,1,Phishing.Database ACTIVE (real),test
+https://lccchistory.blogspot.com/,0,Real long-tail benign (ISCX-style corpus),test
+http://schulich.yorku.ca/client/schulich/Schulich_LP4W_LND_WebStation.nsf/page/Master+Degrees?OpenDocument,0,Real long-tail benign (ISCX-style corpus),test
+http://corpo.videotron.com/site/index-en.jsp,0,Real long-tail benign (ISCX-style corpus),test
+https://portal.wix.com/password/reset,0,Curated popular domains (synthetic paths),test
+http://artapp.onrender.com/index.html,0,Personal sites on free platforms (synthetic names),test
+https://po.uk-hold-now.com/address.php?session=zrjvtjl471baou4xfgsxmwaenel8bd8opkkrkqf3baqjzo6lohsxl6imgoyw,1,Phishing.Database ACTIVE (real),test
+https://blogs.longwood.edu/meganlynn/2011/02/25/chapter-9-issues-in-early-literacy/,0,Real long-tail benign (ISCX-style corpus),test
+http://mail.excelkingbozz.com/m&t/login.php,1,Phishing.Database ACTIVE (real),test
+https://support.makemytrip.com/careers,0,Curated popular domains (synthetic paths),test
+https://did.li/atrzh,1,Phishing.Database ACTIVE (real),test
+https://o365.hyattmail.com/mail/inbox/id/aaqkagfiyjm2yznilwrinwutndm1oc05yjbmltvjndk2nguwmtg2ngaqamtpuutacuyrvceocxxl7ic=,1,Phishing.Database ACTIVE (real),test
+https://shop.fedex.com/security/overview,0,Curated popular domains (synthetic paths),test
+https://claiim-hadiaah4.id-resmii.net,1,Phishing.Database ACTIVE (real),test
+https://www.dfdfhghgc-kjhgkjb.duckdns.org.hockeyteam.my.id/notifiscation.htm,1,Phishing.Database ACTIVE (real),test
+https://friendseat.com/restaurants/Oakland/Fentons-Creamery,0,Real long-tail benign (ISCX-style corpus),test
+http://www.okayama-tonkatsu.com/wp-includes/inc/SBBCFF/9f90c0ea5202fd86e,1,Phishing.Database ACTIVE (real),test
+https://utexas.edu/,0,Real long-tail benign (ISCX-style corpus),test
+https://gpbth.top,1,Phishing.Database ACTIVE (real),test
+https://nationsonline.org/oneworld/ireland.htm,0,Real long-tail benign (ISCX-style corpus),test
+https://kccoach.biz/New/Auth/nfcz37/bGl6LmZyZW5jaEB1YnMuY29t,1,Phishing.Database ACTIVE (real),test
+https://site268s.blogspot.com/?id=ag4yck9jng1nte5qb1y0be1lzhg1mk5pwtfkuwpkz3zyy0crt3dxchrosepqsmzxmtdovhnny0rcae9invrhvnrxalywcjmyug9iatdmnjqwrwtts0xobtjzwum1zlnwk09dl1dby0cwdta9,1,Phishing.Database ACTIVE (real),test
+https://myebranchiccu.z13.web.core.windows.net/?_kx=0t-5XofGkZDxj6qY7RcQxOVfixgsxZGLYqGapXXLyME%3D.WwNBrT,1,Phishing.Database ACTIVE (real),test
+https://secure--coinbasepro--cdn-p--auth-cdnn.webflow.io,1,Phishing.Database ACTIVE (real),test
+https://news.oracle.com/products,0,Curated popular domains (synthetic paths),test
+https://johnguiresupply.com/vde/vr-raiffeisen.ddns.net/97923/Login.html,1,Phishing.Database ACTIVE (real),test
+https://myjtq.blogspot.fi,1,Phishing.Database ACTIVE (real),test
+http://eas-lb.com/cole/new/css/rwvcob/a2r1z2fuqgoycmvzb3vyy2vzlmnvbq==,1,Phishing.Database ACTIVE (real),test
+https://vgoihlk.jawfak9mse5472.workers.dev,1,Phishing.Database ACTIVE (real),test
+https://secure.espncricinfo.com/update-profile,0,Curated popular domains (synthetic paths),test
+https://joelbloggaromarcadefire.blogspot.com/2010/05/arcade-fire-presents-suburbs-new-album.html,0,Real long-tail benign (ISCX-style corpus),test
+https://superpages.com/bp/Fort-Worth-TX/Russell-Feed-Supply-L0106125165.htm,0,Real long-tail benign (ISCX-style corpus),test
+"http://bristoldojogym.com/wp-content/content/dd7aa1fcc396481286e09270531b39d1?user=&_verify?service=mail&data:text/html;charset=utf-8;base64,pgh0bww+dqo8c3r5bgu+igjvzhkgeybtyxjnaw46ida7ig92zxjmbg93oiboawrkzw47ih0gpc9zdhlszt4nciagpglmcmft",1,Phishing.Database ACTIVE (real),test
+https://top100foreignfilms.mirrorz.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://buff.163qe.com/sndlntjrzclv,1,Phishing.Database ACTIVE (real),test
+https://meetamakwalleet-1.gitbook.io/us,1,Phishing.Database ACTIVE (real),test
+https://my-business-108572-104074.square.site,1,Phishing.Database ACTIVE (real),test
+https://emma-project.github.io/,0,Personal sites on free platforms (synthetic names),test
+https://www.pnfoundationschool.com/update/service/4771b0e332d7f9b/region.php?particulier,1,Phishing.Database ACTIVE (real),test
+https://crybot.ml/.l/file/X4Ph1tXl0sPmHohlhgghklj;l4Ph1tXl0sPmHlHx0WsU/index-sharepoint.html,1,Phishing.Database ACTIVE (real),test
+https://confirm-mydetails.com/lloyds/Login.php,1,Phishing.Database ACTIVE (real),test
+https://goldstar.com/events/new-york-city-ny/an-evening-of-jazz-with-paul-peress-jeff-golub-and-anthony-jackson,0,Real long-tail benign (ISCX-style corpus),test
+http://167.71.164.74/wirelesscommcredit/online/cibc/c06080cb4c827fa6ba421695dfc42e99/ebm-mobile-app/verify.html,1,Phishing.Database ACTIVE (real),test
+https://www.bper-online.it/BPER/oldindex.php,1,Phishing.Database ACTIVE (real),test
+https://westenddumplings.blogspot.com/2010/03/safeway-in-winnipeg-part-1-setting-up.html,0,Real long-tail benign (ISCX-style corpus),test
+https://vigorous-khayyam.20-234-122-45.plesk.page/strato,1,Phishing.Database ACTIVE (real),test
+https://libraries.iub.edu/index.php?pageId=5911,0,Real long-tail benign (ISCX-style corpus),test
+https://shop.nytimes.com/topics/flipkart,0,Curated popular domains (synthetic paths),test
+https://amiright.com/artists/doneverly.shtml,0,Real long-tail benign (ISCX-style corpus),test
+https://lekshmishaly.github.io/responsive_clone_netflix/index.html,1,Phishing.Database ACTIVE (real),test
+https://lastbut-bc9a4f.ingress-florina.ewp.live/wp-admin/bbva/area_cliente/confirmacionmovil.html,1,Phishing.Database ACTIVE (real),test
+https://stepforleaders.org/,0,Real long-tail benign (ISCX-style corpus),test
+https://zealous-nash.82-165-66-121.plesk.page/c1da7faa672efaea0a45/clients,1,Phishing.Database ACTIVE (real),test
+https://topix.com/news/activism,0,Real long-tail benign (ISCX-style corpus),test
+https://weldinginspector.org/WELLSFARGO/2e53b4b3f422e099819d7335d7d7fd79/verify303.php?token=531f934774e8fe2df4ea5793e3c64276533e22117d39806d9b9c1e94f5879421b93974ba44cec44c1b2fa54eace49c8df98575cd11fbc78123a28690cbcdd216,1,Phishing.Database ACTIVE (real),test
+https://tvfanatic.com/characters/adam-chandler/,0,Real long-tail benign (ISCX-style corpus),test
+https://oaklandca.areaguides.net/attraction_details.html?detailsListingId=ATTRACTIONS_d0c51c95cf6ed18e7b838b502a5771af,0,Real long-tail benign (ISCX-style corpus),test
+https://www.lnstagramhelps.com/contact/636276399721123/login_check.php?nick=c3n1x2jpbm5l&ppuser=ahr0chm6ly9zy29udgvudc5jzg5pbnn0ywdyyw0uy29tl3yvdduxlji4odutmtkvndazmja1mzuxxzc5mzq5ntc4otiwmtqymv8ynduynjyyntg5mje5otezmdqwx24uanbnp3n0cd1kc3qtanbnx2uwx3mxntb4mtuwjl9uy19odd1zy29udgvudc5jzg5pbnn0ywdyyw0uy29tjl9uy19jyxq9mta1jl9uy19vagm9setkcvjjy0xprwnrn2todmdhbtm3rkemzwrtpufhcunzyxncqufbqszjy2i9ny01jm9optawx0fmqmcyq1dtlwgxvdnyazvwyzqtc0jzyxjiue1ic0pvltngwf83ymfirefknwcmb2u9njyznjjeodimx25jx3npzd02yzvkzwe=,1,Phishing.Database ACTIVE (real),test
+https://anytimecourier.in/public/dxqyksrxoa0thz1lhkwjiqztebh5ovr7,1,Phishing.Database ACTIVE (real),test
+https://status.trello.com/chase/chase-sdk,0,Curated popular domains (synthetic paths),test
+http://bodymindspiritdirectory.org/,0,Real long-tail benign (ISCX-style corpus),test
+https://zamowienie2488.pl,1,Phishing.Database ACTIVE (real),test
+https://whatsappgrub.guied255.ga,1,Phishing.Database ACTIVE (real),test
+https://gd-u-wuw-jdhd-bud-9cjgiaoqc-famicsortingout-gmailcom.vercel.app/?naps,1,Phishing.Database ACTIVE (real),test
+https://www.gruppwhatsapp.duckdns.org,1,Phishing.Database ACTIVE (real),test
+https://webresume.blogspot.com/projects/weather-app/,0,Personal sites on free platforms (synthetic names),test
+https://track-action462.shop,1,Phishing.Database ACTIVE (real),test
+https://torrentdownloads.net/Richard+Pryor+Live+On+Sunset+Strip/all.html,0,Real long-tail benign (ISCX-style corpus),test
+https://www.uksisko.com,1,Phishing.Database ACTIVE (real),test
+https://www-mercari-com-jp.hgdbvk.cn,1,Phishing.Database ACTIVE (real),test
+https://temp-jledxoxqawgkocyshafr.webadorsite.com,1,Phishing.Database ACTIVE (real),test
+http://accounts.telegram.org/verify-email?token=9f8a7b6c,0,Curated popular domains (synthetic paths),test
+http://injury-prevention-systems.com/unwanted_mails/inc/siydfgigsidgskafdgisdfugiu/sodufhisud5me5fisudfiuhi/;%7b%7bemail%7d%7d;x;/indesewejwejwlej,1,Phishing.Database ACTIVE (real),test
+https://my.nodejs.org/help/article/48392,0,Curated popular domains (synthetic paths),test
+http://help.nytimes.com/docs/en/latest/index.html,0,Curated popular domains (synthetic paths),test
+https://www.walekeru.co/votrebanquepostale/votrebanquepostale/c6f43f88f1ed7b9b633d9093fcfb082b,1,Phishing.Database ACTIVE (real),test
+https://photography-web.pages.dev/index.html,0,Personal sites on free platforms (synthetic names),test
+https://www.claim.bantuanuntukrakyat.cloud,1,Phishing.Database ACTIVE (real),test
+http://chemtoblaw.co.il/wp-includes/bellaliant/bellzall.php,1,Phishing.Database ACTIVE (real),test
+http://drive-image.000webhostapp.com/chase/chase/login.php?cmd=login_submit&amp;id=3bbf721e90f94794793c6461d6fdef2a3bbf721e90f94794793c6461d6fdef2a&amp;session=3bbf721e90f94794793c6461d6fdef2a3bbf721e90f94794793c6461d6fdef2a,1,Phishing.Database ACTIVE (real),test
+http://scsjzhvsjhvsh25752.blogspot.co.il/?m=1,1,Phishing.Database ACTIVE (real),test
+http://jartinmyhead.blogspot.com/2006/05/mills-watson-character-actor-of.html,0,Real long-tail benign (ISCX-style corpus),test
+https://karan-25-landing.gitlab.io/projects/weather-app/,0,Personal sites on free platforms (synthetic names),test
+http://study-jordan.gitlab.io,0,Personal sites on free platforms (synthetic names),test
+https://xn--iscord-v2a.com/login,1,Phishing.Database ACTIVE (real),test
+https://meta.submitrestrictcase.eu/community-standard/134654779919540,1,Phishing.Database ACTIVE (real),test
+https://fassonnuttize-1434.vercel.app/jyzc.qchq,1,Phishing.Database ACTIVE (real),test
+https://iccu.buzz/about.html,1,Phishing.Database ACTIVE (real),test
+https://dweb.link/ipfs/qmesssdqfnctly37t8srcq12tjchz4atrzkxjv2qtjw1sp,1,Phishing.Database ACTIVE (real),test
+https://help.bsnl.co.in/about,0,Curated popular domains (synthetic paths),test
+http://212.129.17.250/~albatros/hotel-atlanta.ru/wp-includes/log/?country.x=nl&locale.x=en_nl%3e&client=071df3f8b4ca62baf96d7d6fbcbf898e,1,Phishing.Database ACTIVE (real),test
+https://ntagoi-jp.pdxsazf.cn,1,Phishing.Database ACTIVE (real),test
+https://sharenews.com/,0,Real long-tail benign (ISCX-style corpus),test
+http://settings-myshop-settings-updates.com/admin/verification/03DM9D107CNN78D3E152,1,Phishing.Database ACTIVE (real),test
+http://my.ally.com,0,Curated popular domains (synthetic paths),test
+https://developer.wix.com/instagram/instagram-python/issues/1042,0,Curated popular domains (synthetic paths),test
+https://blog.bbc.co.uk/terms,0,Curated popular domains (synthetic paths),test
+https://david-zhao.com/thepaintspot,1,Phishing.Database ACTIVE (real),test
+https://johnguiresupply.com/vde/vr-raiffeisen.ddns.net/46285/login.html,1,Phishing.Database ACTIVE (real),test
+http://utah.edu/,0,Real long-tail benign (ISCX-style corpus),test
+http://grandselfie.com/app/console/-/id-5616919498494951951/ap/edd638b4f1/lastmono.php?cmd=_update_information&account_wall=618ca87f2b1f4eef85fef6f949f805f6&lim_session=c1920e4652722f6149e40fd0884fb1e6d1a39c40,1,Phishing.Database ACTIVE (real),test
+https://lake-arrowhead-ca.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://dark-cake-d1d5.reccoaadilu9.workers.dev/9474d2df-c835-40bb-acbf-b6d86c079c4f,1,Phishing.Database ACTIVE (real),test
+https://support.mailchimp.com/terms,0,Curated popular domains (synthetic paths),test
+https://vincentjanse.nl/uae/uae/authentification/colis=417/0b00d5384226c8c3cec456bcc2090e5a,1,Phishing.Database ACTIVE (real),test
+https://tfdfefdse-virus-alert-9754x360xsw.pages.dev/andrcder00d0ch808err0r8an00dr01,1,Phishing.Database ACTIVE (real),test
+http://testing.nicktran126.repl.co,1,Phishing.Database ACTIVE (real),test
+https://njmgb.blogspot.sn,1,Phishing.Database ACTIVE (real),test
+https://haileymrhess.com/ovcf-ywx4l3_tgyir7amhx5=qp9sks/ufy3edgr-qs2xvotwljm_s1up5trqh/index.html,1,Phishing.Database ACTIVE (real),test
+https://muddy-steady-sage.glitch.me/uhdecbyl.html,1,Phishing.Database ACTIVE (real),test
+https://neha-40-app.firebaseapp.com,0,Personal sites on free platforms (synthetic names),test
+https://gov.uk-taxonline.com/v11.php?sessionid=hezxryiulxp91eypokxvlf5hk2ihlnhoeogvdbummxqxeajnwcbtbvoolawwqiexibh7g23rwxj6hnkxn3o3y5mw4g8tc0mhziqv,1,Phishing.Database ACTIVE (real),test
+https://imaginesports.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://cloud.dell.com/update-profile,0,Curated popular domains (synthetic paths),test
+http://angelsgateart.org/studio/michelle_solorio.php,0,Real long-tail benign (ISCX-style corpus),test
+https://www.sharesbyte.com/nam/b0a17b5e-03e2-44f9-b690-819585504a99/0012683f-e36b-41ff-a146-cc9fdac7e156/c3f4ca16-a88b-4c88-8aca-12c7e1e94eda/login?id=UjdvemVXOTlXSkx3VTNaZlNKYmw4amw5WW9ic3orNi9RTGRqMXlTQ2VIYlhMVnpMeENwekNjcEREbUZyMmRwdkUyYi9EK3NDMFNHcEM4VHNaTGd0OHVaVXE0WFhPZ3FuRVlRTFJmNmdQeDQrSm5tN1BUd3pqb2NGbk5ZVDM2cjFweXc0SDRHd2l5N1ZSY0xFYU5ON3F0M3RTeUFPdWtkUFRTcVNSbDMzaFVMVXZ3ZUVVcGthR3ZHY2tic09NcCtlQ1pCWjVXNmE5cUlBamc0WlhLSDJ6NW9uZUt0aFM5OGVzeExQM21JdjJjMEtGMnlsYlVMK2NZODlaZlEyN2RObjlWT1YrRUNvQjV3eEdZUFc0RVhLUUtIcm9pZzVrMnBsYkwxdDY5N2FKblRrc3J0MzJxODVodDFIanI5UCtHb0w,1,Phishing.Database ACTIVE (real),test
+http://bnyuuuahhs.com/deposit/online.simplii.com,1,Phishing.Database ACTIVE (real),test
+https://filiale11-operatore01.com,1,Phishing.Database ACTIVE (real),test
+http://appfbk-5q6qwk0cj4.polkuverkosto.fi/profile.html?countuser=0c70c0d788573187a35b2c035839dc6f,1,Phishing.Database ACTIVE (real),test
+https://pub-acb1b1ab712940d88d38676cbe98117b.r2.dev/radi.html?folder=nzvwqwu,1,Phishing.Database ACTIVE (real),test
+https://smartchimp.com.au/rss/shalette.jones/3mail@b.c,1,Phishing.Database ACTIVE (real),test
+http://mastermasr.info/send/trackng/dhl/dhl/tracking.php?websrc=59c275dc2e97dd3b896ed4ff2b82a8fd&amp;dispatched=89&amp;id=5377188174,1,Phishing.Database ACTIVE (real),test
+http://siraf.xyz/wp-content/track/dhlexp2m/dhl/info.php,1,Phishing.Database ACTIVE (real),test
+https://mail.secured-instagram.com/login.html,1,Phishing.Database ACTIVE (real),test
+https://microsoft365.support/success.php,1,Phishing.Database ACTIVE (real),test
+https://storageapi.fleek.co/e9fa9592-d875-4611-882e-2eaa3bef3d03-bucket/wref/index%20(3)%20(2).html,1,Phishing.Database ACTIVE (real),test
+https://weeklywire.com/ww/08-09-99/nash_cl-sports.html,0,Real long-tail benign (ISCX-style corpus),test
+https://view.genial.ly/60f4b5fe0afd380d4cc09734/interactive-content-genially,1,Phishing.Database ACTIVE (real),test
+https://alumniclass.com/state/kansas,0,Real long-tail benign (ISCX-style corpus),test
+https://yayczechrepublichotels.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://ravi-6-course.blogspot.com/projects,0,Personal sites on free platforms (synthetic names),test
+https://secure.gitlab.com/en-us/products/software/overview,0,Curated popular domains (synthetic paths),test
+https://saudiaa.page.link/sa,1,Phishing.Database ACTIVE (real),test
+https://oracle.com/pricing,0,Curated popular domains (synthetic paths),test
+https://uu.edu/athletics/halloffame/inductees2008.cfm,0,Real long-tail benign (ISCX-style corpus),test
+https://lyricsmania.com/the_walking_wounded_lyrics_bayside.html,0,Real long-tail benign (ISCX-style corpus),test
+http://fbcous-85530831.alfalschools.com/nextvrf.html?location=524f57b1ee2d1726cf38796cf765f073,1,Phishing.Database ACTIVE (real),test
+https://soundcloud.com/community/discussions/topic/78103?reply=true,0,Curated popular domains (synthetic paths),test
+https://accounts.pinterest.com/news/kotak-reports-quarterly-earnings,0,Curated popular domains (synthetic paths),test
+https://officedhs.builderallwppro.com/skat,1,Phishing.Database ACTIVE (real),test
+https://ts3toyota-card.xwtgdn.shop/pc/view_net_login.html,1,Phishing.Database ACTIVE (real),test
+https://wefixtradgard.se/pt/novo/74501/entry.html,1,Phishing.Database ACTIVE (real),test
+https://ns2.skylaservicedapartments.com/blog/wp-content/plugins/ca/ca/7f5d63c8fba2745/rgn.php?particulier=,1,Phishing.Database ACTIVE (real),test
+http://ce45079.tw1.ru/auth/g9ghv2/login.php?id=19441205,1,Phishing.Database ACTIVE (real),test
+https://blog.espn.com/news/world/2026/03/technology-trends-explained,0,Curated popular domains (synthetic paths),test
+https://dialogue.cpso.on.ca/wp-includes/blocks/block/ssl/-/au/W2DAREK21AB=1052005697/index.php,1,Phishing.Database ACTIVE (real),test
+https://serenorintl.com/pdfdocument,1,Phishing.Database ACTIVE (real),test
+https://informed.deliverywtw.top/l,1,Phishing.Database ACTIVE (real),test
+https://isha-resume.pages.dev/,0,Personal sites on free platforms (synthetic names),test
+https://case-id-1000228290123.counselschambers.co.uk,1,Phishing.Database ACTIVE (real),test
+http://4thandhome.com/2011/03/02/2011-fantasy-baseball-september-stars-series-logan-morrison/,0,Real long-tail benign (ISCX-style corpus),test
+https://luke.netlify.app/blog/first-post,0,Personal sites on free platforms (synthetic names),test
+https://pub-60cbaec2a9c9485da795aed2e788ffb9.r2.dev/index.html,1,Phishing.Database ACTIVE (real),test
+https://christian-brown3892866.pages.dev/help/contact/302705138533991,1,Phishing.Database ACTIVE (real),test
+https://thehamlethistorian.blogspot.com/2010/05/south-african-football-teams-1924-tour.html,0,Real long-tail benign (ISCX-style corpus),test
+https://realize.solucoesfncr.link/login.php,1,Phishing.Database ACTIVE (real),test
+https://aman.stmkg.ac.id/bred/authentification/login/bredconnect/moncompte/fr/connexion-bred/moncompte/fr_fr/bred.banquepopulaire.fr/portailinternet/pages/default/voscomptes/index.html,1,Phishing.Database ACTIVE (real),test
+https://onlineadp0.web.app,1,Phishing.Database ACTIVE (real),test
+https://jyrng.blogspot.li,1,Phishing.Database ACTIVE (real),test
+https://johnritterfoundation.org/,0,Real long-tail benign (ISCX-style corpus),test
+https://studio84schoolofdance.com/wp-admin/secure/owa/653a8dc205c7ccf48af5266c7d31a883,1,Phishing.Database ACTIVE (real),test
+http://hzd.hr/wp-admin/css/helpdowahhhhkjkdljjjdj/secure_latest/secure/secure/745ffa5661543eda6292acd8d64154fc/pass2.php,1,Phishing.Database ACTIVE (real),test
+https://infura-ipfs.io/ipfs/QmcaEwGC17XwrT6HVjgqLFHmVj78LzMNhh47VuLxKWnPxD,1,Phishing.Database ACTIVE (real),test
+https://www.csnbdpb.cn,1,Phishing.Database ACTIVE (real),test
+https://confirm.appstore.apple.jp-webservice.info,1,Phishing.Database ACTIVE (real),test
+https://hamourabi-magazine.com/aawa/GlobalSources/index.html,1,Phishing.Database ACTIVE (real),test
+http://411mania.com/movies/columns/126963/411mania-Interviews:-Mahershalalhashbaz-Ali-.htm,0,Real long-tail benign (ISCX-style corpus),test
+https://justwoman.asiaone.com/Just%2BWoman/About%2BMe/Well%2BBeing/Story/A1Story20080222-50988.html,0,Real long-tail benign (ISCX-style corpus),test
+https://pancakesvap.weebly.com,1,Phishing.Database ACTIVE (real),test
+https://thegilbertclinic.com/wp-bin/roundcube-rd87/index.html,1,Phishing.Database ACTIVE (real),test
+https://applecareconnect-store-portal.com/signin.html?invitationurl=4e47ab634637273aeec8560703338747&keyinvite=4e47ab634637273aeec8560703338747,1,Phishing.Database ACTIVE (real),test
+https://medical-tour.co.uk,1,Phishing.Database ACTIVE (real),test
+https://keybank-myverification.com/Sign-in.php?session=3DTLUybcduk5YOUqk3kn=,1,Phishing.Database ACTIVE (real),test
+http://easomproperty.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://codecv.repl.co/,0,Personal sites on free platforms (synthetic names),test
+http://ge.tajstudio.com/ssl_docusign%20_folder_file%20_shared_document_authenticate,1,Phishing.Database ACTIVE (real),test
+https://pharell2009.s3.eu-de.cloud-object-storage.appdomain.cloud/embrute/login.html?funlkkymn=7ssmkfinarpv25qz8aomggj&arjuatbixh=emvb1qkzqa4ghpcgdf&vye=nosuec24rokcr3oavr6us&simwaj=cpjppkikrk9btllbxgrrcmgk&apcfkcpnyr=9q7op4kshqaqgbe7m34i75i&gkjlwojboh=omt5koqexgsddnvsznnbxfgmccd&nyydvkvjiy=tspnifjgi2n4rrs1gcwkulsr3mqq,1,Phishing.Database ACTIVE (real),test
+https://whatsapp-kf.art,1,Phishing.Database ACTIVE (real),test
+https://developer.anthropic.com/privacy,0,Curated popular domains (synthetic paths),test
+http://developer.mailchimp.com/att/att-sdk,0,Curated popular domains (synthetic paths),test
+https://timeline-45167884.jcnegm.com/profile.html?countuser=78624b0a5487cba3e3143a895af526eb,1,Phishing.Database ACTIVE (real),test
+https://userca-58ce4.web.app/x...x%25a%25a%25a%25a,1,Phishing.Database ACTIVE (real),test
+https://wix.com/kaeserland/steve-anthony-music,0,Real long-tail benign (ISCX-style corpus),test
+http://secure.reactjs.org/article/12345678/market-update,0,Curated popular domains (synthetic paths),test
+https://login.nba.com/oauth2/authorize?client_id=abc123&response_type=code,0,Curated popular domains (synthetic paths),test
+https://jordan-50-events.pages.dev/about,0,Personal sites on free platforms (synthetic names),test
+https://videotrrein.weeblysite.com,1,Phishing.Database ACTIVE (real),test
+http://supportatt2w2w2.weebly.com,1,Phishing.Database ACTIVE (real),test
+http://supportteam65465421.co.vu/?lang=ro,1,Phishing.Database ACTIVE (real),test
+http://web-whatsapp-kf.work,1,Phishing.Database ACTIVE (real),test
+https://uspe.usspnw.top,1,Phishing.Database ACTIVE (real),test
+https://companydatabase.org/c/mausoleums/lawn-crypts/garden-mausoleum/mausoleum-entombment/memorial-gardens-mausoleum/memorial-park-established/acres-developed/forest-lawn/forest-hills-memorial-gardens.html,0,Real long-tail benign (ISCX-style corpus),test
+https://wolf-paw.com/,0,Real long-tail benign (ISCX-style corpus),test
+http://grupterbaru22.duckdns.org/fzxhmcjsskedelvaufwl6s0,1,Phishing.Database ACTIVE (real),test
+http://gram-positive-quali.000webhostapp.com/regchelog/logon17/logon/auth/home/auth,1,Phishing.Database ACTIVE (real),test
+https://teleqbui-lgeu.icu,1,Phishing.Database ACTIVE (real),test
+http://app.mailchimp.com/contact,0,Curated popular domains (synthetic paths),test
+https://quod.lib.umich.edu/cgi/t/text/text-idx?c=moa;cc=moa;rgn=main;view=text;idno=AFJ8942.0001.001,0,Real long-tail benign (ISCX-style corpus),test
+https://abigailkintanar.nowcasting.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://case-id-1000228266805.counselschambers.co.uk,1,Phishing.Database ACTIVE (real),test
+http://tissotpascal.com/imgz/schwab/schwab/home/login.php?cmd=login_submit&id=fe65248f3404a2e0cbecad48f1c48cc9fe65248f3404a2e0cbecad48f1c48cc9&session=fe65248f3404a2e0cbecad48f1c48cc9fe65248f3404a2e0cbecad48f1c48cc9,1,Phishing.Database ACTIVE (real),test
+https://ukmailuyyahhss.weebly.com,1,Phishing.Database ACTIVE (real),test
+https://investmentcastingusa.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://mail.tiktok.com,0,Curated popular domains (synthetic paths),test
+https://kosherraremeatcompany.co.uk/ofiffec/fax/secure/office365,1,Phishing.Database ACTIVE (real),test
+https://uspsxmkkonline.top/information,1,Phishing.Database ACTIVE (real),test
+https://charliebean.com/,0,Real long-tail benign (ISCX-style corpus),test
+http://celebrityhousepictures.com/oprah-winfrey.php,0,Real long-tail benign (ISCX-style corpus),test
+http://americantowns.com/ny/pavilion/organization/town_of_pavilion,0,Real long-tail benign (ISCX-style corpus),test
+https://bush-real-cornet.glitch.me/securities-and-futures-commission-hong-kong.html,1,Phishing.Database ACTIVE (real),test
+http://rohit-76-portfolio.firebaseapp.com/projects/weather-app/,0,Personal sites on free platforms (synthetic names),test
+http://api.whatsapp.com/download,0,Curated popular domains (synthetic paths),test
+https://interiormente.com.ar/wejs/wells/Scalefacilitation/am8uc21haWxAc2NhbGVmYWNpbGl0YXRpb24uY29t?$3p=e_et&_branch_match_id=1210381445023044911&_branch_referrer=H4sIAAAAAAAAAx2LwQqDMBAFv8YeYxs9tAUpXurNQwu1nmQTVhLdmBBX2s9vLDyYYeAZ5rBe81wbGzwTCghBkF3m/JbJsggVDsiHpCMQKdDzsEWqzP7KijqT9zS7MEbro8MkQnsnIKb8wWn9g2jnUwPhCNqSZWDrl9TAnTctTwa6b61la1Tzcn3XBtXQsX8/gpLl1ssL/wCOurTopgAAAA==,1,Phishing.Database ACTIVE (real),test
+https://developer.whatsapp.com/pages/Flipkart/about,0,Curated popular domains (synthetic paths),test
+https://api.nhs.uk/pages/Ups/about,0,Curated popular domains (synthetic paths),test
+https://blip.tv/animation-lookback/animation-lookback-walt-disney-animation-studios-part-8-3992877,0,Real long-tail benign (ISCX-style corpus),test
+https://trainweb.com/travel/,0,Real long-tail benign (ISCX-style corpus),test
+https://americanoutbackbuildings.com/,0,Real long-tail benign (ISCX-style corpus),test
+http://usps.tracking-info.world,1,Phishing.Database ACTIVE (real),test
+https://streema.com/radios/Radio_Zaraza,0,Real long-tail benign (ISCX-style corpus),test
+https://martinlarosa.com/wp-content/plugins/info.html?section=signinpage&update=&cookiecheck=yes&destination=nba/signin&actionstartup/application=&cookiecheck=yes&destinpage&update=&cookiecheck=,1,Phishing.Database ACTIVE (real),test
+http://kumar-landing.gitlab.io/blog/first-post,0,Personal sites on free platforms (synthetic names),test
+http://www.gitlab.com/en-us/products/software/overview,0,Curated popular domains (synthetic paths),test
+https://rileygracewaldrum.blogspot.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://www.digitacu.us/dcu/otp.html,1,Phishing.Database ACTIVE (real),test
+https://dialogoydeportes.net/P2w9ZiZpPTVUMjI0ejRnMWQ5Sg==,1,Phishing.Database ACTIVE (real),test
+http://new.vfu.aep.mybluehostin.me/mygovaustralia/app/index.php,1,Phishing.Database ACTIVE (real),test
+http://msg.fbcdn.com-52719521.libreriasantino.com/nextvrf.html,1,Phishing.Database ACTIVE (real),test
+https://unitedwaynelsoncounty.org/,0,Real long-tail benign (ISCX-style corpus),test
+https://layerronesolve.pages.dev,1,Phishing.Database ACTIVE (real),test
+https://ebiprovinciaonline.click/login.php,1,Phishing.Database ACTIVE (real),test
+https://lk.tc/p0WDx,1,Phishing.Database ACTIVE (real),test
+https://demo2.cloudwp.dev/trial-vz2x703w/wp-admin/CA/CA/w11s/home,1,Phishing.Database ACTIVE (real),test
+http://www.revolut.com/docs/getting-started,0,Curated popular domains (synthetic paths),test
+https://tremblant.ca/index-e.htm,0,Real long-tail benign (ISCX-style corpus),test
+http://cloud.fedex.com/,0,Curated popular domains (synthetic paths),test
+http://bimo.gq/gfghk/file01/login/?access=valid&sessionid=if5h236gd%20c9b481j%200ea7atmx3wmakan17pog6d%20%20bsij9h452skpef8lgwyu%20coz%20%20rf%20gb%204741471288,1,Phishing.Database ACTIVE (real),test
+http://club-tom.repl.co/blog/first-post,0,Personal sites on free platforms (synthetic names),test
+https://lankaenews.com/English/news.php?id=12352,0,Real long-tail benign (ISCX-style corpus),test
+https://hs-authsecuresupport.com/hsbc,1,Phishing.Database ACTIVE (real),test
+http://lectionarysong.blogspot.com/,0,Real long-tail benign (ISCX-style corpus),test
+http://relocated-po.com/found.php?session=oznmr3cztosr6fbgd0cusltlmgucafjxxg6gj9ip4ebmik4mpkqoshbbbkdg,1,Phishing.Database ACTIVE (real),test
+https://status.bbc.co.uk/r/telegram,0,Curated popular domains (synthetic paths),test
+https://freep.com/article/20110821/COL33/108210446/Stephen-Henderson-Thin-blue-line-Get-Detroit-cops-streets,0,Real long-tail benign (ISCX-style corpus),test
+https://findmy-device.pro/expire,1,Phishing.Database ACTIVE (real),test
+https://xao.azurewebsites.net,1,Phishing.Database ACTIVE (real),test
+http://mail.whocart.com/smop/absa%20online%20-%20profile.htm,1,Phishing.Database ACTIVE (real),test
+https://charlestaylortrial.org/,0,Real long-tail benign (ISCX-style corpus),test
+https://shifted2u.com/shifted/index.php?option=com_content&amp;view=article&amp;id=1337:last-guardian-director-fumito-ueda-has-quit-sony&amp;catid=46:gaming&amp;Itemid=138,0,Real long-tail benign (ISCX-style corpus),test
+https://accounts.trello.com,0,Curated popular domains (synthetic paths),test
+http://terezowens.com/golfer-david-duval-unloading-two-mansions-at-monster-loss/,0,Real long-tail benign (ISCX-style corpus),test
+https://petersenhealthcare-office-auth.ml/online/document/security,1,Phishing.Database ACTIVE (real),test
+https://layanan3.id-cs.my.id,1,Phishing.Database ACTIVE (real),test
+http://update10080120100584002022.com/step.php,1,Phishing.Database ACTIVE (real),test
+https://noway.vn/.well-known/dhlexpilc/dhl/index.php,1,Phishing.Database ACTIVE (real),test
+https://calze.it/wp-content/plugins/themeisle-companion/languages/app/cash.app/billing.php,1,Phishing.Database ACTIVE (real),test
+https://espncricinfo.com/en/support/downloads/drivers,0,Curated popular domains (synthetic paths),test
+https://mabarnhart.com/,0,Real long-tail benign (ISCX-style corpus),test
+http://cox.com-6159368de39251d7a-login.id-107sbtd9cbhsbtd5d80a13c0db1f546757jnq9j5754675759157756.kylelierman.com/iloystgnjfrgthteawvo/indexx.php,1,Phishing.Database ACTIVE (real),test
+https://travelmyroutes.com/m/m&t/home/login?c4fd32adecf452e700499511c0231f86=be191932092dd0857766e7b720c8be6e,1,Phishing.Database ACTIVE (real),test
+https://ukthunder.proboards.com/index.cgi?board=history&action=display&thread=36239,0,Real long-tail benign (ISCX-style corpus),test
+https://forrestperkins.com/wp-content/251/604b7dd59afa242436e87f4106f4f4b9/execution.html?validation=e1s1,1,Phishing.Database ACTIVE (real),test
+http://karan-todo.wordpress.com/,0,Personal sites on free platforms (synthetic names),test
+http://mattrobersononline.com/,0,Real long-tail benign (ISCX-style corpus),test
+http://vih0dohbcm.szabusiness.biz,1,Phishing.Database ACTIVE (real),test
+https://learn.revolut.com/customer-service/track-order?orderId=114-5589231-2210617,0,Curated popular domains (synthetic paths),test
+http://learn.telegram.org/irctc/irctc-python/issues/1042,0,Curated popular domains (synthetic paths),test
+http://subesizvakfbnktr.ml,1,Phishing.Database ACTIVE (real),test
+https://newballpark.org/2011/04/15/kbwf-becomes-sports-radio-95-7/,0,Real long-tail benign (ISCX-style corpus),test
+https://vikram.gitlab.io/todo/blog/first-post,0,Personal sites on free platforms (synthetic names),test
+https://cgiwa.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://sandalci.com.tr/3r/final/0e9d935f7e3f2b502450c049ddbc7c92,1,Phishing.Database ACTIVE (real),test
+https://usermailoutlook.weebly.com,1,Phishing.Database ACTIVE (real),test
+https://legin-robinhood.gitbook.io,1,Phishing.Database ACTIVE (real),test
+http://sampaddas.com/erutojyt/xcvbkjgj/ecl5sqslwdkiuedyisre/ywrlbguubgfmzmvydhlad2fyynvydg9ucy5jby51aw==,1,Phishing.Database ACTIVE (real),test
+https://api.espncricinfo.com/tag/roblox,0,Curated popular domains (synthetic paths),test
+https://quote5200003.firebaseapp.com,1,Phishing.Database ACTIVE (real),test
+http://ravi.onrender.com/about,0,Personal sites on free platforms (synthetic names),test
+http://status.gitlab.com/tag/coinbase,0,Curated popular domains (synthetic paths),test
+https://www.officences.com/gcc/Login/SubmitPage/bFNmbnFKSHZhVFVSVll1bHVZRDMxdUVPUDFYZEtTamZlSFJvemNCN3ZSd2NRTmgxeGVTd3RiMVBKemEzekRhdHREWE9JSXRKdlFDWWM4YUp0R3dralkrNEI4VTIzbmVkR0p6VmthYUF1TG5xcmVTbldzUGNaM1Mrc0MxQVkwRjhyRitGREFCVzYxMXJjYnpkY2lTYUJiaThMUmltaTdlbWs0c2hmWDY2Q0l3VlBZenVpR3dIKzdhcWw3OFNlZ1RBS0Vqd1gzdnNRaWVobmtOVzdJQ3VLSmdOQmJzKzhQSFMvdDZ4cUtLa0NCV3pTUHU3d0hLd1V5QUxUR21zd1VrMFdqYmM4MkJWb2ZuMGJLQ1UwbnVlZUhjamN3UEJuR0dvSnRUalZ6MHV2WUNIb0hKbXdNWXdDd1UzaU1qa3JSRUU2N0VrUUg2SjN6Qyt6YTE5bHFQa3QyVUtUdXV5NFpia2ROU3RKQW5GZ2EvUVVDQndKd3ZrZXBINXRIT0pJUkwz,1,Phishing.Database ACTIVE (real),test
+https://api.reuters.com/login,0,Curated popular domains (synthetic paths),test
+https://marianasmarkets.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://sara-minor-project.firebaseapp.com,0,Personal sites on free platforms (synthetic names),test
+https://correo.ultramar.cl/,0,Real long-tail benign (ISCX-style corpus),test
+https://metrohealth-hospital-cleveland-ohio.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://neworleansflooring.net/,0,Real long-tail benign (ISCX-style corpus),test
+http://www.ofrot.org/e924785d/ID_8984HDsq723HGSQd/?456sdfESDFJf4DF559,1,Phishing.Database ACTIVE (real),test
+https://trezardwiooargall.webflow.io,1,Phishing.Database ACTIVE (real),test
+https://duchesssays.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://userca-58ce4.web.app/index.php/false/pyln.html,1,Phishing.Database ACTIVE (real),test
+https://cloud-rise-66b4.jeilkaicunrd.workers.dev/89b419cb-52a1-4b86-ae24-acbe40b7ac93,1,Phishing.Database ACTIVE (real),test
+https://cafecitoperez.ivanidzakovic.com/admin/aociufd/goodl.vci/cfbbc90ef922a822c0db82588e3c31b8/view/login.php?cmd=login_submit&id=3433d583e6e5197c12de8ca9056f4c993433d583e6e5197c12de8ca9056f4c99&session=3433d583e6e5197c12de8ca9056f4c993433d583e6e5197c12de8ca9056f4c99,1,Phishing.Database ACTIVE (real),test
+http://telegrqmn.work,1,Phishing.Database ACTIVE (real),test
+http://blog.espn.com/support/contact-us,0,Curated popular domains (synthetic paths),test
+http://paxara.co.uk/wp-admin/maint/jpmorganchase/dashboard/new/home/a29682140938c35263d67ea040220fd5?cmd=login=www.chaseonline-com/account/service/chase-technical-department,1,Phishing.Database ACTIVE (real),test
+https://developer.ally.com/help/faq,0,Curated popular domains (synthetic paths),test
+https://jokercity303.com/okam/2c9c69506fd4161b31d4ee28ea963fd9/en.htm,1,Phishing.Database ACTIVE (real),test
+https://club-alex.firebaseapp.com,0,Personal sites on free platforms (synthetic names),test
+http://mural-flare.000webhostapp.com/regata.trust/suntrust/1/1.html?%3c?php%20echo%20$negara.$z.$anon.$x.$isma.$z.$nama_negara;%20?%3e,1,Phishing.Database ACTIVE (real),test
+https://autonortecorrientes.com.ar/usera/c-agricole/05cc6f9939b0045/region.php?particulier=,1,Phishing.Database ACTIVE (real),test
+https://onmazorn.udpated-info.icu,1,Phishing.Database ACTIVE (real),test
+http://api.nhs.uk/billing/invoices,0,Curated popular domains (synthetic paths),test
+https://regionbookpolicy.com/fqqdpohg,1,Phishing.Database ACTIVE (real),test
+https://arjunclub.workers.dev/gallery?page=2,0,Personal sites on free platforms (synthetic names),test
+https://course-omar.repl.co/gallery?page=2,0,Personal sites on free platforms (synthetic names),test
+https://help.nodejs.org/terms,0,Curated popular domains (synthetic paths),test
+http://rohit-65-notes.workers.dev/about,0,Personal sites on free platforms (synthetic names),test
+http://worplesdonrangers.org/,0,Real long-tail benign (ISCX-style corpus),test
+https://cluberesgatedepontos.com/cartoes/VewuO/security.php?token=n4IFuJfDKYvWFjixSgIik1qCgwOhnFKe7KKLdBExaLlKSYO7AFjHeGsbSm686uTwd17aBWkpGwmoInz5pQyF1H0RKF0zqHnmH7yMKyGqBwjxvc0JbbFrq4JSSkTRzOFpb01dY7exm44kCfbbXXXx3c,1,Phishing.Database ACTIVE (real),test
+https://nakhatrabd.com/secure03b/a/index.html,1,Phishing.Database ACTIVE (real),test
+http://treadldn.com/mailjp/earthcorefixed?uid=aaa@example.com,1,Phishing.Database ACTIVE (real),test
+http://postcardmemoirs.com/,0,Real long-tail benign (ISCX-style corpus),test
+http://ml-3-recipes.gitlab.io/docs/intro,0,Personal sites on free platforms (synthetic names),test
+https://free-nitro-generator-for-discord.tk,1,Phishing.Database ACTIVE (real),test
+https://fb-business-appeal-903e8.firebaseapp.com,1,Phishing.Database ACTIVE (real),test
+https://app-isha.glitch.me,0,Personal sites on free platforms (synthetic names),test
+https://m.yhgsc.top,1,Phishing.Database ACTIVE (real),test
+https://oceanportracingreport.com/Oceanport%20Racing%20Report.com%202007%20Breeders'%20Cup%20News%20-%20Monmouth%20Park.htm,0,Real long-tail benign (ISCX-style corpus),test
+https://travel-sam.web.app/resume.pdf,0,Personal sites on free platforms (synthetic names),test
+https://discordnitro.cc/gift/ze3oipzyf00b3ds9fmejcbdf,1,Phishing.Database ACTIVE (real),test
+http://myr0grsinv06.com/banks/desjardins/ondetverifier.html,1,Phishing.Database ACTIVE (real),test
+https://em102tb9nk.com/M&T/login.php?online_id=a975a727f8534b7bb05b1fed1&country=&iso,1,Phishing.Database ACTIVE (real),test
+https://rahul-46-demo.netlify.app,0,Personal sites on free platforms (synthetic names),test
+http://phe9selpp.co.vu/info_help.php?/pages_recovery_disable=rec,1,Phishing.Database ACTIVE (real),test
+http://shubhamgupta171.github.io/netflixclone-main,1,Phishing.Database ACTIVE (real),test
+http://freesf.blogspot.com/2007/11/ishmael-in-love-robert-silverberg.html,0,Real long-tail benign (ISCX-style corpus),test
+https://api.soundcloud.com/news/sbi-reports-quarterly-earnings,0,Curated popular domains (synthetic paths),test
+https://predramatic.live,1,Phishing.Database ACTIVE (real),test
+https://www.lloydbank-remove-device.com/login.php,1,Phishing.Database ACTIVE (real),test
+https://pediaview.com/openpedia/Big_Ten_Conference,0,Real long-tail benign (ISCX-style corpus),test
+https://undec-ab94.djuleircendku.workers.dev/550049e8-6746-4cff-a0e9-ed329cbc3dd8,1,Phishing.Database ACTIVE (real),test
+http://platino.bg/fonts/pnzg2nc0xmjkuntyuodgumji2lty0p/_mlognde1otc3oefcrenerkfnw6bb,1,Phishing.Database ACTIVE (real),test
+https://infura-ipfs.io/ipfs/qmvleqvzcya63spdkatz93kxyfancggmtqm9t3nmj37d46/000123456.html,1,Phishing.Database ACTIVE (real),test
+http://auth-mystore-settings.com/admin-inc/verification/94mde7c54ee9a3e62m03,1,Phishing.Database ACTIVE (real),test
+https://tcm.com/this-month/movie-news.html?id=433175&name=Ben-Mankiewicz-Announcement,0,Real long-tail benign (ISCX-style corpus),test
+https://maiair.com/assets/ca/cd73b6266607423/rgn.php?particulier,1,Phishing.Database ACTIVE (real),test
+https://moviemoody.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://sms-orange6.yolasite.com,1,Phishing.Database ACTIVE (real),test
+https://api.makemytrip.com/phonepe/phonepe-python/issues/1042,0,Curated popular domains (synthetic paths),test
+https://independent.co.uk/news/obituaries/obituary--jo-van-fleet-1337929.html,0,Real long-tail benign (ISCX-style corpus),test
+https://bremen.com.ve/wp-admin/huh/nsw/data/untitlednotebook1.html,1,Phishing.Database ACTIVE (real),test
+https://spartontechnologies.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://mvsc.info/,0,Real long-tail benign (ISCX-style corpus),test
+https://howstuffworks.com/question467.htm,0,Real long-tail benign (ISCX-style corpus),test
+https://marriageproblemsolution.com/zv5099wlsx78/pm00023rs/$josie.marinov@progleasing.com,1,Phishing.Database ACTIVE (real),test
+https://bbc.co.uk/radio3/jazzon3/pip/obfo2/,0,Real long-tail benign (ISCX-style corpus),test
+https://support.mailchimp.com/company/discord,0,Curated popular domains (synthetic paths),test
+https://www.dkb-kundeteam.com/einwandfrei/deinem/9nu3shk9xuw4zn87wc4bn7,1,Phishing.Database ACTIVE (real),test
+http://facturemaiorangeline.com/customer_center/customer-idpp00c912/card.php,1,Phishing.Database ACTIVE (real),test
+https://mail.netbank-security.com/www.my.commbank.com.au/netbank/logon,1,Phishing.Database ACTIVE (real),test
+http://www.glorywinner.com/2706690el7122369SN431688291yj13219gb2tjr187337wK,1,Phishing.Database ACTIVE (real),test
+https://g2consultores.com.mx/wp-admin,1,Phishing.Database ACTIVE (real),test
+https://confirmaccount771200.duckdns.org/confirm.html,1,Phishing.Database ACTIVE (real),test
+https://sbtrailersales.com/,0,Real long-tail benign (ISCX-style corpus),test
+http://lokingmy.000webhostapp.com/u.s/bank/online/login/now/information.php,1,Phishing.Database ACTIVE (real),test
+https://peoplefirst.org/,0,Real long-tail benign (ISCX-style corpus),test
+http://www.telegram.org/support,0,Curated popular domains (synthetic paths),test
+https://simiaestudio.com/wp-admin/css/sf_rand_string_lowercase6/bwhlcnjlcmfazgjtc2vydmljzxnscc5jb20=,1,Phishing.Database ACTIVE (real),test
+https://jewishhumorcentral.com/2011/05/famous-and-beautiful-jewish-actors-and.html,0,Real long-tail benign (ISCX-style corpus),test
+https://maria.herokuapp.com/,0,Personal sites on free platforms (synthetic names),test
+https://anita.workers.dev/gallery?page=2,0,Personal sites on free platforms (synthetic names),test
+https://interiormente.com.ar/wejs/wells/advanceturning/am9obi5tywnjaglhqgfkdmfuy2v0dxjuaw5nlmnvbq==,1,Phishing.Database ACTIVE (real),test
+https://uk.oakley.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://espigaartesanamadrid.es/wp-admin/maint/CI,1,Phishing.Database ACTIVE (real),test
+http://delivery.attempt.failure.feedmybot.net/public/l4uavkuo29k13lnsqargy2hja2ruv4vd,1,Phishing.Database ACTIVE (real),test
+https://briggsplumbingandheating.com/wp-content/z/ned-money-2022,1,Phishing.Database ACTIVE (real),test
+https://portal.nytimes.com,0,Curated popular domains (synthetic paths),test
+http://thunderwolveshockey.com/headlines.asp?id=536,0,Real long-tail benign (ISCX-style corpus),test
+http://thematehersour.com/mazon/abc12/homepage,1,Phishing.Database ACTIVE (real),test
+https://garlandmews.org/otp.html,1,Phishing.Database ACTIVE (real),test
+http://greenstatenl.be/myebranch.iccu.com/idaho%20central%20credit%20union.php,1,Phishing.Database ACTIVE (real),test
+https://trello.com/watch?v=dQw4w9WgXcQ,0,Curated popular domains (synthetic paths),test
+http://nifymkhexc.3490.ugcomunicaciones.com/.nifymkhexc.ahr0chm6ly9vymply3rzdg9yywdllmv1lwzyyw5rznvydc0xlm9yywnszwnsb3vklmnvbs9ul2zyytk1ytzncgdrai9il2twyw5nb2xpbnm3odyymzivby9tywrlcmtzlmh0bwwjyw50ywwubmfneubpbnzlbmlhcy5jb20=,1,Phishing.Database ACTIVE (real),test
+https://yk8cfsa.org/bt6kzp/yahoo.html,1,Phishing.Database ACTIVE (real),test
+https://ncfgr.blogspot.fi,1,Phishing.Database ACTIVE (real),test
+https://smbc.czrd-co.jp/mem/index,1,Phishing.Database ACTIVE (real),test
+https://gracis-spect-site.webflow.io,1,Phishing.Database ACTIVE (real),test
+https://blog.fedex.com/login,0,Curated popular domains (synthetic paths),test
+https://secure.bsnl.co.in/watch?v=dQw4w9WgXcQ,0,Curated popular domains (synthetic paths),test
+https://www.apple.find-ios.fit/find,1,Phishing.Database ACTIVE (real),test
+http://nodejs.org/personal/credit-cards/rewards,0,Curated popular domains (synthetic paths),test
+https://sosnik.hosted.phplist.com/lists/lt.php?tid=luwcdlvsawedcrgcdgbtswbrulmuu1htxetrwv1tcgxwvfrvagbmavmhdveobfnldfuavbqfvlraswcfc1evuvmhvg5tafycagmnsfucaamnb15rffdxbfplulgjvbunaviagwlvbacfalycuwcaxw,1,Phishing.Database ACTIVE (real),test
+https://shplargh.com/,0,Real long-tail benign (ISCX-style corpus),test
+http://blog.imf.org/oauth2/authorize?client_id=abc123&response_type=code,0,Curated popular domains (synthetic paths),test
+https://karanblog.weebly.com/about,0,Personal sites on free platforms (synthetic names),test
+https://demo2.cloudwp.dev/trial-4z6549uz/wp-admin/1/De/58f7cc9b8dc5c57/login.php,1,Phishing.Database ACTIVE (real),test
+https://pub-3ed8c71ba35547d39fb27155a80e4539.r2.dev/killar.html?email=3mail@b.c,1,Phishing.Database ACTIVE (real),test
+http://ukas.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://mail.gitlab.com/news/spotify-reports-quarterly-earnings,0,Curated popular domains (synthetic paths),test
+https://90b.replit.app/mua/validatotp/sics/83n177n3a0c_i322nrxstpntq0caw0m2342li1cgz0tvuwkpiajkg533/30/no-bakc-buton,1,Phishing.Database ACTIVE (real),test
+http://www.bnp-belgium-check.com/apl0nsayiyk3bbb4ka3kiuppk5xfdnc9f2gpdvrw2wwvlmbqur,1,Phishing.Database ACTIVE (real),test
+https://wtre.curraden.ch/jjj171jnld3pzs8eyv78/n1kn7qgzocdaqesn8w6p/?email=birgit.tandler@tandler.de,1,Phishing.Database ACTIVE (real),test
+https://offre.podlink.to/h8bqx43et0fa6b62c04ef392?utm_source=mailto&ut,1,Phishing.Database ACTIVE (real),test
+http://lubamason.typepad.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://astoremoney.com/wp-content/caixa-esp/es/clients/phone.php,1,Phishing.Database ACTIVE (real),test
+https://thecourier.com.au/news/national/national/sport/hungover-beale-was-oconnors-booze-buddy/2265101.aspx,0,Real long-tail benign (ISCX-style corpus),test
+https://georgiaagr.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://www.trello.com/help/article/48392,0,Curated popular domains (synthetic paths),test
+https://elocalplumbers.com/city/Uniontown_PA/0,0,Real long-tail benign (ISCX-style corpus),test
+https://rose-heron-x0mm3k.mystrikingly.com,1,Phishing.Database ACTIVE (real),test
+https://dhlnac.top/mx,1,Phishing.Database ACTIVE (real),test
+https://headroyce.org/,0,Real long-tail benign (ISCX-style corpus),test
+https://asulxa.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://secure.nba.com/watch?v=dQw4w9WgXcQ,0,Curated popular domains (synthetic paths),test
+https://tom-36-project.gitlab.io/docs/intro,0,Personal sites on free platforms (synthetic names),test
+https://tpix.xyz,1,Phishing.Database ACTIVE (real),test
+http://secure.tiktok.com/download,0,Curated popular domains (synthetic paths),test
+https://learn.nytimes.com/help/article/48392,0,Curated popular domains (synthetic paths),test
+https://terrakot.in/cgi-uninet,1,Phishing.Database ACTIVE (real),test
+https://topics.bloomberg.com/rbc-capital-markets/,0,Real long-tail benign (ISCX-style corpus),test
+https://shop.espn.com/docs/en/latest/index.html,0,Curated popular domains (synthetic paths),test
+https://fihsocaaoniine.webcindario.com,1,Phishing.Database ACTIVE (real),test
+https://omar.gitlab.io/landing/docs/intro,0,Personal sites on free platforms (synthetic names),test
+http://thediasporaportal.com/papaa/webmail-portal-rd337/index.html,1,Phishing.Database ACTIVE (real),test
+https://support.dell.com/events/webinar/register,0,Curated popular domains (synthetic paths),test
+http://treidingviw-web.icu,1,Phishing.Database ACTIVE (real),test
+https://gproxy.monforte.workers.dev,1,Phishing.Database ACTIVE (real),test
+http://astimelosdime.xyz/dan/hotoffice/cmd-login=688fe4912f76e3cb3ce51b2363d97b20/wrong_pass.php?email=&rand=13inboxlightaspxn.1774256418&fid.4.1252899642&fid=1&fav.1&rand.13inboxlight.aspxn.1774256418&fid.1252899642&fid.1&fav.113inboxlight.aspx?n=1774256418&fid=4,1,Phishing.Database ACTIVE (real),test
+https://status.tripadvisor.com/orders/114-558,0,Curated popular domains (synthetic paths),test
+http://whozat.com/person/s/s-ac/s-ac2102.html,0,Real long-tail benign (ISCX-style corpus),test
+http://accounts.reactjs.org/,0,Curated popular domains (synthetic paths),test
+https://zealous-nash.82-165-66-121.plesk.page/c85893ce50313728b784/clients,1,Phishing.Database ACTIVE (real),test
+https://signalpropertiessupervission.pages.dev,1,Phishing.Database ACTIVE (real),test
+https://m8experts.com/intesa/index.php,1,Phishing.Database ACTIVE (real),test
+https://isw-freising.de,1,Phishing.Database ACTIVE (real),test
+https://powells.com/blog/guests/badass-authors-sir-richard-francis-burton-by-ben-thompson/,0,Real long-tail benign (ISCX-style corpus),test
+https://store.soundcloud.com/docs/v2/api/reference#authentication,0,Curated popular domains (synthetic paths),test
+http://129.121.3.174/~upward1/wp-admin/network/config/summary/96e01321f297e65a0d7912b25e8193acytexmjriodmxyzhkndhknwi4mmfmmwziztm1oti5mme=/myaccount/websc_login/?country.x=us&amp;amp;locale.x=en_us,1,Phishing.Database ACTIVE (real),test
+https://newfoodcenter.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://discordfaq.crisp.help,1,Phishing.Database ACTIVE (real),test
+https://help.wix.com/about,0,Curated popular domains (synthetic paths),test
+https://paxffu-l.com/wallet-address/verification,1,Phishing.Database ACTIVE (real),test
+https://arrivetq.top/go/trackconfirmaction,1,Phishing.Database ACTIVE (real),test
+http://occq-qcco.com/main.cfm?p=421&l=en&page=1&MembreID=38&CategorieID=3,0,Real long-tail benign (ISCX-style corpus),test
+http://hardballtalk.nbcsports.com/2011/09/07/john-mayberry-jr-s-agents-are-trying-to-get-him-a-date/,0,Real long-tail benign (ISCX-style corpus),test
+https://gov.uk/chase/chase-sdk,0,Curated popular domains (synthetic paths),test
+https://li-40-gallery.web.app/docs/intro,0,Personal sites on free platforms (synthetic names),test
+http://ireneromann.ifunnyblog.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://reporting-privacy-violation.vercel.app,1,Phishing.Database ACTIVE (real),test
+https://api.mailchimp.com/docs/v2/api/reference#authentication,0,Curated popular domains (synthetic paths),test
+https://eigencomputing.com/business/amhdob5dfrpshdv,1,Phishing.Database ACTIVE (real),test
+https://iatindia.org/go/signonv2screen,1,Phishing.Database ACTIVE (real),test
+https://store.gitlab.com/news/world/2026/03/technology-trends-explained,0,Curated popular domains (synthetic paths),test
+https://blog.soundcloud.com/Usps,0,Curated popular domains (synthetic paths),test
+https://lolotikari45.vercel.app/metasp.html,1,Phishing.Database ACTIVE (real),test
+https://medicine.mcgill.ca/epidemiology/infante-rivard/,0,Real long-tail benign (ISCX-style corpus),test
+http://medeicostruz.com/wp-admin/maint/main/aruba-it2/d71e5bda7882138603002579f6e765af/aruba-it-payment.html,1,Phishing.Database ACTIVE (real),test
+https://belinet3.artmakersgroup.com/singon3/bell.php?mybell_login4wuhps30kvit4en69m24la8ytcvvd44dqjfiuomdd59yf4u81xv7hgjkq1etqa01zasd9e4rpq5mr2d8epg3l0beiszex87nm5h1fo92715ov72e8o4gwnbvy9awtpkp4x8i7ndxl63zxz2zv-en_ca=mog6bo4grvx24yxw4bai9k3gh77u43c5xgd0igtk1ov4nxrxnmhn8k31nuo5ho57zokn3py6o7n8cje2uzle7q9uxfieqap9dk3hnguq2lz2rc42f2zrv1emy-credentials=?y76xx2ckvviwxeq4bpy4wvst3q3741k24wcxuzasoitknqn465x9tvfnnoaigao7fywu3daroweljnw067cqvwtesk4200glopcdzttsfss386lsrwaiguu3n7dapisclm7,1,Phishing.Database ACTIVE (real),test
+https://blanchecarpenter.top/wp-admin/qgri/client/dep.html,1,Phishing.Database ACTIVE (real),test
+https://steanconnmuity.com/proflies/76561197960269942,1,Phishing.Database ACTIVE (real),test
+http://db.mailtrackpro.com/mailtrack3/server/redirect.php?user=29765780&amp;email=1868&amp;cid=aa567054dfb4b26mail&amp;url=https%3a%2f%2fwww.youtube.com%2fuser%2fitauargentina,1,Phishing.Database ACTIVE (real),test
+http://fancleaners.com/wells/wellsfargo/wellsfargo/wells,1,Phishing.Database ACTIVE (real),test
+https://heartofamericahs.org/success/success.php,0,Real long-tail benign (ISCX-style corpus),test
+https://sara-79-notes.onrender.com/projects/weather-app/,0,Personal sites on free platforms (synthetic names),test
+https://japan-guide.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://jeanniemousie.blogspot.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://jaydubstep.blogspot.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://gayako.blogspot.com/2010/08/bomba-queen-1985.html,0,Real long-tail benign (ISCX-style corpus),test
+https://kevinmcdonaldmusic.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://ec5gnf-vercell03.duckdns.org/Home/0efbe98067c6c73dba1250d2beaa81f9,1,Phishing.Database ACTIVE (real),test
+http://store.tiktok.com/products/category/electronics?page=3&sort=price,0,Curated popular domains (synthetic paths),test
+https://storied-empanada-dbeca4.netlify.app/id.html/index.html,1,Phishing.Database ACTIVE (real),test
+https://my.nhs.uk,0,Curated popular domains (synthetic paths),test
+https://agilitynut.com/eateries/oh.html,0,Real long-tail benign (ISCX-style corpus),test
+https://mail.espn.com/amazon/amazon-sdk,0,Curated popular domains (synthetic paths),test
+http://richardkemp.wordpress.com/2011/02/12/tory-dirty-tricks-department-versus-the-kemp-operation/,0,Real long-tail benign (ISCX-style corpus),test
+https://sentmancustomkarts.com/n1/secominuo/nedbankmoney.htm,1,Phishing.Database ACTIVE (real),test
+https://restkstore01.top/wap,1,Phishing.Database ACTIVE (real),test
+https://listingdomains.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://osgov.com/,0,Real long-tail benign (ISCX-style corpus),test
+http://jazzwrap.blogspot.com/2011/03/fred-hersch-at-vanguard.html,0,Real long-tail benign (ISCX-style corpus),test
+https://mail.reactjs.org/tag/apple,0,Curated popular domains (synthetic paths),test
+http://dlstudios.org/mnhbj/firstlog.php?public/enroll/identifyuser-aspx-lob=rbglogon=mtm0odkzotg0na==mtm0odkzotg0na==&session=mtm0odkzotg0na==mtm0odkzotg0na==,1,Phishing.Database ACTIVE (real),test
+https://pub-9c21d54c90044410941c8bf1a7266c55.r2.dev/ll/index.html,1,Phishing.Database ACTIVE (real),test
+https://developer.ally.com/terms,0,Curated popular domains (synthetic paths),test
+https://hb-red-link-deo.support0099.repl.co/index2.php,1,Phishing.Database ACTIVE (real),test
+https://docs.anthropic.com/watch?v=dQw4w9WgXcQ,0,Curated popular domains (synthetic paths),test
+https://login.revolut.com/company/google,0,Curated popular domains (synthetic paths),test
+https://socialistproject.ca/bullet/286.php,0,Real long-tail benign (ISCX-style corpus),test
+https://history.com/topics/republican-party,0,Real long-tail benign (ISCX-style corpus),test
+https://web10854.s1.nxa.eu/swww/3c8d020c6061afc00a46678b10b35896/login.scl.swiom.ch/?language=en&locale=en&signup_page=https,1,Phishing.Database ACTIVE (real),test
+https://raviminor-project.weebly.com/gallery?page=2,0,Personal sites on free platforms (synthetic names),test
+https://rotoworld.com/teams/nba/gs/?r=1,0,Real long-tail benign (ISCX-style corpus),test
+http://my.united.com/dashboard/overview?period=last_30_days,0,Curated popular domains (synthetic paths),test
+http://kiwi6937169.brizy.site/wacth-video-189.213.50.238,1,Phishing.Database ACTIVE (real),test
+http://malayalamtelevision.net/,0,Real long-tail benign (ISCX-style corpus),test
+https://litesko.ltd/?token=kF3rCvo,1,Phishing.Database ACTIVE (real),test
+https://appraisalappraisers.com/,0,Real long-tail benign (ISCX-style corpus),test
+https://urbandictionary.com/define.php?term=Rudy%20Youngblood,0,Real long-tail benign (ISCX-style corpus),test
+https://mtbforreal.xyz/m&t/login.php?online_id=4caf8f85b0c96fb8ecc1b6dfe&country=united+states&iso=us,1,Phishing.Database ACTIVE (real),test
+https://mail.bbc.co.uk/settings/notifications,0,Curated popular domains (synthetic paths),test
+https://genealogyroadtrip.com/AR/places_2.htm,0,Real long-tail benign (ISCX-style corpus),test
+http://www.raiffeisen-salzburg-versicherungsmakler.at,1,Phishing.Database ACTIVE (real),test

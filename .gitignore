@@ -47,3 +47,6 @@ Desktop.ini
 
 # Logs
 *.log
+
+# Downloaded feeds (large, re-creatable)
+data/cache/

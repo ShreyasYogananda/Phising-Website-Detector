@@ -1,99 +1,1299 @@
 {
   "evaluation_dataset": {
-    "name": "Held-Out Test Partition (test.csv)",
-    "total_test_urls": 234,
-    "phishing_count": 117,
-    "legitimate_count": 117,
-    "class_ratio": "50% Phishing / 50% Legitimate"
+    "name": "Held-out domains (same distribution)",
+    "total_test_urls": 996,
+    "phishing_count": 511,
+    "legitimate_count": 485,
+    "class_ratio": "511 phishing / 485 legitimate"
   },
   "detectors": {
     "rule_based_baseline": {
       "name": "Transparent Rule-Based Baseline",
-      "type": "Deterministic Security Heuristics",
-      "description": "Auditable rule engine evaluating 11 calibrated security penalties",
-      "sample_count": 234,
+      "type": "16 auditable rules",
+      "description": "Flags a URL when rule points reach 15 (chosen on validation data).",
+      "sample_count": 996,
       "confusion_matrix": {
-        "true_positives": 116,
-        "true_negatives": 117,
-        "false_positives": 0,
-        "false_negatives": 1
+        "true_positives": 320,
+        "true_negatives": 342,
+        "false_positives": 143,
+        "false_negatives": 191
       },
       "metrics": {
-        "accuracy": 0.9957,
-        "precision": 1.0,
-        "recall": 0.9915,
-        "f1_score": 0.9957,
-        "specificity": 1.0,
-        "false_positive_rate": 0.0,
-        "false_negative_rate": 0.0085
+        "accuracy": 0.6647,
+        "precision": 0.6911,
+        "recall": 0.6262,
+        "f1_score": 0.6571,
+        "specificity": 0.7052,
+        "false_positive_rate": 0.2948,
+        "false_negative_rate": 0.3738,
+        "roc_auc": 0.6987,
+        "average_precision": 0.7001
+      },
+      "confidence_intervals_95": {
+        "f1_score": [
+          0.621,
+          0.6946
+        ],
+        "recall": [
+          0.5824,
+          0.6687
+        ],
+        "false_positive_rate": [
+          0.2529,
+          0.3355
+        ]
       },
       "error_cases": {
-        "false_positives": [],
-        "false_negatives": [
+        "false_positives": [
           {
-            "url": "https://www.irs-tax-refund-claim-portal.xyz/portal/index.html?ref=email_warning",
-            "true_label": "Phishing",
-            "predicted_verdict": "Missed / Cleared (Score: 20/100)",
-            "root_cause_analysis": "Heuristic evasion: Attacker avoided explicit keyword triggers, IP hosts, or brand tokens, remaining under the deterministic threshold."
+            "url": "http://support.reuters.com/customer-service/track-order?orderId=114-5589231-2210617",
+            "source": "Curated popular domains (synthetic paths)",
+            "true_label": "Legitimate",
+            "predicted_verdict": "Flagged (score 35/100)",
+            "root_cause_analysis": "Rules fired: Sign-in or payment words on an unverified site, Long, random-looking address. Main model drivers toward 'phishing': Digits (+0.15); Credential-themed words (+0.14)."
+          },
+          {
+            "url": "http://login.anthropic.com/Adobe",
+            "source": "Curated popular domains (synthetic paths)",
+            "true_label": "Legitimate",
+            "predicted_verdict": "Flagged (score 30/100)",
+            "root_cause_analysis": "Rules fired: Sign-in or payment words on an unverified site, Brand name appears in the page path. Main model drivers toward 'phishing': Credential-themed words (+0.13); Randomness of characters (+0.06)."
+          },
+          {
+            "url": "https://wesleyvaclav.blogspot.com/2011/03/drakes-football-players-start-spring.html",
+            "source": "Real long-tail benign (ISCX-style corpus)",
+            "true_label": "Legitimate",
+            "predicted_verdict": "Flagged (score 30/100)",
+            "root_cause_analysis": "Rules fired: Long, random-looking address, Built on a free website platform. Main model drivers toward 'phishing': Path and query structure (+0.07)."
+          },
+          {
+            "url": "https://jordan-27-weather-app.weebly.com/about",
+            "source": "Personal sites on free platforms (synthetic names)",
+            "true_label": "Legitimate",
+            "predicted_verdict": "Flagged (score 30/100)",
+            "root_cause_analysis": "Rules fired: Built on a free website platform, Domain stuffed with hyphens. Main model drivers toward 'phishing': Digits (+0.20)."
+          },
+          {
+            "url": "https://maria-25-weather-app.workers.dev/projects",
+            "source": "Personal sites on free platforms (synthetic names)",
+            "true_label": "Legitimate",
+            "predicted_verdict": "Flagged (score 30/100)",
+            "root_cause_analysis": "Rules fired: Built on a free website platform, Domain stuffed with hyphens. Main model drivers toward 'phishing': Digits (+0.19)."
+          },
+          {
+            "url": "http://secure.nytimes.com/r/tiktok",
+            "source": "Curated popular domains (synthetic paths)",
+            "true_label": "Legitimate",
+            "predicted_verdict": "Flagged (score 30/100)",
+            "root_cause_analysis": "Rules fired: Sign-in or payment words on an unverified site, Brand name appears in the page path. Main model drivers toward 'phishing': Credential-themed words (+0.14); Brand impersonation (+0.05)."
           }
         ],
-        "total_fp_count": 0,
-        "total_fn_count": 1
+        "false_negatives": [
+          {
+            "url": "https://qaz.pr-formwork.co.za",
+            "source": "Phishing.Database ACTIVE (real)",
+            "true_label": "Phishing",
+            "predicted_verdict": "Missed (score 0/100)",
+            "root_cause_analysis": "No rule matched. Model drivers that made it look normal: no single dominant factor."
+          },
+          {
+            "url": "https://vqfsb.blogspot.li",
+            "source": "Phishing.Database ACTIVE (real)",
+            "true_label": "Phishing",
+            "predicted_verdict": "Missed (score 0/100)",
+            "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Domain structure (-0.07)."
+          },
+          {
+            "url": "https://iportalbarclayshelp.com",
+            "source": "Phishing.Database ACTIVE (real)",
+            "true_label": "Phishing",
+            "predicted_verdict": "Missed (score 0/100)",
+            "root_cause_analysis": "No rule matched. Model drivers that made it look normal: no single dominant factor."
+          },
+          {
+            "url": "https://tnhcf.blogspot.is",
+            "source": "Phishing.Database ACTIVE (real)",
+            "true_label": "Phishing",
+            "predicted_verdict": "Missed (score 0/100)",
+            "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Domain structure (-0.07)."
+          },
+          {
+            "url": "https://revendeurs.ogivart.us/rms/57415821762206239",
+            "source": "Phishing.Database ACTIVE (real)",
+            "true_label": "Phishing",
+            "predicted_verdict": "Missed (score 0/100)",
+            "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Domain structure (-0.06)."
+          },
+          {
+            "url": "http://genufly.com/wp-content/-/ee/bnp-robot-new",
+            "source": "Phishing.Database ACTIVE (real)",
+            "true_label": "Phishing",
+            "predicted_verdict": "Missed (score 0/100)",
+            "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Domain structure (-0.27); URL size (-0.05)."
+          }
+        ],
+        "total_fp_count": 143,
+        "total_fn_count": 191
       }
     },
     "machine_learning": {
-      "name": "Random Forest ML Classifier",
-      "type": "Supervised Ensemble Decision Trees",
-      "description": "Trained on 21 lexical, structural, and semantic features with class balancing",
-      "sample_count": 234,
+      "name": "ML Ensemble",
+      "type": "Gradient boosting + character patterns",
+      "description": "41 engineered features plus character 3-5-grams, with calibrated probabilities.",
+      "sample_count": 996,
       "confusion_matrix": {
-        "true_positives": 117,
-        "true_negatives": 117,
-        "false_positives": 0,
-        "false_negatives": 0
+        "true_positives": 488,
+        "true_negatives": 469,
+        "false_positives": 16,
+        "false_negatives": 23
       },
       "metrics": {
-        "accuracy": 1.0,
-        "precision": 1.0,
-        "recall": 1.0,
-        "f1_score": 1.0,
-        "specificity": 1.0,
-        "false_positive_rate": 0.0,
-        "false_negative_rate": 0.0
+        "accuracy": 0.9608,
+        "precision": 0.9683,
+        "recall": 0.955,
+        "f1_score": 0.9616,
+        "specificity": 0.967,
+        "false_positive_rate": 0.033,
+        "false_negative_rate": 0.045,
+        "roc_auc": 0.9934,
+        "average_precision": 0.9938
+      },
+      "confidence_intervals_95": {
+        "f1_score": [
+          0.9483,
+          0.9734
+        ],
+        "recall": [
+          0.9378,
+          0.9736
+        ],
+        "false_positive_rate": [
+          0.0166,
+          0.0502
+        ]
       },
       "error_cases": {
-        "false_positives": [],
-        "false_negatives": [],
-        "total_fp_count": 0,
-        "total_fn_count": 0
+        "false_positives": [
+          {
+            "url": "https://heartofamericahs.org/success/success.php",
+            "source": "Real long-tail benign (ISCX-style corpus)",
+            "true_label": "Legitimate",
+            "predicted_verdict": "Flagged (score 99/100)",
+            "root_cause_analysis": "No rule fired. Main model drivers toward 'phishing': Path and query structure (+0.46); URL size (+0.16)."
+          },
+          {
+            "url": "http://espncricinfo.com",
+            "source": "Curated popular domains (synthetic paths)",
+            "true_label": "Legitimate",
+            "predicted_verdict": "Flagged (score 97/100)",
+            "root_cause_analysis": "No rule fired. Main model drivers toward 'phishing': URL size (+0.65); Randomness of characters (+0.12)."
+          },
+          {
+            "url": "http://linkstothepast.com/milwaukee/036.php",
+            "source": "Real long-tail benign (ISCX-style corpus)",
+            "true_label": "Legitimate",
+            "predicted_verdict": "Flagged (score 95/100)",
+            "root_cause_analysis": "No rule fired. Main model drivers toward 'phishing': Path and query structure (+0.44); Digits (+0.16)."
+          },
+          {
+            "url": "https://oaklandca.areaguides.net/attraction_details.html?detailsListingId=ATTRACTIONS_d0c51c95cf6ed18e7b838b502a5771af",
+            "source": "Real long-tail benign (ISCX-style corpus)",
+            "true_label": "Legitimate",
+            "predicted_verdict": "Flagged (score 91/100)",
+            "root_cause_analysis": "Rules fired: Long, random-looking address. Main model drivers toward 'phishing': URL size (+0.84); Digits (+0.12)."
+          },
+          {
+            "url": "https://socialistproject.ca/bullet/286.php",
+            "source": "Real long-tail benign (ISCX-style corpus)",
+            "true_label": "Legitimate",
+            "predicted_verdict": "Flagged (score 86/100)",
+            "root_cause_analysis": "No rule fired. Main model drivers toward 'phishing': Path and query structure (+0.40); URL size (+0.23)."
+          },
+          {
+            "url": "https://help.soundcloud.com",
+            "source": "Curated popular domains (synthetic paths)",
+            "true_label": "Legitimate",
+            "predicted_verdict": "Flagged (score 81/100)",
+            "root_cause_analysis": "No rule fired. Main model drivers toward 'phishing': URL size (+0.74); Randomness of characters (+0.08)."
+          }
+        ],
+        "false_negatives": [
+          {
+            "url": "https://meetherhighness.com/outlook",
+            "source": "Phishing.Database ACTIVE (real)",
+            "true_label": "Phishing",
+            "predicted_verdict": "Missed (score 7/100)",
+            "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Randomness of characters (-0.24); Path and query structure (-0.14)."
+          },
+          {
+            "url": "https://garlandmews.org/otp.html",
+            "source": "Phishing.Database ACTIVE (real)",
+            "true_label": "Phishing",
+            "predicted_verdict": "Missed (score 7/100)",
+            "root_cause_analysis": "No rule matched. Model drivers that made it look normal: no single dominant factor."
+          },
+          {
+            "url": "https://blackarrowcz.com/dn/iuuso/nrd/60e453a",
+            "source": "Phishing.Database ACTIVE (real)",
+            "true_label": "Phishing",
+            "predicted_verdict": "Missed (score 10/100)",
+            "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Digits (-0.14)."
+          },
+          {
+            "url": "https://bitmicro.com/stp/m/navyfederal.org/loksv.php?park=2021554",
+            "source": "Phishing.Database ACTIVE (real)",
+            "true_label": "Phishing",
+            "predicted_verdict": "Missed (score 10/100)",
+            "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Digits (-0.26); Special characters (-0.16)."
+          },
+          {
+            "url": "https://iatindia.org/go/signonv2screen",
+            "source": "Phishing.Database ACTIVE (real)",
+            "true_label": "Phishing",
+            "predicted_verdict": "Missed (score 10/100)",
+            "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Randomness of characters (-0.23)."
+          },
+          {
+            "url": "http://masswalker.com/assets/js/libs/d2017hl/d2017hl",
+            "source": "Phishing.Database ACTIVE (real)",
+            "true_label": "Phishing",
+            "predicted_verdict": "Missed (score 16/100)",
+            "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Digits (-0.33); Randomness of characters (-0.08)."
+          }
+        ],
+        "total_fp_count": 16,
+        "total_fn_count": 23
       }
     },
     "hybrid_ensemble": {
-      "name": "Explainable Hybrid Detector",
-      "type": "Calibrated Consensus & Explainability Ensemble",
-      "description": "Weighted synthesis (55% ML + 45% Rules) with critical security override guardrails",
-      "sample_count": 234,
+      "name": "Hybrid Detector",
+      "type": "ML 80% + rules 20%",
+      "description": "What the app shows users: weighted score (80/19), critical-rule floor and trusted-domain cap, flagged at 35/100.",
+      "sample_count": 996,
       "confusion_matrix": {
-        "true_positives": 117,
-        "true_negatives": 117,
-        "false_positives": 0,
-        "false_negatives": 0
+        "true_positives": 489,
+        "true_negatives": 463,
+        "false_positives": 22,
+        "false_negatives": 22
       },
       "metrics": {
-        "accuracy": 1.0,
-        "precision": 1.0,
-        "recall": 1.0,
-        "f1_score": 1.0,
-        "specificity": 1.0,
-        "false_positive_rate": 0.0,
-        "false_negative_rate": 0.0
+        "accuracy": 0.9558,
+        "precision": 0.9569,
+        "recall": 0.9569,
+        "f1_score": 0.9569,
+        "specificity": 0.9546,
+        "false_positive_rate": 0.0454,
+        "false_negative_rate": 0.0431,
+        "roc_auc": 0.9934,
+        "average_precision": 0.9935
+      },
+      "confidence_intervals_95": {
+        "f1_score": [
+          0.9434,
+          0.9697
+        ],
+        "recall": [
+          0.9397,
+          0.9744
+        ],
+        "false_positive_rate": [
+          0.0263,
+          0.0648
+        ]
+      },
+      "error_cases": {
+        "false_positives": [
+          {
+            "url": "https://heartofamericahs.org/success/success.php",
+            "source": "Real long-tail benign (ISCX-style corpus)",
+            "true_label": "Legitimate",
+            "predicted_verdict": "Flagged (score 79/100)",
+            "root_cause_analysis": "No rule fired. Main model drivers toward 'phishing': Path and query structure (+0.46); URL size (+0.16)."
+          },
+          {
+            "url": "http://espncricinfo.com",
+            "source": "Curated popular domains (synthetic paths)",
+            "true_label": "Legitimate",
+            "predicted_verdict": "Flagged (score 78/100)",
+            "root_cause_analysis": "No rule fired. Main model drivers toward 'phishing': URL size (+0.65); Randomness of characters (+0.12)."
+          },
+          {
+            "url": "http://linkstothepast.com/milwaukee/036.php",
+            "source": "Real long-tail benign (ISCX-style corpus)",
+            "true_label": "Legitimate",
+            "predicted_verdict": "Flagged (score 76/100)",
+            "root_cause_analysis": "No rule fired. Main model drivers toward 'phishing': Path and query structure (+0.44); Digits (+0.16)."
+          },
+          {
+            "url": "https://oaklandca.areaguides.net/attraction_details.html?detailsListingId=ATTRACTIONS_d0c51c95cf6ed18e7b838b502a5771af",
+            "source": "Real long-tail benign (ISCX-style corpus)",
+            "true_label": "Legitimate",
+            "predicted_verdict": "Flagged (score 76/100)",
+            "root_cause_analysis": "Rules fired: Long, random-looking address. Main model drivers toward 'phishing': URL size (+0.84); Digits (+0.12)."
+          },
+          {
+            "url": "https://socialistproject.ca/bullet/286.php",
+            "source": "Real long-tail benign (ISCX-style corpus)",
+            "true_label": "Legitimate",
+            "predicted_verdict": "Flagged (score 69/100)",
+            "root_cause_analysis": "No rule fired. Main model drivers toward 'phishing': Path and query structure (+0.40); URL size (+0.23)."
+          },
+          {
+            "url": "http://artproject.weebly.com",
+            "source": "Personal sites on free platforms (synthetic names)",
+            "true_label": "Legitimate",
+            "predicted_verdict": "Flagged (score 67/100)",
+            "root_cause_analysis": "Rules fired: Built on a free website platform. Main model drivers toward 'phishing': URL size (+0.82)."
+          }
+        ],
+        "false_negatives": [
+          {
+            "url": "https://meetherhighness.com/outlook",
+            "source": "Phishing.Database ACTIVE (real)",
+            "true_label": "Phishing",
+            "predicted_verdict": "Missed (score 6/100)",
+            "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Randomness of characters (-0.24); Path and query structure (-0.14)."
+          },
+          {
+            "url": "https://garlandmews.org/otp.html",
+            "source": "Phishing.Database ACTIVE (real)",
+            "true_label": "Phishing",
+            "predicted_verdict": "Missed (score 6/100)",
+            "root_cause_analysis": "No rule matched. Model drivers that made it look normal: no single dominant factor."
+          },
+          {
+            "url": "https://blackarrowcz.com/dn/iuuso/nrd/60e453a",
+            "source": "Phishing.Database ACTIVE (real)",
+            "true_label": "Phishing",
+            "predicted_verdict": "Missed (score 8/100)",
+            "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Digits (-0.14)."
+          },
+          {
+            "url": "https://bitmicro.com/stp/m/navyfederal.org/loksv.php?park=2021554",
+            "source": "Phishing.Database ACTIVE (real)",
+            "true_label": "Phishing",
+            "predicted_verdict": "Missed (score 8/100)",
+            "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Digits (-0.26); Special characters (-0.16)."
+          },
+          {
+            "url": "https://iatindia.org/go/signonv2screen",
+            "source": "Phishing.Database ACTIVE (real)",
+            "true_label": "Phishing",
+            "predicted_verdict": "Missed (score 8/100)",
+            "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Randomness of characters (-0.23)."
+          },
+          {
+            "url": "http://masswalker.com/assets/js/libs/d2017hl/d2017hl",
+            "source": "Phishing.Database ACTIVE (real)",
+            "true_label": "Phishing",
+            "predicted_verdict": "Missed (score 13/100)",
+            "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Digits (-0.33); Randomness of characters (-0.08)."
+          }
+        ],
+        "total_fp_count": 22,
+        "total_fn_count": 22
       }
     }
   },
+  "by_source": {
+    "Curated popular domains (synthetic paths)": {
+      "count": 173,
+      "label": "Legitimate",
+      "hybrid_errors": 7,
+      "hybrid_error_rate": 0.0405
+    },
+    "Personal sites on free platforms (synthetic names)": {
+      "count": 66,
+      "label": "Legitimate",
+      "hybrid_errors": 3,
+      "hybrid_error_rate": 0.0455
+    },
+    "Phishing.Database ACTIVE (real)": {
+      "count": 511,
+      "label": "Phishing",
+      "hybrid_errors": 22,
+      "hybrid_error_rate": 0.0431
+    },
+    "Real long-tail benign (ISCX-style corpus)": {
+      "count": 246,
+      "label": "Legitimate",
+      "hybrid_errors": 12,
+      "hybrid_error_rate": 0.0488
+    }
+  },
+  "test": {
+    "dataset": {
+      "name": "Held-out domains (same distribution)",
+      "path": "test.csv",
+      "total": 996,
+      "phishing_count": 511,
+      "legitimate_count": 485
+    },
+    "detectors": {
+      "rule_based_baseline": {
+        "name": "Transparent Rule-Based Baseline",
+        "type": "16 auditable rules",
+        "description": "Flags a URL when rule points reach 15 (chosen on validation data).",
+        "sample_count": 996,
+        "confusion_matrix": {
+          "true_positives": 320,
+          "true_negatives": 342,
+          "false_positives": 143,
+          "false_negatives": 191
+        },
+        "metrics": {
+          "accuracy": 0.6647,
+          "precision": 0.6911,
+          "recall": 0.6262,
+          "f1_score": 0.6571,
+          "specificity": 0.7052,
+          "false_positive_rate": 0.2948,
+          "false_negative_rate": 0.3738,
+          "roc_auc": 0.6987,
+          "average_precision": 0.7001
+        },
+        "confidence_intervals_95": {
+          "f1_score": [
+            0.621,
+            0.6946
+          ],
+          "recall": [
+            0.5824,
+            0.6687
+          ],
+          "false_positive_rate": [
+            0.2529,
+            0.3355
+          ]
+        },
+        "error_cases": {
+          "false_positives": [
+            {
+              "url": "http://support.reuters.com/customer-service/track-order?orderId=114-5589231-2210617",
+              "source": "Curated popular domains (synthetic paths)",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 35/100)",
+              "root_cause_analysis": "Rules fired: Sign-in or payment words on an unverified site, Long, random-looking address. Main model drivers toward 'phishing': Digits (+0.15); Credential-themed words (+0.14)."
+            },
+            {
+              "url": "http://login.anthropic.com/Adobe",
+              "source": "Curated popular domains (synthetic paths)",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 30/100)",
+              "root_cause_analysis": "Rules fired: Sign-in or payment words on an unverified site, Brand name appears in the page path. Main model drivers toward 'phishing': Credential-themed words (+0.13); Randomness of characters (+0.06)."
+            },
+            {
+              "url": "https://wesleyvaclav.blogspot.com/2011/03/drakes-football-players-start-spring.html",
+              "source": "Real long-tail benign (ISCX-style corpus)",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 30/100)",
+              "root_cause_analysis": "Rules fired: Long, random-looking address, Built on a free website platform. Main model drivers toward 'phishing': Path and query structure (+0.07)."
+            },
+            {
+              "url": "https://jordan-27-weather-app.weebly.com/about",
+              "source": "Personal sites on free platforms (synthetic names)",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 30/100)",
+              "root_cause_analysis": "Rules fired: Built on a free website platform, Domain stuffed with hyphens. Main model drivers toward 'phishing': Digits (+0.20)."
+            },
+            {
+              "url": "https://maria-25-weather-app.workers.dev/projects",
+              "source": "Personal sites on free platforms (synthetic names)",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 30/100)",
+              "root_cause_analysis": "Rules fired: Built on a free website platform, Domain stuffed with hyphens. Main model drivers toward 'phishing': Digits (+0.19)."
+            },
+            {
+              "url": "http://secure.nytimes.com/r/tiktok",
+              "source": "Curated popular domains (synthetic paths)",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 30/100)",
+              "root_cause_analysis": "Rules fired: Sign-in or payment words on an unverified site, Brand name appears in the page path. Main model drivers toward 'phishing': Credential-themed words (+0.14); Brand impersonation (+0.05)."
+            }
+          ],
+          "false_negatives": [
+            {
+              "url": "https://qaz.pr-formwork.co.za",
+              "source": "Phishing.Database ACTIVE (real)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 0/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: no single dominant factor."
+            },
+            {
+              "url": "https://vqfsb.blogspot.li",
+              "source": "Phishing.Database ACTIVE (real)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 0/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Domain structure (-0.07)."
+            },
+            {
+              "url": "https://iportalbarclayshelp.com",
+              "source": "Phishing.Database ACTIVE (real)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 0/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: no single dominant factor."
+            },
+            {
+              "url": "https://tnhcf.blogspot.is",
+              "source": "Phishing.Database ACTIVE (real)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 0/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Domain structure (-0.07)."
+            },
+            {
+              "url": "https://revendeurs.ogivart.us/rms/57415821762206239",
+              "source": "Phishing.Database ACTIVE (real)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 0/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Domain structure (-0.06)."
+            },
+            {
+              "url": "http://genufly.com/wp-content/-/ee/bnp-robot-new",
+              "source": "Phishing.Database ACTIVE (real)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 0/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Domain structure (-0.27); URL size (-0.05)."
+            }
+          ],
+          "total_fp_count": 143,
+          "total_fn_count": 191
+        }
+      },
+      "machine_learning": {
+        "name": "ML Ensemble",
+        "type": "Gradient boosting + character patterns",
+        "description": "41 engineered features plus character 3-5-grams, with calibrated probabilities.",
+        "sample_count": 996,
+        "confusion_matrix": {
+          "true_positives": 488,
+          "true_negatives": 469,
+          "false_positives": 16,
+          "false_negatives": 23
+        },
+        "metrics": {
+          "accuracy": 0.9608,
+          "precision": 0.9683,
+          "recall": 0.955,
+          "f1_score": 0.9616,
+          "specificity": 0.967,
+          "false_positive_rate": 0.033,
+          "false_negative_rate": 0.045,
+          "roc_auc": 0.9934,
+          "average_precision": 0.9938
+        },
+        "confidence_intervals_95": {
+          "f1_score": [
+            0.9483,
+            0.9734
+          ],
+          "recall": [
+            0.9378,
+            0.9736
+          ],
+          "false_positive_rate": [
+            0.0166,
+            0.0502
+          ]
+        },
+        "error_cases": {
+          "false_positives": [
+            {
+              "url": "https://heartofamericahs.org/success/success.php",
+              "source": "Real long-tail benign (ISCX-style corpus)",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 99/100)",
+              "root_cause_analysis": "No rule fired. Main model drivers toward 'phishing': Path and query structure (+0.46); URL size (+0.16)."
+            },
+            {
+              "url": "http://espncricinfo.com",
+              "source": "Curated popular domains (synthetic paths)",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 97/100)",
+              "root_cause_analysis": "No rule fired. Main model drivers toward 'phishing': URL size (+0.65); Randomness of characters (+0.12)."
+            },
+            {
+              "url": "http://linkstothepast.com/milwaukee/036.php",
+              "source": "Real long-tail benign (ISCX-style corpus)",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 95/100)",
+              "root_cause_analysis": "No rule fired. Main model drivers toward 'phishing': Path and query structure (+0.44); Digits (+0.16)."
+            },
+            {
+              "url": "https://oaklandca.areaguides.net/attraction_details.html?detailsListingId=ATTRACTIONS_d0c51c95cf6ed18e7b838b502a5771af",
+              "source": "Real long-tail benign (ISCX-style corpus)",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 91/100)",
+              "root_cause_analysis": "Rules fired: Long, random-looking address. Main model drivers toward 'phishing': URL size (+0.84); Digits (+0.12)."
+            },
+            {
+              "url": "https://socialistproject.ca/bullet/286.php",
+              "source": "Real long-tail benign (ISCX-style corpus)",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 86/100)",
+              "root_cause_analysis": "No rule fired. Main model drivers toward 'phishing': Path and query structure (+0.40); URL size (+0.23)."
+            },
+            {
+              "url": "https://help.soundcloud.com",
+              "source": "Curated popular domains (synthetic paths)",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 81/100)",
+              "root_cause_analysis": "No rule fired. Main model drivers toward 'phishing': URL size (+0.74); Randomness of characters (+0.08)."
+            }
+          ],
+          "false_negatives": [
+            {
+              "url": "https://meetherhighness.com/outlook",
+              "source": "Phishing.Database ACTIVE (real)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 7/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Randomness of characters (-0.24); Path and query structure (-0.14)."
+            },
+            {
+              "url": "https://garlandmews.org/otp.html",
+              "source": "Phishing.Database ACTIVE (real)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 7/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: no single dominant factor."
+            },
+            {
+              "url": "https://blackarrowcz.com/dn/iuuso/nrd/60e453a",
+              "source": "Phishing.Database ACTIVE (real)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 10/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Digits (-0.14)."
+            },
+            {
+              "url": "https://bitmicro.com/stp/m/navyfederal.org/loksv.php?park=2021554",
+              "source": "Phishing.Database ACTIVE (real)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 10/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Digits (-0.26); Special characters (-0.16)."
+            },
+            {
+              "url": "https://iatindia.org/go/signonv2screen",
+              "source": "Phishing.Database ACTIVE (real)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 10/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Randomness of characters (-0.23)."
+            },
+            {
+              "url": "http://masswalker.com/assets/js/libs/d2017hl/d2017hl",
+              "source": "Phishing.Database ACTIVE (real)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 16/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Digits (-0.33); Randomness of characters (-0.08)."
+            }
+          ],
+          "total_fp_count": 16,
+          "total_fn_count": 23
+        }
+      },
+      "hybrid_ensemble": {
+        "name": "Hybrid Detector",
+        "type": "ML 80% + rules 20%",
+        "description": "What the app shows users: weighted score (80/19), critical-rule floor and trusted-domain cap, flagged at 35/100.",
+        "sample_count": 996,
+        "confusion_matrix": {
+          "true_positives": 489,
+          "true_negatives": 463,
+          "false_positives": 22,
+          "false_negatives": 22
+        },
+        "metrics": {
+          "accuracy": 0.9558,
+          "precision": 0.9569,
+          "recall": 0.9569,
+          "f1_score": 0.9569,
+          "specificity": 0.9546,
+          "false_positive_rate": 0.0454,
+          "false_negative_rate": 0.0431,
+          "roc_auc": 0.9934,
+          "average_precision": 0.9935
+        },
+        "confidence_intervals_95": {
+          "f1_score": [
+            0.9434,
+            0.9697
+          ],
+          "recall": [
+            0.9397,
+            0.9744
+          ],
+          "false_positive_rate": [
+            0.0263,
+            0.0648
+          ]
+        },
+        "error_cases": {
+          "false_positives": [
+            {
+              "url": "https://heartofamericahs.org/success/success.php",
+              "source": "Real long-tail benign (ISCX-style corpus)",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 79/100)",
+              "root_cause_analysis": "No rule fired. Main model drivers toward 'phishing': Path and query structure (+0.46); URL size (+0.16)."
+            },
+            {
+              "url": "http://espncricinfo.com",
+              "source": "Curated popular domains (synthetic paths)",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 78/100)",
+              "root_cause_analysis": "No rule fired. Main model drivers toward 'phishing': URL size (+0.65); Randomness of characters (+0.12)."
+            },
+            {
+              "url": "http://linkstothepast.com/milwaukee/036.php",
+              "source": "Real long-tail benign (ISCX-style corpus)",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 76/100)",
+              "root_cause_analysis": "No rule fired. Main model drivers toward 'phishing': Path and query structure (+0.44); Digits (+0.16)."
+            },
+            {
+              "url": "https://oaklandca.areaguides.net/attraction_details.html?detailsListingId=ATTRACTIONS_d0c51c95cf6ed18e7b838b502a5771af",
+              "source": "Real long-tail benign (ISCX-style corpus)",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 76/100)",
+              "root_cause_analysis": "Rules fired: Long, random-looking address. Main model drivers toward 'phishing': URL size (+0.84); Digits (+0.12)."
+            },
+            {
+              "url": "https://socialistproject.ca/bullet/286.php",
+              "source": "Real long-tail benign (ISCX-style corpus)",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 69/100)",
+              "root_cause_analysis": "No rule fired. Main model drivers toward 'phishing': Path and query structure (+0.40); URL size (+0.23)."
+            },
+            {
+              "url": "http://artproject.weebly.com",
+              "source": "Personal sites on free platforms (synthetic names)",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 67/100)",
+              "root_cause_analysis": "Rules fired: Built on a free website platform. Main model drivers toward 'phishing': URL size (+0.82)."
+            }
+          ],
+          "false_negatives": [
+            {
+              "url": "https://meetherhighness.com/outlook",
+              "source": "Phishing.Database ACTIVE (real)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 6/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Randomness of characters (-0.24); Path and query structure (-0.14)."
+            },
+            {
+              "url": "https://garlandmews.org/otp.html",
+              "source": "Phishing.Database ACTIVE (real)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 6/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: no single dominant factor."
+            },
+            {
+              "url": "https://blackarrowcz.com/dn/iuuso/nrd/60e453a",
+              "source": "Phishing.Database ACTIVE (real)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 8/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Digits (-0.14)."
+            },
+            {
+              "url": "https://bitmicro.com/stp/m/navyfederal.org/loksv.php?park=2021554",
+              "source": "Phishing.Database ACTIVE (real)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 8/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Digits (-0.26); Special characters (-0.16)."
+            },
+            {
+              "url": "https://iatindia.org/go/signonv2screen",
+              "source": "Phishing.Database ACTIVE (real)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 8/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Randomness of characters (-0.23)."
+            },
+            {
+              "url": "http://masswalker.com/assets/js/libs/d2017hl/d2017hl",
+              "source": "Phishing.Database ACTIVE (real)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 13/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Digits (-0.33); Randomness of characters (-0.08)."
+            }
+          ],
+          "total_fp_count": 22,
+          "total_fn_count": 22
+        }
+      }
+    },
+    "by_source": {
+      "Curated popular domains (synthetic paths)": {
+        "count": 173,
+        "label": "Legitimate",
+        "hybrid_errors": 7,
+        "hybrid_error_rate": 0.0405
+      },
+      "Personal sites on free platforms (synthetic names)": {
+        "count": 66,
+        "label": "Legitimate",
+        "hybrid_errors": 3,
+        "hybrid_error_rate": 0.0455
+      },
+      "Phishing.Database ACTIVE (real)": {
+        "count": 511,
+        "label": "Phishing",
+        "hybrid_errors": 22,
+        "hybrid_error_rate": 0.0431
+      },
+      "Real long-tail benign (ISCX-style corpus)": {
+        "count": 246,
+        "label": "Legitimate",
+        "hybrid_errors": 12,
+        "hybrid_error_rate": 0.0488
+      }
+    }
+  },
+  "ood": {
+    "dataset": {
+      "name": "Older campaigns + hard benign (out of distribution)",
+      "path": "ood_test.csv",
+      "total": 1580,
+      "phishing_count": 1200,
+      "legitimate_count": 380
+    },
+    "detectors": {
+      "rule_based_baseline": {
+        "name": "Transparent Rule-Based Baseline",
+        "type": "16 auditable rules",
+        "description": "Flags a URL when rule points reach 15 (chosen on validation data).",
+        "sample_count": 1580,
+        "confusion_matrix": {
+          "true_positives": 735,
+          "true_negatives": 343,
+          "false_positives": 37,
+          "false_negatives": 465
+        },
+        "metrics": {
+          "accuracy": 0.6823,
+          "precision": 0.9521,
+          "recall": 0.6125,
+          "f1_score": 0.7454,
+          "specificity": 0.9026,
+          "false_positive_rate": 0.0974,
+          "false_negative_rate": 0.3875,
+          "roc_auc": 0.7615,
+          "average_precision": 0.8835
+        },
+        "confidence_intervals_95": {
+          "f1_score": [
+            0.7219,
+            0.7657
+          ],
+          "recall": [
+            0.5823,
+            0.6394
+          ],
+          "false_positive_rate": [
+            0.0681,
+            0.128
+          ]
+        },
+        "error_cases": {
+          "false_positives": [
+            {
+              "url": "https://microsoft.github.io/vscode-pull-request-github/",
+              "source": "Hand-written hard benign",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 55/100)",
+              "root_cause_analysis": "Rules fired: Imitates a well-known brand, Built on a free website platform. Main model drivers toward 'phishing': Brand impersonation (+0.84); Domain extension (+0.21)."
+            },
+            {
+              "url": "https://docs.google.com/document/d/1AbCdEfGhIjKlMnOpQrStUvWxYz/edit",
+              "source": "Hand-written hard benign",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 55/100)",
+              "root_cause_analysis": "Rules fired: Imitates a well-known brand, Built on a free website platform. Main model drivers toward 'phishing': Brand impersonation (+0.67); URL size (+0.49)."
+            },
+            {
+              "url": "https://facebook.github.io/react-native/",
+              "source": "Hand-written hard benign",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 55/100)",
+              "root_cause_analysis": "Rules fired: Imitates a well-known brand, Built on a free website platform. Main model drivers toward 'phishing': Brand impersonation (+0.82); Domain extension (+0.24)."
+            },
+            {
+              "url": "https://drive.google.com/drive/my-drive",
+              "source": "Hand-written hard benign",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 55/100)",
+              "root_cause_analysis": "Rules fired: Imitates a well-known brand, Built on a free website platform. Main model drivers toward 'phishing': Brand impersonation (+0.78); URL size (+0.09)."
+            },
+            {
+              "url": "https://google.github.io/styleguide/pyguide.html",
+              "source": "Hand-written hard benign",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 55/100)",
+              "root_cause_analysis": "Rules fired: Imitates a well-known brand, Built on a free website platform. Main model drivers toward 'phishing': Brand impersonation (+0.79); Domain extension (+0.24)."
+            },
+            {
+              "url": "https://www.shopify.com/login",
+              "source": "Hand-written hard benign",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 40/100)",
+              "root_cause_analysis": "Rules fired: Imitates a well-known brand. Main model drivers toward 'phishing': Credential-themed words (+0.23)."
+            }
+          ],
+          "false_negatives": [
+            {
+              "url": "https://amethystevents.com.my/images/home/pic/boa/contact.html",
+              "source": "Phishing.Database INACTIVE (real, older campaigns)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 0/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Randomness of characters (-0.16); URL size (-0.07)."
+            },
+            {
+              "url": "http://sunchildproduction.com",
+              "source": "Phishing.Database INACTIVE (real, older campaigns)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 0/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: no single dominant factor."
+            },
+            {
+              "url": "http://returninvoice.com/directing/www.atbonline.com/atb/question.php",
+              "source": "Phishing.Database INACTIVE (real, older campaigns)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 0/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: no single dominant factor."
+            },
+            {
+              "url": "https://bber.com/banks/simplii/index.html",
+              "source": "Phishing.Database INACTIVE (real, older campaigns)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 0/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Domain structure (-0.12); URL size (-0.06)."
+            },
+            {
+              "url": "https://llne.bar",
+              "source": "Phishing.Database INACTIVE (real, older campaigns)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 0/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: no single dominant factor."
+            },
+            {
+              "url": "https://hostingconecta.com/sg-z",
+              "source": "Phishing.Database INACTIVE (real, older campaigns)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 0/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Path and query structure (-0.05)."
+            }
+          ],
+          "total_fp_count": 37,
+          "total_fn_count": 465
+        }
+      },
+      "machine_learning": {
+        "name": "ML Ensemble",
+        "type": "Gradient boosting + character patterns",
+        "description": "41 engineered features plus character 3-5-grams, with calibrated probabilities.",
+        "sample_count": 1580,
+        "confusion_matrix": {
+          "true_positives": 1148,
+          "true_negatives": 356,
+          "false_positives": 24,
+          "false_negatives": 52
+        },
+        "metrics": {
+          "accuracy": 0.9519,
+          "precision": 0.9795,
+          "recall": 0.9567,
+          "f1_score": 0.968,
+          "specificity": 0.9368,
+          "false_positive_rate": 0.0632,
+          "false_negative_rate": 0.0433,
+          "roc_auc": 0.9837,
+          "average_precision": 0.9929
+        },
+        "confidence_intervals_95": {
+          "f1_score": [
+            0.9605,
+            0.975
+          ],
+          "recall": [
+            0.945,
+            0.9677
+          ],
+          "false_positive_rate": [
+            0.039,
+            0.09
+          ]
+        },
+        "error_cases": {
+          "false_positives": [
+            {
+              "url": "https://steamcommunity.com/login/home/",
+              "source": "Hand-written hard benign",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 100/100)",
+              "root_cause_analysis": "No rule fired. Main model drivers toward 'phishing': Credential-themed words (+0.45); URL size (+0.25)."
+            },
+            {
+              "url": "https://microsoft.github.io/vscode-pull-request-github/",
+              "source": "Hand-written hard benign",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 100/100)",
+              "root_cause_analysis": "Rules fired: Imitates a well-known brand, Built on a free website platform. Main model drivers toward 'phishing': Brand impersonation (+0.84); Domain extension (+0.21)."
+            },
+            {
+              "url": "https://facebook.github.io/react-native/",
+              "source": "Hand-written hard benign",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 100/100)",
+              "root_cause_analysis": "Rules fired: Imitates a well-known brand, Built on a free website platform. Main model drivers toward 'phishing': Brand impersonation (+0.82); Domain extension (+0.24)."
+            },
+            {
+              "url": "https://google.github.io/styleguide/pyguide.html",
+              "source": "Hand-written hard benign",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 99/100)",
+              "root_cause_analysis": "Rules fired: Imitates a well-known brand, Built on a free website platform. Main model drivers toward 'phishing': Brand impersonation (+0.79); Domain extension (+0.24)."
+            },
+            {
+              "url": "https://drive.google.com/drive/my-drive",
+              "source": "Hand-written hard benign",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 95/100)",
+              "root_cause_analysis": "Rules fired: Imitates a well-known brand, Built on a free website platform. Main model drivers toward 'phishing': Brand impersonation (+0.78); URL size (+0.09)."
+            },
+            {
+              "url": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
+              "source": "Hand-written hard benign",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 91/100)",
+              "root_cause_analysis": "No rule fired. Main model drivers toward 'phishing': URL size (+0.38); Credential-themed words (+0.20)."
+            }
+          ],
+          "false_negatives": [
+            {
+              "url": "https://lnstlognn.com/instagram/reels/arnfsasd475",
+              "source": "Phishing.Database INACTIVE (real, older campaigns)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 1/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Randomness of characters (-0.37)."
+            },
+            {
+              "url": "https://wikiboss.org/036d7f8",
+              "source": "Phishing.Database INACTIVE (real, older campaigns)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 1/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Randomness of characters (-0.15)."
+            },
+            {
+              "url": "https://kasflkasl.com/guvenlik",
+              "source": "Phishing.Database INACTIVE (real, older campaigns)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 3/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Randomness of characters (-0.11)."
+            },
+            {
+              "url": "http://wininma.com/asqqar",
+              "source": "Phishing.Database INACTIVE (real, older campaigns)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 3/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Randomness of characters (-0.08)."
+            },
+            {
+              "url": "https://elisbistronm.com/cra-arc",
+              "source": "Phishing.Database INACTIVE (real, older campaigns)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 5/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Path and query structure (-0.14); Randomness of characters (-0.09)."
+            },
+            {
+              "url": "http://photo.jfkuv.pics/qdpbgjcl",
+              "source": "Phishing.Database INACTIVE (real, older campaigns)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 7/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Domain structure (-0.17)."
+            }
+          ],
+          "total_fp_count": 24,
+          "total_fn_count": 52
+        }
+      },
+      "hybrid_ensemble": {
+        "name": "Hybrid Detector",
+        "type": "ML 80% + rules 20%",
+        "description": "What the app shows users: weighted score (80/19), critical-rule floor and trusted-domain cap, flagged at 35/100.",
+        "sample_count": 1580,
+        "confusion_matrix": {
+          "true_positives": 1153,
+          "true_negatives": 355,
+          "false_positives": 25,
+          "false_negatives": 47
+        },
+        "metrics": {
+          "accuracy": 0.9544,
+          "precision": 0.9788,
+          "recall": 0.9608,
+          "f1_score": 0.9697,
+          "specificity": 0.9342,
+          "false_positive_rate": 0.0658,
+          "false_negative_rate": 0.0392,
+          "roc_auc": 0.9805,
+          "average_precision": 0.9879
+        },
+        "confidence_intervals_95": {
+          "f1_score": [
+            0.9627,
+            0.9764
+          ],
+          "recall": [
+            0.9494,
+            0.971
+          ],
+          "false_positive_rate": [
+            0.0403,
+            0.0931
+          ]
+        },
+        "error_cases": {
+          "false_positives": [
+            {
+              "url": "https://microsoft.github.io/vscode-pull-request-github/",
+              "source": "Hand-written hard benign",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 91/100)",
+              "root_cause_analysis": "Rules fired: Imitates a well-known brand, Built on a free website platform. Main model drivers toward 'phishing': Brand impersonation (+0.84); Domain extension (+0.21)."
+            },
+            {
+              "url": "https://facebook.github.io/react-native/",
+              "source": "Hand-written hard benign",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 91/100)",
+              "root_cause_analysis": "Rules fired: Imitates a well-known brand, Built on a free website platform. Main model drivers toward 'phishing': Brand impersonation (+0.82); Domain extension (+0.24)."
+            },
+            {
+              "url": "https://google.github.io/styleguide/pyguide.html",
+              "source": "Hand-written hard benign",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 90/100)",
+              "root_cause_analysis": "Rules fired: Imitates a well-known brand, Built on a free website platform. Main model drivers toward 'phishing': Brand impersonation (+0.79); Domain extension (+0.24)."
+            },
+            {
+              "url": "https://drive.google.com/drive/my-drive",
+              "source": "Hand-written hard benign",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 87/100)",
+              "root_cause_analysis": "Rules fired: Imitates a well-known brand, Built on a free website platform. Main model drivers toward 'phishing': Brand impersonation (+0.78); URL size (+0.09)."
+            },
+            {
+              "url": "https://docs.google.com/document/d/1AbCdEfGhIjKlMnOpQrStUvWxYz/edit",
+              "source": "Hand-written hard benign",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 77/100)",
+              "root_cause_analysis": "Rules fired: Imitates a well-known brand, Built on a free website platform. Main model drivers toward 'phishing': Brand impersonation (+0.67); URL size (+0.49)."
+            },
+            {
+              "url": "https://www.shopify.com/login",
+              "source": "Hand-written hard benign",
+              "true_label": "Legitimate",
+              "predicted_verdict": "Flagged (score 70/100)",
+              "root_cause_analysis": "Rules fired: Imitates a well-known brand. Main model drivers toward 'phishing': Credential-themed words (+0.23)."
+            }
+          ],
+          "false_negatives": [
+            {
+              "url": "https://lnstlognn.com/instagram/reels/arnfsasd475",
+              "source": "Phishing.Database INACTIVE (real, older campaigns)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 1/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Randomness of characters (-0.37)."
+            },
+            {
+              "url": "https://wikiboss.org/036d7f8",
+              "source": "Phishing.Database INACTIVE (real, older campaigns)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 1/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Randomness of characters (-0.15)."
+            },
+            {
+              "url": "https://kasflkasl.com/guvenlik",
+              "source": "Phishing.Database INACTIVE (real, older campaigns)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 2/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Randomness of characters (-0.11)."
+            },
+            {
+              "url": "http://wininma.com/asqqar",
+              "source": "Phishing.Database INACTIVE (real, older campaigns)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 2/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Randomness of characters (-0.08)."
+            },
+            {
+              "url": "https://elisbistronm.com/cra-arc",
+              "source": "Phishing.Database INACTIVE (real, older campaigns)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 4/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Path and query structure (-0.14); Randomness of characters (-0.09)."
+            },
+            {
+              "url": "https://goto.otopplace.com/DE/ING/Anmelden-mit-Zugangsdaten/c15a2",
+              "source": "Phishing.Database INACTIVE (real, older campaigns)",
+              "true_label": "Phishing",
+              "predicted_verdict": "Missed (score 6/100)",
+              "root_cause_analysis": "No rule matched. Model drivers that made it look normal: Domain structure (-0.19); Randomness of characters (-0.07)."
+            }
+          ],
+          "total_fp_count": 25,
+          "total_fn_count": 47
+        }
+      }
+    },
+    "by_source": {
+      "Curated unseen domains (synthetic paths)": {
+        "count": 239,
+        "label": "Legitimate",
+        "hybrid_errors": 7,
+        "hybrid_error_rate": 0.0293
+      },
+      "Hand-written hard benign": {
+        "count": 141,
+        "label": "Legitimate",
+        "hybrid_errors": 18,
+        "hybrid_error_rate": 0.1277
+      },
+      "Phishing.Database INACTIVE (real, older campaigns)": {
+        "count": 1200,
+        "label": "Phishing",
+        "hybrid_errors": 47,
+        "hybrid_error_rate": 0.0392
+      }
+    }
+  },
+  "thresholds": {
+    "rule_flag": 15,
+    "hybrid_flag": 35,
+    "ml_weight": 0.8,
+    "rule_weight": 0.19999999999999996
+  },
+  "training_summary": {
+    "train_rows": 4449,
+    "hgb_params": {
+      "max_depth": 5,
+      "learning_rate": 0.08,
+      "max_iter": 500,
+      "min_samples_leaf": 10,
+      "l2_regularization": 1.0,
+      "random_state": 42
+    },
+    "validation": {
+      "roc_auc": 0.9921,
+      "average_precision": 0.9926,
+      "f1": 0.9513
+    }
+  },
   "key_takeaways": [
-    "Neither detector achieves 100% precision or recall, demonstrating why URL filtering cannot guarantee absolute safety.",
-    "The ML model captures subtle multi-feature interactions, achieving superior F1-score and lower false negative rate compared to rigid rules.",
-    "The Rule-Based Baseline offers immediate interpretability and zero training overhead, catching obvious brand spoofing and IP host attacks.",
-    "The Hybrid architecture balances heuristic transparency with statistical robustness while clearly exposing uncertainty when models diverge."
+    "On held-out domains the rules alone reach F1 0.66 (recall 63%): transparent but they miss many real phishing URLs because most attacks avoid obvious tricks.",
+    "The ML ensemble reaches F1 0.96 and the hybrid F1 0.96; neither is perfect, which is the realistic expectation for URL-only detection.",
+    "On older campaigns the hybrid keeps F1 0.97, which suggests it is not just memorising the training feed.",
+    "Hard benign pages (real sign-in pages, repos and docs with phishing-like words): 18 of 141 wrongly flagged."
+  ],
+  "limitations": [
+    "The legitimate side is partly synthetic (well-known domains with generated paths) and partly an older public corpus, so false-positive rates on today's real web traffic may be higher than shown.",
+    "URL-only analysis cannot see page content. Phishing hosted on a compromised legitimate site, or reached through an open redirect on a trusted domain, can look normal.",
+    "Phishing infrastructure changes quickly. Retrain regularly with fresh feeds (python data/dataset_builder.py)."
   ]
 }

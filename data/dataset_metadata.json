@@ -1,69 +1,51 @@
 {
-  "dataset_name": "Explainable Phishing Risk URL Corpus",
-  "curated_date": "2026-11-05",
-  "data_sources": {
-    "phishing": [
-      {
-        "name": "PhishTank",
-        "description": "Community-verified phishing repository feed (phishtank.org)",
-        "type": "verified_malicious"
-      },
-      {
-        "name": "OpenPhish",
-        "description": "Global targeted phishing threat intelligence feed (openphish.com)",
-        "type": "active_threat"
-      },
-      {
-        "name": "URLhaus",
-        "description": "Malicious URL feed tracking malware and credential harvesting (urlhaus.abuse.ch)",
-        "type": "abuse_database"
-      }
-    ],
-    "legitimate": [
-      {
-        "name": "Tranco Top 1M",
-        "description": "Research-oriented top website ranking list (tranco-list.eu)",
-        "type": "authoritative_ranking"
-      },
-      {
-        "name": "Cisco Umbrella Top 1M",
-        "description": "Most queried domains based on global Cisco DNS telemetry",
-        "type": "traffic_telemetry"
-      },
-      {
-        "name": "Curated Trusted Portals",
-        "description": "Official education (.edu), government (.gov), tech docs, and financial services",
-        "type": "authoritative_services"
-      }
-    ]
+  "dataset_name": "PhishGuard URL corpus v2",
+  "seed": 42,
+  "honesty_notes": [
+    "Phishing URLs are real, taken from the public Phishing.Database aggregation of community feeds.",
+    "Roughly half of the legitimate URLs are real long-tail URLs from an older public corpus; the rest are well-known domains combined with synthetic-but-realistic paths. Treat metrics as an optimistic bound for the benign side.",
+    "Scheme and 'has path' were decorrelated from the label; splits are grouped by registered domain.",
+    "The OOD test uses older phishing campaigns and hand-written benign URLs not used in training."
+  ],
+  "sources": {
+    "phish_active": "https://raw.githubusercontent.com/mitchellkrogza/Phishing.Database/master/phishing-links-ACTIVE.txt",
+    "phish_inactive": "https://raw.githubusercontent.com/mitchellkrogza/Phishing.Database/master/phishing-links-INACTIVE.txt",
+    "benign_longtail": "https://raw.githubusercontent.com/faizann24/Using-machine-learning-to-detect-malicious-URLs/master/data/data.csv"
   },
-  "total_balanced_samples": 1550,
-  "class_balance": {
-    "phishing_count": 775,
-    "legitimate_count": 775,
-    "phishing_ratio": 0.5,
-    "legitimate_ratio": 0.5
+  "caps": {
+    "per_host": 2,
+    "per_registered_domain": 8,
+    "platform_share": 0.035
   },
   "splits": {
     "train": {
-      "total": 1084,
-      "phishing": 542,
-      "legitimate": 542
+      "total": 4449,
+      "phishing": 2211,
+      "legitimate": 2238
     },
-    "validation": {
-      "total": 232,
-      "phishing": 116,
-      "legitimate": 116
+    "val": {
+      "total": 1047,
+      "phishing": 524,
+      "legitimate": 523
     },
     "test": {
-      "total": 234,
-      "phishing": 117,
-      "legitimate": 117
+      "total": 996,
+      "phishing": 511,
+      "legitimate": 485
+    },
+    "ood_test": {
+      "total": 1580,
+      "phishing": 1200,
+      "legitimate": 380
     }
   },
-  "random_seed": 42,
-  "provenance": {
-    "framework": "PhishGuard AI Dual-Engine Detection",
-    "architecture": "11 Heuristic Rules + 21-Feature Random Forest ML"
+  "source_breakdown": {
+    "Phishing.Database ACTIVE (real)": 3246,
+    "Curated popular domains (synthetic paths)": 1144,
+    "Real long-tail benign (ISCX-style corpus)": 1736,
+    "Personal sites on free platforms (synthetic names)": 366,
+    "Phishing.Database INACTIVE (real, older campaigns)": 1200,
+    "Curated unseen domains (synthetic paths)": 239,
+    "Hand-written hard benign": 141
   }
 }
